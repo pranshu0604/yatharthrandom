@@ -1,0 +1,181 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  BUYER
+  SELLER
+  ADMIN
+}
+
+enum SellerTier {
+  BRONZE
+  SILVER
+  GOLD
+}
+
+enum ListingStatus {
+  PENDING
+  ACTIVE
+  SOLD
+  EXPIRED
+  REJECTED
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  CANCELLED
+}
+
+model User {
+  id           String    @id @default(cuid())
+  name         String
+  email        String    @unique
+  passwordHash String?
+  image        String?
+  phone        String?
+  city         String?
+  state        String?
+  role         Role      @default(BUYER)
+  tier         SellerTier @default(BRONZE)
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  listings         Listing[]
+  reviewsGiven     Review[]      @relation("ReviewBuyer")
+  reviewsReceived  Review[]      @relation("ReviewSeller")
+  purchasesAsBuyer Transaction[] @relation("TransactionBuyer")
+  salesAsSeller    Transaction[] @relation("TransactionSeller")
+  savedListings    SavedListing[]
+
+  @@map("users")
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  icon        String?
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  listings Listing[]
+
+  @@map("categories")
+}
+
+model Listing {
+  id              String        @id @default(cuid())
+  title           String
+  description     String
+  originalPrice   Float
+  askingPrice     Float
+  city            String
+  state           String
+  membershipType  String
+  duration        String?
+  expiryDate      DateTime?
+  images          String[]
+  status          ListingStatus @default(PENDING)
+  featured        Boolean       @default(false)
+  views           Int           @default(0)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  sellerId String
+  seller   User   @relation(fields: [sellerId], references: [id])
+
+  reviews      Review[]
+  transactions Transaction[]
+  savedBy      SavedListing[]
+
+  @@index([categoryId])
+  @@index([sellerId])
+  @@index([status])
+  @@index([city])
+  @@index([askingPrice])
+  @@map("listings")
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+
+  buyerId String
+  buyer   User   @relation("ReviewBuyer", fields: [buyerId], references: [id])
+
+  sellerId String
+  seller   User   @relation("ReviewSeller", fields: [sellerId], references: [id])
+
+  listingId String
+  listing   Listing @relation(fields: [listingId], references: [id])
+
+  @@unique([buyerId, listingId])
+  @@map("reviews")
+}
+
+model Transaction {
+  id         String            @id @default(cuid())
+  amount     Float
+  commission Float
+  status     TransactionStatus @default(PENDING)
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
+
+  listingId String
+  listing   Listing @relation(fields: [listingId], references: [id])
+
+  buyerId String
+  buyer   User   @relation("TransactionBuyer", fields: [buyerId], references: [id])
+
+  sellerId String
+  seller   User   @relation("TransactionSeller", fields: [sellerId], references: [id])
+
+  @@map("transactions")
+}
+
+model SavedListing {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  listingId String
+  listing   Listing @relation(fields: [listingId], references: [id])
+
+  @@unique([userId, listingId])
+  @@map("saved_listings")
+}
+
+model TierConfig {
+  id              String     @id @default(cuid())
+  tier            SellerTier @unique
+  maxListings     Int
+  monthlyPrice    Float
+  featuredPerMonth Int
+  description     String?
+
+  @@map("tier_configs")
+}
+
+model PlatformConfig {
+  id                 String @id @default(cuid())
+  commissionPercent  Float  @default(5.0)
+  featuredListingFee Float  @default(499)
+  flatListingFee     Float  @default(0)
+
+  @@map("platform_config")
+}
