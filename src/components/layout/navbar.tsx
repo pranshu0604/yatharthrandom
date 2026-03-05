@@ -179,13 +179,19 @@ export default function Navbar() {
                   </Link>
                 </>
               )}
-              <Link
-                href="/dashboard/seller/listings/new"
-                className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-semibold text-white bg-neutral-900 hover:bg-neutral-800 transition-colors duration-200"
+              <motion.div
+                initial={{ scale: 1 }}
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ delay: 2, duration: 0.6, ease: "easeInOut" }}
               >
-                List Your Membership
-                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-              </Link>
+                <Link
+                  href="/dashboard/seller/listings/new"
+                  className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-semibold text-white bg-neutral-900 hover:bg-neutral-800 hover:shadow-[0_0_20px_rgba(46,196,182,0.3)] transition-all duration-300"
+                >
+                  List Your Membership
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+                </Link>
+              </motion.div>
             </div>
 
             {/* Mobile Menu Button */}

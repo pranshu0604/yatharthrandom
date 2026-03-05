@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Star, Shield, MapPin } from "lucide-react";
+import { ArrowRight, Star, Shield, MapPin, ChevronDown } from "lucide-react";
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -183,6 +183,21 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-6 left-1/2 -translate-x-1/2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.5 }}
+      >
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ChevronDown className="h-5 w-5 text-neutral-300" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
