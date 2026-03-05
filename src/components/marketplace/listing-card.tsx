@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Clock, Eye, Star } from "lucide-react";
+import { MapPin, Clock, Eye, Star, Heart, ShieldCheck } from "lucide-react";
 import { cn, formatCurrency, getDiscount, getDaysUntilExpiry } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
@@ -74,6 +74,7 @@ function ListingCard({ listing, className }: ListingCardProps) {
   const avgRating = listing.seller._avg?.rating ?? 0;
   const reviewCount = listing.seller._count?.reviews ?? 0;
   const heroImage = listing.images[0] ?? "/placeholder-listing.jpg";
+  const isVerified = listing.seller.tier === "GOLD" || listing.seller.tier === "SILVER";
 
   return (
     <Link href={`/listing/${listing.id}`} className={cn("block group", className)}>
@@ -99,8 +100,8 @@ function ListingCard({ listing, className }: ListingCardProps) {
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
 
-          {/* Gradient overlay at bottom */}
-          <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/10 to-transparent" />
+          {/* Hover overlay */}
+          <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/10 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
 
           {/* Category badge — top left */}
           <div className="absolute top-3 left-3">
@@ -111,12 +112,19 @@ function ListingCard({ listing, className }: ListingCardProps) {
 
           {/* Discount badge — top right */}
           {discount > 0 && (
-            <div className="absolute top-3 right-3">
+            <div className="absolute top-3 right-12">
               <span className="inline-flex items-center rounded-lg bg-accent px-2.5 py-1 text-xs font-bold text-white shadow-sm">
                 {discount}% off
               </span>
             </div>
           )}
+
+          {/* Heart/save button — top right */}
+          <div className="absolute top-3 right-3">
+            <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm shadow-sm text-neutral-500 transition-colors duration-200 hover:text-red-500 hover:bg-white">
+              <Heart className="h-4 w-4" />
+            </span>
+          </div>
 
           {/* Featured badge */}
           {listing.featured && (
@@ -139,10 +147,15 @@ function ListingCard({ listing, className }: ListingCardProps) {
 
         {/* ---- Content Section ---- */}
         <div className="p-4 sm:p-5">
-          {/* Title */}
-          <h3 className="text-[15px] font-semibold text-neutral-800 leading-snug line-clamp-2 mb-2 group-hover:text-primary transition-colors duration-200">
-            {listing.title}
-          </h3>
+          {/* Title + Verified */}
+          <div className="flex items-start gap-1.5">
+            <h3 className="text-[15px] font-semibold text-neutral-800 leading-snug line-clamp-2 mb-2 group-hover:text-primary transition-colors duration-200 flex-1">
+              {listing.title}
+            </h3>
+            {isVerified && (
+              <ShieldCheck className="h-4 w-4 text-accent shrink-0 mt-0.5" />
+            )}
+          </div>
 
           {/* Location */}
           <div className="flex items-center gap-1.5 text-neutral-400 mb-3">
@@ -152,15 +165,25 @@ function ListingCard({ listing, className }: ListingCardProps) {
             </span>
           </div>
 
-          {/* Price section */}
-          <div className="flex items-baseline gap-2.5 mb-4">
-            <span className="text-xl font-bold text-primary tracking-tight">
-              {formatCurrency(listing.askingPrice)}
-            </span>
-            {listing.originalPrice > listing.askingPrice && (
-              <span className="text-sm text-neutral-400 line-through">
-                {formatCurrency(listing.originalPrice)}
+          {/* Price + Rating row */}
+          <div className="flex items-baseline justify-between mb-4">
+            <div className="flex items-baseline gap-2.5">
+              <span className="text-xl font-bold text-primary tracking-tight">
+                {formatCurrency(listing.askingPrice)}
               </span>
+              {listing.originalPrice > listing.askingPrice && (
+                <span className="text-sm text-neutral-400 line-through">
+                  {formatCurrency(listing.originalPrice)}
+                </span>
+              )}
+            </div>
+            {/* Star rating */}
+            {reviewCount > 0 && (
+              <div className="flex items-center gap-1">
+                <Star className="h-3.5 w-3.5 fill-secondary text-secondary" />
+                <span className="text-sm font-semibold text-neutral-700">{avgRating.toFixed(1)}</span>
+                <span className="text-xs text-neutral-400">({reviewCount})</span>
+              </div>
             )}
           </div>
 
@@ -197,13 +220,6 @@ function ListingCard({ listing, className }: ListingCardProps) {
                   >
                     {tier.label}
                   </span>
-                  {/* Rating */}
-                  {reviewCount > 0 && (
-                    <span className="inline-flex items-center gap-0.5 text-[11px] text-neutral-500">
-                      <Star className="h-3 w-3 fill-secondary text-secondary" />
-                      {avgRating.toFixed(1)}
-                    </span>
-                  )}
                 </div>
               </div>
             </div>

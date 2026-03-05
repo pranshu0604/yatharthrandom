@@ -9,7 +9,14 @@ async function getFeaturedListings() {
     const listings = await prisma.listing.findMany({
       where: { status: "ACTIVE", featured: true },
       include: {
-        seller: { select: { name: true, tier: true, image: true } },
+        seller: {
+          select: {
+            name: true,
+            tier: true,
+            image: true,
+            reviewsReceived: { select: { rating: true } },
+          },
+        },
         category: { select: { name: true, slug: true } },
       },
       orderBy: { createdAt: "desc" },
@@ -24,17 +31,28 @@ async function getFeaturedListings() {
 export default async function FeaturedListings() {
   const listings = await getFeaturedListings();
 
-  const listingsData = listings.map((listing) => ({
-    id: listing.id,
-    title: listing.title,
-    askingPrice: listing.askingPrice,
-    originalPrice: listing.originalPrice,
-    city: listing.city,
-    state: listing.state,
-    images: listing.images,
-    category: { name: listing.category.name },
-    seller: { tier: listing.seller.tier },
-  }));
+  const listingsData = listings.map((listing) => {
+    const reviews = listing.seller.reviewsReceived;
+    const avgRating = reviews.length > 0
+      ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
+      : 0;
+    return {
+      id: listing.id,
+      title: listing.title,
+      askingPrice: listing.askingPrice,
+      originalPrice: listing.originalPrice,
+      city: listing.city,
+      state: listing.state,
+      images: listing.images,
+      category: { name: listing.category.name },
+      seller: {
+        tier: listing.seller.tier,
+        name: listing.seller.name,
+        _avg: { rating: avgRating },
+        _count: { reviews: reviews.length },
+      },
+    };
+  });
 
   return (
     <section className="py-20 sm:py-28 bg-neutral-50">

@@ -35,7 +35,7 @@ export default function CTASection() {
         >
           <Link
             href="/marketplace"
-            className="group inline-flex items-center gap-2.5 px-8 py-4 text-sm font-semibold tracking-wide rounded-full bg-neutral-900 text-white hover:bg-neutral-800 transition-colors duration-200"
+            className="group inline-flex items-center gap-2.5 px-8 py-4 text-sm font-semibold tracking-wide rounded-full bg-neutral-900 text-white hover:bg-neutral-800 hover:shadow-[0_0_20px_rgba(46,196,182,0.3)] transition-all duration-300"
           >
             Browse Memberships
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
