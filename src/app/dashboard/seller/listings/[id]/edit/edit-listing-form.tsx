@@ -515,7 +515,7 @@ function EditListingForm({ listing, categories }: EditListingFormProps) {
                           {formatCurrency(watchedOriginal)}
                         </p>
                       ) : null}
-                      <p className="text-lg font-bold text-white">
+                      <p className="text-lg font-bold text-neutral-100">
                         {watchedAsking
                           ? formatCurrency(watchedAsking)
                           : "Price"}

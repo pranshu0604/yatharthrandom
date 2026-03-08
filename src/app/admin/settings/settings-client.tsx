@@ -211,7 +211,7 @@ export function AdminSettingsClient({ config, tiers }: Props) {
                             onChange={(e) =>
                               updateTier(tier.id, "maxListings", e.target.value)
                             }
-                            className="w-24 rounded-lg border border-neutral-800 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
+                            className="w-24 rounded-lg border border-neutral-800 bg-neutral-900 text-neutral-200 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
                           />
                         </td>
                         <td className="px-4 py-3">
@@ -227,7 +227,7 @@ export function AdminSettingsClient({ config, tiers }: Props) {
                                 e.target.value,
                               )
                             }
-                            className="w-28 rounded-lg border border-neutral-800 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
+                            className="w-28 rounded-lg border border-neutral-800 bg-neutral-900 text-neutral-200 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
                           />
                         </td>
                         <td className="px-4 py-3">
@@ -242,7 +242,7 @@ export function AdminSettingsClient({ config, tiers }: Props) {
                                 e.target.value,
                               )
                             }
-                            className="w-20 rounded-lg border border-neutral-800 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
+                            className="w-20 rounded-lg border border-neutral-800 bg-neutral-900 text-neutral-200 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
                           />
                         </td>
                         <td className="px-4 py-3">
@@ -257,7 +257,7 @@ export function AdminSettingsClient({ config, tiers }: Props) {
                               )
                             }
                             placeholder="Description"
-                            className="w-full min-w-40 rounded-lg border border-neutral-800 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
+                            className="w-full min-w-40 rounded-lg border border-neutral-800 bg-neutral-900 text-neutral-200 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
                           />
                         </td>
                       </tr>

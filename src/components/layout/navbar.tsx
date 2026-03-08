@@ -136,7 +136,7 @@ export default function Navbar() {
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 10, scale: 0.95 }}
                             transition={{ duration: 0.2 }}
-                            className="absolute right-0 top-14 z-50 w-64 rounded-xl glass-panel p-2 shadow-2xl"
+                            className="absolute right-0 top-14 z-50 w-64 rounded-xl glass-panel p-2 shadow-[0_8px_40px_rgba(0,0,0,0.5)]"
                           >
                             <div className="px-3 py-3 border-b border-white/10 mb-1">
                               <p className="text-sm font-medium text-white truncate">
@@ -149,7 +149,7 @@ export default function Navbar() {
                             <Link
                               href={dashboardHref}
                               onClick={() => setProfileOpen(false)}
-                              className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-neutral-400 rounded-lg hover:bg-neutral-900/5 hover:text-white transition-colors"
+                              className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-neutral-400 rounded-lg hover:bg-white/10 hover:text-white transition-colors"
                             >
                               <LayoutDashboard className="h-4 w-4" />
                               Dashboard
@@ -177,7 +177,7 @@ export default function Navbar() {
                   </Link>
                   <Link
                     href="/register"
-                    className="relative px-6 py-2.5 bg-neutral-900 text-black text-sm font-semibold tracking-wide hover:bg-neutral-700 transition-colors duration-300"
+                    className="relative px-6 py-2.5 bg-white text-neutral-900 text-sm font-semibold tracking-wide hover:bg-neutral-200 transition-colors duration-300"
                   >
                     Get Access
                   </Link>
@@ -239,7 +239,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 z-40 flex h-full w-[85%] max-w-sm flex-col bg-neutral-900 shadow-[-8px_0_30px_rgba(0,0,0,0.08)]"
+              className="fixed top-0 right-0 z-40 flex h-full w-[85%] max-w-sm flex-col bg-neutral-900 shadow-[-8px_0_30px_rgba(0,0,0,0.5)]"
             >
               <div className="h-16 shrink-0" />
 

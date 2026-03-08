@@ -230,7 +230,7 @@ function ImageGallery({ images, title, className }: ImageGalleryProps) {
               className={cn(
                 "relative shrink-0 w-20 h-16 rounded-lg overflow-hidden transition-all duration-200 cursor-pointer",
                 i === selectedIndex
-                  ? "ring-2 ring-accent ring-offset-2 opacity-100"
+                  ? "ring-2 ring-accent ring-offset-2 ring-offset-neutral-950 opacity-100"
                   : "opacity-60 hover:opacity-90",
               )}
               aria-label={`View image ${i + 1}`}

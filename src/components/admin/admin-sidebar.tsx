@@ -38,7 +38,7 @@ export function AdminSidebar() {
     <div className="flex h-full flex-col bg-neutral-900 border-r border-neutral-800">
       {/* Logo / Brand */}
       <div className="flex items-center gap-3 px-6 py-6 border-b border-neutral-800">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-neutral-900">
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10">
           <Shield className="h-5 w-5 text-white" />
         </div>
         <div>

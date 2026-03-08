@@ -197,7 +197,7 @@ function DashboardSidebar({ user }: DashboardSidebarProps) {
       {/* Mobile drawer */}
       <aside
         className={cn(
-          "lg:hidden fixed top-0 left-0 bottom-0 z-50 w-72 bg-neutral-900 shadow-xl transition-transform duration-300 ease-in-out pt-[72px]",
+          "lg:hidden fixed top-0 left-0 bottom-0 z-50 w-72 bg-neutral-900 shadow-[0_8px_40px_rgba(0,0,0,0.5)] transition-transform duration-300 ease-in-out pt-[72px]",
           mobileOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >

@@ -43,12 +43,12 @@ function ExpiryIndicator({ daysLeft }: { daysLeft: number }) {
         : "bg-success";
 
   const bgLight = isExpired
-    ? "bg-error-light"
+    ? "bg-error/10"
     : isUrgent
-      ? "bg-error-light"
+      ? "bg-error/10"
       : isWarning
-        ? "bg-warning-light"
-        : "bg-success-light";
+        ? "bg-warning/10"
+        : "bg-success/10";
 
   const label = isExpired
     ? "Expired"
@@ -142,7 +142,7 @@ function PriceBreakdown({
         )}
 
         {/* Divider */}
-        <div className="h-px bg-neutral-800" />
+        <div className="h-px bg-neutral-800/80" />
 
         {/* Expiry countdown */}
         {daysLeft !== null && <ExpiryIndicator daysLeft={daysLeft} />}

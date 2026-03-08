@@ -95,7 +95,7 @@ function SellerCard({ seller, className }: SellerCardProps) {
         )}
 
         {/* Divider */}
-        <div className="h-px bg-neutral-800" />
+        <div className="h-px bg-neutral-800/80" />
 
         {/* Details */}
         <div className="space-y-2.5">
@@ -116,7 +116,7 @@ function SellerCard({ seller, className }: SellerCardProps) {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-neutral-800" />
+        <div className="h-px bg-neutral-800/80" />
 
         {/* Actions */}
         <div className="space-y-2.5">

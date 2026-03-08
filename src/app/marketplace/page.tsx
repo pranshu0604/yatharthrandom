@@ -219,7 +219,7 @@ function GridSkeleton() {
             <Skeleton className="h-5 w-3/4" />
             <Skeleton className="h-3 w-1/2" />
             <Skeleton className="h-7 w-1/3" />
-            <div className="h-px bg-neutral-800" />
+            <div className="h-px bg-neutral-800/80" />
             <div className="flex items-center gap-2">
               <Skeleton className="h-7 w-7 rounded-full" />
               <Skeleton className="h-3 w-20" />

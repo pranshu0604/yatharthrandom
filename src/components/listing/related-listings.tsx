@@ -40,7 +40,7 @@ function MiniListingCard({ listing }: { listing: MiniListing }) {
   return (
     <Link
       href={`/listing/${listing.id}`}
-      className="group block rounded-xl bg-neutral-900 border border-neutral-800 overflow-hidden shadow-none hover:shadow-md transition-shadow duration-300"
+      className="group block rounded-xl bg-neutral-900 border border-neutral-800 overflow-hidden shadow-none hover:shadow-[0_4px_20px_rgba(0,0,0,0.3)] transition-shadow duration-300"
     >
       {/* Image */}
       <div className="relative aspect-4/3 overflow-hidden">

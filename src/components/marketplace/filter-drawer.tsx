@@ -60,7 +60,7 @@ function FilterSection({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between py-3.5 text-sm font-semibold text-neutral-300 hover:text-white transition-colors cursor-pointer"
+        className="flex w-full items-center justify-between py-3.5 text-sm font-semibold text-neutral-200 hover:text-white transition-colors cursor-pointer"
       >
         {title}
         <ChevronDown
@@ -107,7 +107,7 @@ function CheckboxItem({
         onChange={(e) => onChange(e.target.checked)}
         className="h-4 w-4 rounded border-neutral-700 text-accent focus:ring-accent/40 cursor-pointer accent-accent"
       />
-      <span className="text-sm text-neutral-400 group-hover:text-neutral-100 transition-colors">
+      <span className="text-sm text-neutral-300 group-hover:text-white transition-colors">
         {label}
       </span>
     </label>
@@ -509,7 +509,7 @@ function FilterDrawer({ categories, cities, className }: FilterDrawerProps) {
 
             {/* Drawer panel */}
             <motion.div
-              className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] rounded-t-2xl bg-neutral-900 shadow-2xl lg:hidden flex flex-col"
+              className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] rounded-t-2xl bg-neutral-900 shadow-[0_-4px_30px_rgba(0,0,0,0.5)] lg:hidden flex flex-col"
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
@@ -517,7 +517,7 @@ function FilterDrawer({ categories, cities, className }: FilterDrawerProps) {
             >
               {/* Handle bar */}
               <div className="flex justify-center pt-3 pb-1">
-                <div className="h-1 w-10 rounded-full bg-neutral-700" />
+                <div className="h-1 w-10 rounded-full bg-neutral-600" />
               </div>
 
               {/* Header */}

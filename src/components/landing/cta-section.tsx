@@ -42,7 +42,7 @@ export default function CTASection() {
           </Link>
           <Link
             href="/dashboard/seller/listings/new"
-            className="inline-flex items-center gap-2.5 px-8 py-4 text-sm font-semibold tracking-wide rounded-full text-neutral-300 border border-neutral-700 hover:border-neutral-500 hover:bg-neutral-900 transition-all duration-200"
+            className="inline-flex items-center gap-2.5 px-8 py-4 text-sm font-semibold tracking-wide rounded-full text-neutral-300 border border-neutral-700 hover:border-neutral-500 hover:bg-white/5 transition-all duration-200"
           >
             List Yours
           </Link>

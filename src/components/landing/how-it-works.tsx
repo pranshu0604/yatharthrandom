@@ -24,7 +24,7 @@ const steps = [
     title: "Connect & Negotiate",
     description:
       "Find the perfect deal. Connect with verified sellers or buyers and agree on terms that work for both.",
-    color: "bg-purple-50",
+    color: "bg-purple-500/10",
     iconColor: "text-purple-600",
   },
   {
@@ -33,7 +33,7 @@ const steps = [
     title: "Transfer Securely",
     description:
       "Complete the membership transfer through our secure platform. Save up to 70% on premium memberships.",
-    color: "bg-amber-50",
+    color: "bg-amber-500/10",
     iconColor: "text-amber-600",
   },
 ];
@@ -123,7 +123,7 @@ export default function HowItWorks() {
           </Link>
           <Link
             href="/marketplace"
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-full text-neutral-300 border border-neutral-700 hover:border-neutral-500 hover:bg-neutral-900 transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-full text-neutral-300 border border-neutral-700 hover:border-neutral-500 hover:bg-white/5 transition-all"
           >
             Browse Marketplace
           </Link>

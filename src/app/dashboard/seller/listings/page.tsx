@@ -105,7 +105,7 @@ export default async function SellerListingsPage({
             }
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               statusFilter === opt
-                ? "bg-white text-neutral-900"
+                ? "bg-white/10 text-white border border-neutral-700"
                 : "bg-neutral-900 text-neutral-400 border border-neutral-800 hover:bg-neutral-950"
             }`}
           >

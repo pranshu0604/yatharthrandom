@@ -58,9 +58,9 @@ export default function CategoryCard({
       transition={{ duration: 0.5, delay: index * 0.06, ease }}
     >
       <Link href={`/marketplace?category=${slug}`} className="group block">
-        <div className="relative rounded-xl border border-neutral-800 bg-neutral-900 p-6 sm:p-8 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-neutral-700">
+        <div className="relative rounded-xl border border-neutral-800 bg-neutral-900 p-6 sm:p-8 text-center transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:-translate-y-1 hover:border-neutral-600">
           {/* Icon */}
-          <div className="mx-auto flex items-center justify-center w-14 h-14 rounded-xl bg-neutral-800 text-neutral-400 transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
+          <div className="mx-auto flex items-center justify-center w-14 h-14 rounded-xl bg-white/8 text-neutral-400 transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
             <Icon className="h-7 w-7" />
           </div>
 

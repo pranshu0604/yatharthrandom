@@ -49,7 +49,7 @@ export function ListingMiniCard({ listing }: { listing: ListingMiniCardData }) {
       href={`/listing/${listing.id}`}
       className="block w-full group"
     >
-      <div className="rounded-xl overflow-hidden border border-neutral-800 bg-neutral-900 transition-all duration-300 ease-out hover:shadow-lg hover:-translate-y-1 hover:border-neutral-700">
+      <div className="rounded-xl overflow-hidden border border-neutral-800 bg-neutral-900 transition-all duration-300 ease-out hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:-translate-y-1 hover:border-neutral-600">
         {/* Image */}
         <div className="relative h-[180px] bg-neutral-800 overflow-hidden">
           {image ? (
@@ -80,7 +80,7 @@ export function ListingMiniCard({ listing }: { listing: ListingMiniCardData }) {
           )}
 
           {/* Heart button — top right */}
-          <span className="absolute top-3 right-3 flex items-center justify-center w-7 h-7 rounded-full bg-neutral-900/80 backdrop-blur-sm shadow-none text-neutral-400 transition-colors duration-200 group-hover:text-red-500 group-hover:bg-neutral-900">
+          <span className="absolute top-3 right-3 flex items-center justify-center w-7 h-7 rounded-full bg-neutral-900/80 backdrop-blur-sm shadow-none text-neutral-400 transition-colors duration-200 group-hover:text-red-500 group-hover:bg-neutral-800">
             <Heart className="h-3.5 w-3.5" />
           </span>
 
@@ -131,7 +131,7 @@ export function ListingMiniCard({ listing }: { listing: ListingMiniCardData }) {
               {/* Seller tier */}
               <div className="flex items-center gap-1.5">
                 <span
-                  className={`h-2 w-2 rounded-full ${tierDotColors[listing.seller.tier] ?? "bg-neutral-300"}`}
+                  className={`h-2 w-2 rounded-full ${tierDotColors[listing.seller.tier] ?? "bg-neutral-600"}`}
                 />
                 <span className="text-[10px] font-medium text-neutral-400 uppercase">
                   {listing.seller.tier}

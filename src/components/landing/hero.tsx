@@ -51,7 +51,7 @@ export default function Hero() {
             >
                <div className="absolute inset-0 bg-neutral-900/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                <span className="ml-6 text-sm font-mono text-white/60">EST. 2026</span>
-               <div className="h-20 w-20 rounded-full bg-neutral-900 text-black flex items-center justify-center">
+               <div className="h-20 w-20 rounded-full bg-white/10 text-white flex items-center justify-center">
                  <ArrowRight className="h-6 w-6 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
                </div>
             </motion.div>

@@ -128,7 +128,7 @@ function Breadcrumb({
   return (
     <nav
       aria-label="Breadcrumb"
-      className="flex items-center gap-1.5 text-sm text-neutral-400 overflow-x-auto"
+      className="flex items-center gap-1.5 text-sm text-neutral-500 overflow-x-auto"
     >
       <Link
         href="/"
@@ -257,13 +257,13 @@ export default async function ListingDetailPage({ params }: PageProps) {
                   {/* Action icons — right side */}
                   <div className="flex items-center gap-2 shrink-0">
                     <button
-                      className="inline-flex items-center justify-center h-10 w-10 rounded-lg border border-neutral-800 text-neutral-500 hover:bg-neutral-800 hover:text-white transition-colors cursor-pointer"
+                      className="inline-flex items-center justify-center h-10 w-10 rounded-lg border border-neutral-700 text-neutral-400 hover:bg-white/10 hover:text-white transition-colors cursor-pointer"
                       aria-label="Save listing"
                     >
                       <Heart className="h-4.5 w-4.5" />
                     </button>
                     <button
-                      className="inline-flex items-center justify-center h-10 w-10 rounded-lg border border-neutral-800 text-neutral-500 hover:bg-neutral-800 hover:text-white transition-colors cursor-pointer"
+                      className="inline-flex items-center justify-center h-10 w-10 rounded-lg border border-neutral-700 text-neutral-400 hover:bg-white/10 hover:text-white transition-colors cursor-pointer"
                       aria-label="Share listing"
                     >
                       <Share2 className="h-4.5 w-4.5" />
@@ -296,7 +296,7 @@ export default async function ListingDetailPage({ params }: PageProps) {
             {/* Description */}
             <ScrollReveal direction="up" delay={0.15} duration={0.4}>
               <div className="space-y-3">
-                <h2 className="text-lg font-bold text-white">
+                <h2 className="text-lg font-bold text-neutral-100">
                   About this Membership
                 </h2>
                 <div className="prose prose-invert prose-sm max-w-none text-neutral-400 leading-relaxed">
@@ -310,7 +310,7 @@ export default async function ListingDetailPage({ params }: PageProps) {
             {/* Membership details grid */}
             <ScrollReveal direction="up" delay={0.2} duration={0.4}>
               <div className="space-y-3">
-                <h2 className="text-lg font-bold text-white">
+                <h2 className="text-lg font-bold text-neutral-100">
                   Membership Details
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -409,8 +409,8 @@ export default async function ListingDetailPage({ params }: PageProps) {
 function DetailRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-start gap-3 rounded-xl bg-neutral-900 border border-neutral-800 px-4 py-3.5">
-      <span className="text-sm text-neutral-400 shrink-0 w-20">{label}</span>
-      <span className="text-sm font-medium text-neutral-300">{value}</span>
+      <span className="text-sm text-neutral-500 shrink-0 w-20">{label}</span>
+      <span className="text-sm font-medium text-neutral-200">{value}</span>
     </div>
   );
 }
