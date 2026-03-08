@@ -149,7 +149,7 @@ export default function Navbar() {
                             <Link
                               href={dashboardHref}
                               onClick={() => setProfileOpen(false)}
-                              className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-neutral-400 rounded-lg hover:bg-white/5 hover:text-white transition-colors"
+                              className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-neutral-400 rounded-lg hover:bg-neutral-900/5 hover:text-white transition-colors"
                             >
                               <LayoutDashboard className="h-4 w-4" />
                               Dashboard
@@ -177,7 +177,7 @@ export default function Navbar() {
                   </Link>
                   <Link
                     href="/register"
-                    className="relative px-6 py-2.5 bg-white text-black text-sm font-semibold tracking-wide hover:bg-neutral-200 transition-colors duration-300"
+                    className="relative px-6 py-2.5 bg-neutral-900 text-black text-sm font-semibold tracking-wide hover:bg-neutral-700 transition-colors duration-300"
                   >
                     Get Access
                   </Link>
@@ -190,7 +190,7 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="relative z-10 flex h-10 w-10 items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 transition-colors lg:hidden"
+              className="relative z-10 flex h-10 w-10 items-center justify-center rounded-lg text-neutral-300 hover:bg-neutral-800 transition-colors lg:hidden"
               aria-label={isOpen ? "Close menu" : "Open menu"}
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -239,7 +239,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 z-40 flex h-full w-[85%] max-w-sm flex-col bg-white shadow-[-8px_0_30px_rgba(0,0,0,0.08)]"
+              className="fixed top-0 right-0 z-40 flex h-full w-[85%] max-w-sm flex-col bg-neutral-900 shadow-[-8px_0_30px_rgba(0,0,0,0.08)]"
             >
               <div className="h-16 shrink-0" />
 
@@ -255,7 +255,7 @@ export default function Navbar() {
                       <Link
                         href={link.href}
                         onClick={() => setIsOpen(false)}
-                        className="flex items-center rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-neutral-900"
+                        className="flex items-center rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-300 transition-colors hover:bg-neutral-950 hover:text-white"
                       >
                         {link.label}
                       </Link>
@@ -263,7 +263,7 @@ export default function Navbar() {
                   ))}
                 </div>
 
-                <div className="my-5 h-px bg-neutral-100" />
+                <div className="my-5 h-px bg-neutral-800" />
 
                 <div className="space-y-1">
                   {session ? (
@@ -276,7 +276,7 @@ export default function Navbar() {
                         <Link
                           href={dashboardHref}
                           onClick={() => setIsOpen(false)}
-                          className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-neutral-900"
+                          className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-300 transition-colors hover:bg-neutral-950 hover:text-white"
                         >
                           <LayoutDashboard className="h-5 w-5" />
                           Dashboard
@@ -292,7 +292,7 @@ export default function Navbar() {
                             setIsOpen(false);
                             signOut({ callbackUrl: "/" });
                           }}
-                          className="flex w-full items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-error"
+                          className="flex w-full items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-300 transition-colors hover:bg-neutral-950 hover:text-error"
                         >
                           <LogOut className="h-5 w-5" />
                           Sign Out
@@ -309,7 +309,7 @@ export default function Navbar() {
                         <Link
                           href="/login"
                           onClick={() => setIsOpen(false)}
-                          className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-neutral-900"
+                          className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-300 transition-colors hover:bg-neutral-950 hover:text-white"
                         >
                           <User className="h-5 w-5" />
                           Login
@@ -323,7 +323,7 @@ export default function Navbar() {
                         <Link
                           href="/register"
                           onClick={() => setIsOpen(false)}
-                          className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-neutral-900"
+                          className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-300 transition-colors hover:bg-neutral-950 hover:text-white"
                         >
                           <User className="h-5 w-5" />
                           Sign Up

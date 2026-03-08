@@ -49,9 +49,9 @@ export default function Hero() {
               transition={{ duration: 1.2, delay: 0.4 }}
               className="hidden lg:block w-64 h-24 rounded-full border border-white/20 backdrop-blur-md flex items-center justify-between px-2 relative overflow-hidden group cursor-pointer"
             >
-               <div className="absolute inset-0 bg-white/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+               <div className="absolute inset-0 bg-neutral-900/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                <span className="ml-6 text-sm font-mono text-white/60">EST. 2026</span>
-               <div className="h-20 w-20 rounded-full bg-white text-black flex items-center justify-center">
+               <div className="h-20 w-20 rounded-full bg-neutral-900 text-black flex items-center justify-center">
                  <ArrowRight className="h-6 w-6 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
                </div>
             </motion.div>
@@ -89,7 +89,7 @@ export default function Hero() {
           <div className="lg:col-span-4 lg:text-right">
              <Link 
                href="/marketplace"
-               className="inline-flex items-center gap-3 text-white border-b border-white pb-1 hover:text-neutral-300 hover:border-neutral-300 transition-colors"
+               className="inline-flex items-center gap-3 text-white border-b border-white pb-1 hover:text-neutral-300 hover:border-neutral-700 transition-colors"
              >
                Start Exploring <ArrowRight className="h-4 w-4" />
              </Link>

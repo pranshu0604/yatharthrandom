@@ -24,7 +24,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="sm:col-span-2 lg:col-span-1 pr-8">
             <Link href="/" className="inline-flex items-center gap-2 group">
-              <div className="h-8 w-8 bg-white rounded-lg flex items-center justify-center text-neutral-950 font-bold text-lg">
+              <div className="h-8 w-8 bg-neutral-900 rounded-lg flex items-center justify-center text-neutral-950 font-bold text-lg">
                 R
               </div>
               <span className="text-xl font-bold tracking-tight text-white">
@@ -43,7 +43,7 @@ export default function Footer() {
                   key={social}
                   href="#"
                   aria-label={social}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 text-neutral-400 transition-all duration-300 hover:bg-white hover:text-black"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-neutral-900/5 text-neutral-400 transition-all duration-300 hover:bg-neutral-900 hover:text-black"
                 >
                   <span className="sr-only">{social}</span>
                   <div className="h-4 w-4 bg-current rounded-sm" /> {/* Placeholder for icon */}

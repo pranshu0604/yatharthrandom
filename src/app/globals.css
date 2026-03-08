@@ -1,92 +1,63 @@
 @import "tailwindcss";
 
-:root {
-  /* Brand Colors - Luxury Dark Theme */
-  --color-primary: #ffffff; 
-  --color-secondary: #D4AF37; /* Metallic Gold */
-  --color-accent: #38bdf8; /* Electric Blue for subtle tech accents */
-  
-  /* Backgrounds */
-  --bg-page: #050505; /* Deepest Charcoal/Black */
-  --bg-card: #0F0F0F;
-  --bg-surface: #1A1A1A;
+@theme inline {
+  --color-primary: #1B1F3B;
+  --color-primary-light: #2A305A;
+  --color-secondary: #D4AF37;
+  --color-secondary-light: #E5C76B;
+  --color-accent: #2EC4B6;
+  --color-accent-light: #5ED4C8;
 
-  /* Neutrals (Inverted for Dark Mode) */
-  --neutral-50: #171717;
-  --neutral-100: #262626;
-  --neutral-200: #404040;
-  --neutral-300: #525252;
-  --neutral-400: #737373;
-  --neutral-500: #a3a3a3;
-  --neutral-600: #d4d4d4;
-  --neutral-700: #e5e5e5;
-  --neutral-800: #f5f5f5;
-  --neutral-900: #ffffff;
+  --color-success: #22c55e;
+  --color-success-light: #052e16;
+  --color-warning: #f59e0b;
+  --color-warning-light: #451a03;
+  --color-error: #ef4444;
+  --color-error-light: #450a0a;
 
-  /* Fonts */
   --font-serif: var(--font-playfair);
   --font-sans: var(--font-inter);
 }
 
-@theme inline {
-  --color-primary: var(--color-primary);
-  --color-secondary: var(--color-secondary);
-  --color-accent: var(--color-accent);
-  
-  --color-neutral-50: var(--neutral-50);
-  --color-neutral-100: var(--neutral-100);
-  --color-neutral-200: var(--neutral-200);
-  --color-neutral-300: var(--neutral-300);
-  --color-neutral-400: var(--neutral-400);
-  --color-neutral-500: var(--neutral-500);
-  --color-neutral-600: var(--neutral-600);
-  --color-neutral-700: var(--neutral-700);
-  --color-neutral-800: var(--neutral-800);
-  --color-neutral-900: var(--neutral-900);
-
-  --font-serif: var(--font-serif);
-  --font-sans: var(--font-sans);
-}
-
 body {
-  background: var(--bg-page);
-  color: var(--neutral-900);
+  background: #050505;
+  color: #e5e5e5;
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Utilities */
+/* Gold gradient text */
 .text-gradient-gold {
-  background: linear-gradient(to right, #D4AF37, #F3E5AB, #D4AF37);
+  background: linear-gradient(135deg, #D4AF37, #F3E5AB, #D4AF37);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   background-size: 200% auto;
-  animation: shine 4s linear infinite;
+  animation: shimmer 4s linear infinite;
 }
 
-@keyframes shine {
-  to {
-    background-position: 200% center;
-  }
+@keyframes shimmer {
+  to { background-position: 200% center; }
 }
 
-.glass-panel {
+/* Glass morphism */
+.glass {
   background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* Custom Scrollbar for Dark Mode */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-page);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--neutral-200);
-  border-radius: 3px;
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
+
+/* Native select options for dark mode */
+select option {
+  background: #171717;
+  color: #e5e5e5;
 }
 

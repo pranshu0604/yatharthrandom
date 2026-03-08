@@ -45,7 +45,7 @@ function RatingBar({
       <span className="text-sm font-medium text-neutral-500 w-12 text-right shrink-0">
         {star} star
       </span>
-      <div className="flex-1 h-2.5 rounded-full bg-neutral-100 overflow-hidden">
+      <div className="flex-1 h-2.5 rounded-full bg-neutral-800 overflow-hidden">
         <motion.div
           className="h-full rounded-full bg-secondary"
           initial={{ width: 0 }}
@@ -64,10 +64,10 @@ function RatingBar({
 function EmptyReviews() {
   return (
     <div className="flex flex-col items-center justify-center py-16 px-4">
-      <div className="h-16 w-16 rounded-full bg-neutral-100 flex items-center justify-center mb-4">
+      <div className="h-16 w-16 rounded-full bg-neutral-800 flex items-center justify-center mb-4">
         <MessageSquare className="h-7 w-7 text-neutral-300" />
       </div>
-      <h4 className="text-base font-semibold text-neutral-700 mb-1">
+      <h4 className="text-base font-semibold text-neutral-300 mb-1">
         No reviews yet
       </h4>
       <p className="text-sm text-neutral-400 text-center max-w-xs">
@@ -86,7 +86,7 @@ function ReviewCard({ review }: { review: ReviewData }) {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="flex gap-4 py-5 border-b border-neutral-100 last:border-b-0"
+      className="flex gap-4 py-5 border-b border-neutral-800 last:border-b-0"
     >
       <Avatar
         name={review.buyer.name}
@@ -96,7 +96,7 @@ function ReviewCard({ review }: { review: ReviewData }) {
       />
       <div className="min-w-0 flex-1">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1.5">
-          <h4 className="text-sm font-semibold text-neutral-800">
+          <h4 className="text-sm font-semibold text-neutral-100">
             {review.buyer.name}
           </h4>
           <time className="text-xs text-neutral-400">
@@ -109,7 +109,7 @@ function ReviewCard({ review }: { review: ReviewData }) {
           className="mb-2"
         />
         {review.comment && (
-          <p className="text-sm text-neutral-600 leading-relaxed">
+          <p className="text-sm text-neutral-400 leading-relaxed">
             {review.comment}
           </p>
         )}
@@ -138,12 +138,12 @@ function ReviewSection({
     <section className={cn("space-y-8", className)}>
       {/* Section header */}
       <div>
-        <h2 className="text-xl font-bold text-primary tracking-tight">
+        <h2 className="text-xl font-bold text-white tracking-tight">
           Reviews
         </h2>
         {total > 0 && (
           <div className="flex items-center gap-3 mt-2">
-            <span className="text-3xl font-bold text-primary">
+            <span className="text-3xl font-bold text-white">
               {averageRating.toFixed(1)}
             </span>
             <div>
@@ -163,8 +163,8 @@ function ReviewSection({
       {total > 0 ? (
         <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8">
           {/* Rating breakdown */}
-          <div className="space-y-2.5 p-5 rounded-xl bg-neutral-50 border border-neutral-100 h-fit">
-            <h3 className="text-sm font-semibold text-neutral-700 mb-3">
+          <div className="space-y-2.5 p-5 rounded-xl bg-neutral-950 border border-neutral-800 h-fit">
+            <h3 className="text-sm font-semibold text-neutral-300 mb-3">
               Rating Breakdown
             </h3>
             {distribution.map(({ star, count }) => (

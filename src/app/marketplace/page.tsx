@@ -212,14 +212,14 @@ function GridSkeleton() {
       {Array.from({ length: 6 }, (_, i) => (
         <div
           key={i}
-          className="rounded-2xl border border-neutral-100 bg-white overflow-hidden"
+          className="rounded-2xl border border-neutral-800 bg-neutral-900 overflow-hidden"
         >
           <Skeleton className="aspect-4/3 rounded-none" />
           <div className="p-5 space-y-3">
             <Skeleton className="h-5 w-3/4" />
             <Skeleton className="h-3 w-1/2" />
             <Skeleton className="h-7 w-1/3" />
-            <div className="h-px bg-neutral-100" />
+            <div className="h-px bg-neutral-800" />
             <div className="flex items-center gap-2">
               <Skeleton className="h-7 w-7 rounded-full" />
               <Skeleton className="h-3 w-20" />
@@ -255,10 +255,10 @@ export default async function MarketplacePage(props: {
   return (
     <section className="w-full">
       {/* ---- Header ---- */}
-      <div className="bg-white border-b border-neutral-100">
+      <div className="bg-neutral-900 border-b border-neutral-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
           <div className="max-w-2xl">
-            <h1 className="text-2xl sm:text-3xl font-bold text-primary tracking-tight">
+            <h1 className="font-serif text-2xl sm:text-3xl font-bold text-white tracking-tight">
               Marketplace
             </h1>
             <p className="mt-2 text-sm sm:text-base text-neutral-500 leading-relaxed">
@@ -270,7 +270,7 @@ export default async function MarketplacePage(props: {
       </div>
 
       {/* ---- Search + Sort Bar ---- */}
-      <div className="sticky top-18 z-30 bg-neutral-50/80 backdrop-blur-md border-b border-neutral-100">
+      <div className="sticky top-18 z-30 bg-neutral-950/80 backdrop-blur-md border-b border-neutral-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex items-center gap-3">
             <Suspense fallback={<Skeleton className="h-12 flex-1 rounded-xl" />}>
@@ -291,7 +291,7 @@ export default async function MarketplacePage(props: {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Results count */}
         <p className="text-sm text-neutral-500 mb-5">
-          <span className="font-semibold text-neutral-700">{total}</span>{" "}
+          <span className="font-semibold text-neutral-300">{total}</span>{" "}
           {total === 1 ? "membership" : "memberships"} found
         </p>
 
@@ -313,7 +313,7 @@ export default async function MarketplacePage(props: {
                 <a href={loadMoreHref}>
                   <button
                     type="button"
-                    className="inline-flex items-center justify-center rounded-lg border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-white px-7 py-3 text-sm font-medium transition-colors duration-200 cursor-pointer"
+                    className="inline-flex items-center justify-center rounded-lg border border-neutral-700 text-neutral-300 bg-transparent hover:bg-white/5 hover:text-white px-7 py-3 text-sm font-medium transition-colors duration-200 cursor-pointer"
                   >
                     Load More Listings
                   </button>

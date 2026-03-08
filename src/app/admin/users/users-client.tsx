@@ -47,8 +47,8 @@ const roleColorMap: Record<string, "default" | "success" | "secondary"> = {
 
 const tierColorMap: Record<string, string> = {
   BRONZE: "bg-amber-700/10 text-amber-700",
-  SILVER: "bg-neutral-400/10 text-neutral-600",
-  GOLD: "bg-secondary/10 text-secondary",
+  SILVER: "bg-neutral-400/10 text-neutral-400",
+  GOLD: "bg-secondary/15 text-secondary",
 };
 
 export function AdminUsersClient({
@@ -117,7 +117,7 @@ export function AdminUsersClient({
         <div className="flex items-center gap-3">
           <Avatar name={row.name} src={row.image} size="sm" />
           <div>
-            <p className="font-medium text-neutral-800">{row.name}</p>
+            <p className="font-medium text-neutral-100">{row.name}</p>
             <p className="text-xs text-neutral-500">{row.email}</p>
           </div>
         </div>
@@ -139,7 +139,7 @@ export function AdminUsersClient({
         <span
           className={cn(
             "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
-            tierColorMap[row.tier] ?? "bg-neutral-100 text-neutral-600",
+            tierColorMap[row.tier] ?? "bg-neutral-800 text-neutral-400",
           )}
         >
           {row.tier}
@@ -182,7 +182,7 @@ export function AdminUsersClient({
   return (
     <div>
       {/* Filters */}
-      <div className="flex flex-col sm:flex-row gap-3 p-4 border-b border-neutral-100">
+      <div className="flex flex-col sm:flex-row gap-3 p-4 border-b border-neutral-800">
         <form onSubmit={handleSearch} className="flex-1">
           <Input
             placeholder="Search by name or email..."
@@ -211,7 +211,7 @@ export function AdminUsersClient({
           actions={(row) => (
             <>
               <select
-                className="text-xs border border-neutral-200 rounded px-1.5 py-1 bg-white text-neutral-700 cursor-pointer"
+                className="text-xs border border-neutral-800 rounded px-1.5 py-1 bg-neutral-900 text-neutral-300 cursor-pointer"
                 value={row.role}
                 onChange={(e) => handleChangeRole(row.id, e.target.value)}
                 title="Change role"
@@ -226,8 +226,8 @@ export function AdminUsersClient({
                 className={cn(
                   "rounded-lg p-1.5 transition-colors cursor-pointer",
                   row.isActive
-                    ? "text-neutral-400 hover:text-error hover:bg-error/10"
-                    : "text-neutral-400 hover:text-success hover:bg-success/10",
+                    ? "text-neutral-400 hover:text-error hover:bg-error/15"
+                    : "text-neutral-400 hover:text-success hover:bg-success/15",
                 )}
                 title={row.isActive ? "Deactivate user" : "Activate user"}
               >
@@ -244,7 +244,7 @@ export function AdminUsersClient({
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between px-4 py-3 border-t border-neutral-100">
+        <div className="flex items-center justify-between px-4 py-3 border-t border-neutral-800">
           <p className="text-sm text-neutral-500">
             Showing {(page - 1) * 20 + 1} to {Math.min(page * 20, total)} of{" "}
             {total} users
@@ -260,11 +260,11 @@ export function AdminUsersClient({
                   page: String(page - 1),
                 })
               }
-              className="rounded-lg p-1.5 text-neutral-500 hover:bg-neutral-100 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+              className="rounded-lg p-1.5 text-neutral-500 hover:bg-neutral-800 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
-            <span className="text-sm text-neutral-700 font-medium">
+            <span className="text-sm text-neutral-300 font-medium">
               {page} / {totalPages}
             </span>
             <button
@@ -277,7 +277,7 @@ export function AdminUsersClient({
                   page: String(page + 1),
                 })
               }
-              className="rounded-lg p-1.5 text-neutral-500 hover:bg-neutral-100 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+              className="rounded-lg p-1.5 text-neutral-500 hover:bg-neutral-800 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
             >
               <ChevronRight className="h-5 w-5" />
             </button>

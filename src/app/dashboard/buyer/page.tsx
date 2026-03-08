@@ -80,21 +80,21 @@ export default async function BuyerDashboardPage() {
       value: savedCount,
       icon: Bookmark,
       color: "text-secondary",
-      bg: "bg-secondary/10",
+      bg: "bg-secondary/15",
     },
     {
       label: "Completed Purchases",
       value: purchaseCount,
       icon: ShoppingBag,
       color: "text-accent",
-      bg: "bg-accent/10",
+      bg: "bg-accent/15",
     },
     {
       label: "Reviews Written",
       value: reviewCount,
       icon: MessageSquare,
-      color: "text-primary",
-      bg: "bg-primary/10",
+      color: "text-white",
+      bg: "bg-white/10",
     },
   ];
 
@@ -108,7 +108,7 @@ export default async function BuyerDashboardPage() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
       {/* Welcome Section */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-neutral-800">
+        <h1 className="font-serif text-2xl font-bold text-neutral-100">
           Welcome back, {session.user.name?.split(" ")[0] ?? "there"}!
         </h1>
         <p className="text-neutral-500 mt-1">
@@ -127,7 +127,7 @@ export default async function BuyerDashboardPage() {
                 <stat.icon className={`h-6 w-6 ${stat.color}`} />
               </div>
               <div>
-                <p className="text-2xl font-bold text-neutral-800">
+                <p className="text-2xl font-bold text-neutral-100">
                   {stat.value}
                 </p>
                 <p className="text-sm text-neutral-500">{stat.label}</p>
@@ -162,7 +162,7 @@ export default async function BuyerDashboardPage() {
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <h2 className="text-lg font-semibold text-neutral-800">
+                <h2 className="text-lg font-semibold text-neutral-100">
                   Saved Listings
                 </h2>
                 {savedCount > 6 && (
@@ -195,9 +195,9 @@ export default async function BuyerDashboardPage() {
                     <Link
                       key={saved.id}
                       href={`/listing/${saved.listing.id}`}
-                      className="group flex items-center gap-3 rounded-xl border border-neutral-100 p-3 hover:shadow-md transition-shadow"
+                      className="group flex items-center gap-3 rounded-xl border border-neutral-800 p-3 hover:shadow-md transition-shadow"
                     >
-                      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-neutral-100">
+                      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-neutral-800">
                         {saved.listing.images[0] ? (
                           <Image
                             src={saved.listing.images[0]}
@@ -213,10 +213,10 @@ export default async function BuyerDashboardPage() {
                         )}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-neutral-800 truncate group-hover:text-accent transition-colors">
+                        <p className="text-sm font-medium text-neutral-100 truncate group-hover:text-accent transition-colors">
                           {saved.listing.title}
                         </p>
-                        <p className="text-sm font-bold text-primary">
+                        <p className="text-sm font-bold text-white">
                           {formatCurrency(saved.listing.askingPrice)}
                         </p>
                         <div className="flex items-center gap-2 mt-0.5">
@@ -241,7 +241,7 @@ export default async function BuyerDashboardPage() {
         <div>
           <Card>
             <CardHeader>
-              <h2 className="text-lg font-semibold text-neutral-800">
+              <h2 className="text-lg font-semibold text-neutral-100">
                 Recent Transactions
               </h2>
             </CardHeader>
@@ -258,9 +258,9 @@ export default async function BuyerDashboardPage() {
                   {transactions.map((tx) => (
                     <div
                       key={tx.id}
-                      className="flex items-center gap-3 rounded-lg border border-neutral-100 p-3"
+                      className="flex items-center gap-3 rounded-lg border border-neutral-800 p-3"
                     >
-                      <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-neutral-100">
+                      <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-neutral-800">
                         {tx.listing.images[0] ? (
                           <Image
                             src={tx.listing.images[0]}
@@ -276,7 +276,7 @@ export default async function BuyerDashboardPage() {
                         )}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-neutral-800 truncate">
+                        <p className="text-sm font-medium text-neutral-100 truncate">
                           {tx.listing.title}
                         </p>
                         <p className="text-xs text-neutral-500">
@@ -284,7 +284,7 @@ export default async function BuyerDashboardPage() {
                         </p>
                       </div>
                       <div className="text-right shrink-0">
-                        <p className="text-sm font-bold text-neutral-800">
+                        <p className="text-sm font-bold text-neutral-100">
                           {formatCurrency(tx.amount)}
                         </p>
                         <Badge

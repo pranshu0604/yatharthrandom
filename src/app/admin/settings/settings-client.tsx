@@ -31,8 +31,8 @@ interface Props {
 
 const tierColorMap: Record<string, string> = {
   BRONZE: "bg-amber-700/10 text-amber-700",
-  SILVER: "bg-neutral-400/10 text-neutral-600",
-  GOLD: "bg-secondary/10 text-secondary",
+  SILVER: "bg-neutral-400/10 text-neutral-400",
+  GOLD: "bg-secondary/15 text-secondary",
 };
 
 export function AdminSettingsClient({ config, tiers }: Props) {
@@ -106,7 +106,7 @@ export function AdminSettingsClient({ config, tiers }: Props) {
       {/* Platform Config */}
       <Card>
         <CardHeader>
-          <h2 className="text-lg font-semibold text-neutral-800 flex items-center gap-2">
+          <h2 className="text-lg font-semibold text-neutral-100 flex items-center gap-2">
             <Percent className="h-5 w-5 text-accent" />
             Platform Fees
           </h2>
@@ -154,7 +154,7 @@ export function AdminSettingsClient({ config, tiers }: Props) {
       {/* Tier Configuration */}
       <Card>
         <CardHeader>
-          <h2 className="text-lg font-semibold text-neutral-800 flex items-center gap-2">
+          <h2 className="text-lg font-semibold text-neutral-100 flex items-center gap-2">
             <DollarSign className="h-5 w-5 text-secondary" />
             Seller Tier Configuration
           </h2>
@@ -168,7 +168,7 @@ export function AdminSettingsClient({ config, tiers }: Props) {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-neutral-200">
+                  <tr className="border-b border-neutral-800">
                     <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-neutral-500">
                       Tier
                     </th>
@@ -186,18 +186,18 @@ export function AdminSettingsClient({ config, tiers }: Props) {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-neutral-100">
+                <tbody className="divide-y divide-neutral-800">
                   {tiers.map((tier) => {
                     const edit = tierEdits[tier.id];
                     if (!edit) return null;
                     return (
-                      <tr key={tier.id} className="hover:bg-neutral-50/60">
+                      <tr key={tier.id} className="hover:bg-neutral-950/60">
                         <td className="px-4 py-3">
                           <span
                             className={cn(
                               "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold",
                               tierColorMap[tier.tier] ??
-                                "bg-neutral-100 text-neutral-600",
+                                "bg-neutral-800 text-neutral-400",
                             )}
                           >
                             {tier.tier}
@@ -211,7 +211,7 @@ export function AdminSettingsClient({ config, tiers }: Props) {
                             onChange={(e) =>
                               updateTier(tier.id, "maxListings", e.target.value)
                             }
-                            className="w-24 rounded-lg border border-neutral-200 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
+                            className="w-24 rounded-lg border border-neutral-800 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
                           />
                         </td>
                         <td className="px-4 py-3">
@@ -227,7 +227,7 @@ export function AdminSettingsClient({ config, tiers }: Props) {
                                 e.target.value,
                               )
                             }
-                            className="w-28 rounded-lg border border-neutral-200 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
+                            className="w-28 rounded-lg border border-neutral-800 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
                           />
                         </td>
                         <td className="px-4 py-3">
@@ -242,7 +242,7 @@ export function AdminSettingsClient({ config, tiers }: Props) {
                                 e.target.value,
                               )
                             }
-                            className="w-20 rounded-lg border border-neutral-200 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
+                            className="w-20 rounded-lg border border-neutral-800 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
                           />
                         </td>
                         <td className="px-4 py-3">
@@ -257,7 +257,7 @@ export function AdminSettingsClient({ config, tiers }: Props) {
                               )
                             }
                             placeholder="Description"
-                            className="w-full min-w-40 rounded-lg border border-neutral-200 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
+                            className="w-full min-w-40 rounded-lg border border-neutral-800 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent"
                           />
                         </td>
                       </tr>

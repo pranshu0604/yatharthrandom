@@ -8,7 +8,7 @@ const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 export default function CTASection() {
   return (
-    <section className="py-28 sm:py-36 bg-neutral-50 border-t border-neutral-100">
+    <section className="py-28 sm:py-36 bg-neutral-950 border-t border-neutral-800">
       <motion.div
         className="max-w-3xl mx-auto px-6 sm:px-8 text-center"
         initial={{ opacity: 0, y: 24 }}
@@ -16,9 +16,9 @@ export default function CTASection() {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.8, ease }}
       >
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
+        <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
           Start saving on{" "}
-          <span className="text-accent">premium memberships</span>{" "}
+          <span className="text-gradient-gold">premium memberships</span>{" "}
           today.
         </h2>
 
@@ -42,7 +42,7 @@ export default function CTASection() {
           </Link>
           <Link
             href="/dashboard/seller/listings/new"
-            className="inline-flex items-center gap-2.5 px-8 py-4 text-sm font-semibold tracking-wide rounded-full text-neutral-700 border border-neutral-300 hover:border-neutral-400 hover:bg-white transition-all duration-200"
+            className="inline-flex items-center gap-2.5 px-8 py-4 text-sm font-semibold tracking-wide rounded-full text-neutral-300 border border-neutral-700 hover:border-neutral-500 hover:bg-neutral-900 transition-all duration-200"
           >
             List Yours
           </Link>

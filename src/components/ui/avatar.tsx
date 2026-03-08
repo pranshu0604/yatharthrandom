@@ -37,7 +37,7 @@ function Avatar({
     <span
       className={cn(
         "relative inline-flex shrink-0 items-center justify-center rounded-full",
-        "bg-primary text-white font-semibold select-none overflow-hidden",
+        "bg-neutral-700 text-white font-semibold select-none overflow-hidden",
         sizeMap[size],
         className,
       )}

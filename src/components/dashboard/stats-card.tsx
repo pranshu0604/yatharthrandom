@@ -32,7 +32,7 @@ function StatsCard({
             <p className="text-sm font-medium text-neutral-500 truncate">
               {title}
             </p>
-            <p className="mt-2 text-3xl font-bold text-neutral-900">{value}</p>
+            <p className="mt-2 text-3xl font-bold text-white">{value}</p>
             {subtitle && (
               <p className="mt-1 text-sm text-neutral-500">{subtitle}</p>
             )}
@@ -48,7 +48,7 @@ function StatsCard({
               </p>
             )}
           </div>
-          <div className="flex-shrink-0 ml-4 p-3 rounded-xl bg-accent/10 text-accent">
+          <div className="flex-shrink-0 ml-4 p-3 rounded-xl bg-accent/15 text-accent">
             {icon}
           </div>
         </div>

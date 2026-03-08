@@ -49,9 +49,9 @@ export function ListingMiniCard({ listing }: { listing: ListingMiniCardData }) {
       href={`/listing/${listing.id}`}
       className="block w-full group"
     >
-      <div className="rounded-xl overflow-hidden border border-neutral-200 bg-white transition-all duration-300 ease-out hover:shadow-lg hover:-translate-y-1 hover:border-neutral-300">
+      <div className="rounded-xl overflow-hidden border border-neutral-800 bg-neutral-900 transition-all duration-300 ease-out hover:shadow-lg hover:-translate-y-1 hover:border-neutral-700">
         {/* Image */}
-        <div className="relative h-[180px] bg-neutral-100 overflow-hidden">
+        <div className="relative h-[180px] bg-neutral-800 overflow-hidden">
           {image ? (
             <Image
               src={image}
@@ -62,7 +62,7 @@ export function ListingMiniCard({ listing }: { listing: ListingMiniCardData }) {
               unoptimized
             />
           ) : (
-            <div className="flex items-center justify-center h-full bg-neutral-100">
+            <div className="flex items-center justify-center h-full bg-neutral-800">
               <span className="text-sm font-medium text-neutral-400">
                 {listing.category.name}
               </span>
@@ -80,12 +80,12 @@ export function ListingMiniCard({ listing }: { listing: ListingMiniCardData }) {
           )}
 
           {/* Heart button — top right */}
-          <span className="absolute top-3 right-3 flex items-center justify-center w-7 h-7 rounded-full bg-white/80 backdrop-blur-sm shadow-sm text-neutral-400 transition-colors duration-200 group-hover:text-red-500 group-hover:bg-white">
+          <span className="absolute top-3 right-3 flex items-center justify-center w-7 h-7 rounded-full bg-neutral-900/80 backdrop-blur-sm shadow-none text-neutral-400 transition-colors duration-200 group-hover:text-red-500 group-hover:bg-neutral-900">
             <Heart className="h-3.5 w-3.5" />
           </span>
 
           {/* Category badge — bottom left */}
-          <span className="absolute bottom-3 left-3 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-white/90 backdrop-blur-sm text-neutral-700">
+          <span className="absolute bottom-3 left-3 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-neutral-900/90 backdrop-blur-sm text-neutral-300">
             {listing.category.name}
           </span>
         </div>
@@ -93,7 +93,7 @@ export function ListingMiniCard({ listing }: { listing: ListingMiniCardData }) {
         {/* Content */}
         <div className="p-4">
           <div className="flex items-start gap-1">
-            <h3 className="font-semibold text-neutral-800 line-clamp-1 text-sm group-hover:text-neutral-900 flex-1">
+            <h3 className="font-semibold text-neutral-100 line-clamp-1 text-sm group-hover:text-white flex-1">
               {listing.title}
             </h3>
             {isVerified && (
@@ -114,7 +114,7 @@ export function ListingMiniCard({ listing }: { listing: ListingMiniCardData }) {
               <span className="text-[11px] text-neutral-400 line-through">
                 {formatCurrency(listing.originalPrice)}
               </span>
-              <p className="text-base font-bold text-neutral-900 leading-tight">
+              <p className="text-base font-bold text-white leading-tight">
                 {formatCurrency(listing.askingPrice)}
               </p>
             </div>

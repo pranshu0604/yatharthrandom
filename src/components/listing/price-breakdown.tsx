@@ -97,7 +97,7 @@ function PriceBreakdown({
   const daysLeft = getDaysUntilExpiry(expiryDate);
 
   return (
-    <Card className={cn("border-neutral-200/80", className)}>
+    <Card className={cn("border-neutral-800/80", className)}>
       <CardContent className="space-y-5">
         {/* Membership type badge */}
         <div className="flex items-center gap-2">
@@ -110,7 +110,7 @@ function PriceBreakdown({
         {/* Price display */}
         <div className="space-y-1">
           <div className="flex items-baseline gap-3">
-            <span className="text-3xl font-bold text-primary tracking-tight">
+            <span className="text-3xl font-bold text-white tracking-tight">
               {formatCurrency(askingPrice)}
             </span>
           </div>
@@ -119,7 +119,7 @@ function PriceBreakdown({
               <span className="text-base text-neutral-400 line-through">
                 {formatCurrency(originalPrice)}
               </span>
-              <span className="inline-flex items-center rounded-md bg-accent/10 px-2 py-0.5 text-xs font-bold text-accent">
+              <span className="inline-flex items-center rounded-md bg-accent/15 px-2 py-0.5 text-xs font-bold text-accent">
                 {discount}% off
               </span>
             </div>
@@ -142,14 +142,14 @@ function PriceBreakdown({
         )}
 
         {/* Divider */}
-        <div className="h-px bg-neutral-100" />
+        <div className="h-px bg-neutral-800" />
 
         {/* Expiry countdown */}
         {daysLeft !== null && <ExpiryIndicator daysLeft={daysLeft} />}
 
         {/* Duration info */}
         {duration && (
-          <div className="flex items-center gap-2.5 text-neutral-600">
+          <div className="flex items-center gap-2.5 text-neutral-400">
             <Clock className="h-4 w-4 text-neutral-400" />
             <span className="text-sm font-medium">Duration: {duration}</span>
           </div>

@@ -17,7 +17,7 @@ export default function AuthLayout({
       {/* ---------------------------------------------------------------- */}
       {/* Left decorative panel -- hidden on mobile                        */}
       {/* ---------------------------------------------------------------- */}
-      <div className="hidden lg:flex lg:w-1/2 xl:w-[55%] bg-neutral-50 relative overflow-hidden flex-col justify-between p-12 border-r border-neutral-200">
+      <div className="hidden lg:flex lg:w-1/2 xl:w-[55%] bg-neutral-950 relative overflow-hidden flex-col justify-between p-12 border-r border-neutral-800">
         {/* Decorative pattern overlay */}
         <div className="absolute inset-0 opacity-[0.04]">
           <svg
@@ -44,13 +44,13 @@ export default function AuthLayout({
         </div>
 
         {/* Decorative gradient blobs */}
-        <div className="absolute top-1/4 -left-20 w-80 h-80 rounded-full bg-accent/10 blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 rounded-full bg-secondary/10 blur-3xl" />
+        <div className="absolute top-1/4 -left-20 w-80 h-80 rounded-full bg-accent/15 blur-3xl" />
+        <div className="absolute bottom-1/4 right-0 w-96 h-96 rounded-full bg-secondary/15 blur-3xl" />
 
         {/* Top content */}
         <div className="relative z-10">
           <Link href="/" className="inline-block">
-            <span className="text-2xl font-bold text-neutral-900 tracking-tight">
+            <span className="text-2xl font-bold text-white tracking-tight">
               ReMember<span className="text-accent">X</span>
             </span>
           </Link>
@@ -58,7 +58,7 @@ export default function AuthLayout({
 
         {/* Center content */}
         <div className="relative z-10 max-w-md">
-          <h1 className="text-4xl xl:text-5xl font-bold text-neutral-900 leading-tight mb-6">
+          <h1 className="font-serif text-4xl xl:text-5xl font-bold text-white leading-tight mb-6">
             Buy &amp; Sell Premium Memberships
           </h1>
           <p className="text-lg text-neutral-500 leading-relaxed">
@@ -70,17 +70,17 @@ export default function AuthLayout({
           {/* Trust indicators */}
           <div className="mt-10 flex items-center gap-8">
             <div>
-              <p className="text-3xl font-bold text-neutral-900">5,000+</p>
+              <p className="text-3xl font-bold text-white">5,000+</p>
               <p className="text-sm text-neutral-400 mt-1">Active Listings</p>
             </div>
-            <div className="w-px h-12 bg-neutral-200" />
+            <div className="w-px h-12 bg-neutral-700" />
             <div>
-              <p className="text-3xl font-bold text-neutral-900">10,000+</p>
+              <p className="text-3xl font-bold text-white">10,000+</p>
               <p className="text-sm text-neutral-400 mt-1">Happy Members</p>
             </div>
-            <div className="w-px h-12 bg-neutral-200" />
+            <div className="w-px h-12 bg-neutral-700" />
             <div>
-              <p className="text-3xl font-bold text-neutral-900">98%</p>
+              <p className="text-3xl font-bold text-white">98%</p>
               <p className="text-sm text-neutral-400 mt-1">Satisfaction</p>
             </div>
           </div>
@@ -97,11 +97,11 @@ export default function AuthLayout({
       {/* ---------------------------------------------------------------- */}
       {/* Right panel -- form area                                          */}
       {/* ---------------------------------------------------------------- */}
-      <div className="flex-1 flex flex-col bg-white">
+      <div className="flex-1 flex flex-col bg-[#050505]">
         {/* Mobile logo bar */}
-        <div className="lg:hidden flex items-center justify-between px-6 py-4 border-b border-neutral-200">
+        <div className="lg:hidden flex items-center justify-between px-6 py-4 border-b border-neutral-800">
           <Link href="/">
-            <span className="text-xl font-bold text-neutral-900 tracking-tight">
+            <span className="text-xl font-bold text-white tracking-tight">
               ReMember<span className="text-accent">X</span>
             </span>
           </Link>

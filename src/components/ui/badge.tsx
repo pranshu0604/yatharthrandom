@@ -2,12 +2,12 @@ import { type HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
 const badgeVariants = {
-  default: "bg-primary text-white",
+  default: "bg-neutral-700 text-white",
   secondary: "bg-secondary text-white",
   success: "bg-success text-white",
-  warning: "bg-warning text-neutral-900",
+  warning: "bg-warning text-white",
   error: "bg-error text-white",
-  outline: "border border-neutral-300 text-neutral-700 bg-transparent",
+  outline: "border border-neutral-700 text-neutral-300 bg-transparent",
 } as const;
 
 type BadgeVariant = keyof typeof badgeVariants;

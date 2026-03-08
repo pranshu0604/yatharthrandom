@@ -53,7 +53,7 @@ function SellerCard({ seller, className }: SellerCardProps) {
   const tier = tierConfig[seller.tier];
 
   return (
-    <Card className={cn("border-neutral-200/80", className)}>
+    <Card className={cn("border-neutral-800/80", className)}>
       <CardContent className="space-y-4">
         {/* Seller profile row */}
         <div className="flex items-center gap-3.5">
@@ -63,7 +63,7 @@ function SellerCard({ seller, className }: SellerCardProps) {
             size="lg"
           />
           <div className="min-w-0 flex-1">
-            <h3 className="text-base font-semibold text-neutral-800 truncate">
+            <h3 className="text-base font-semibold text-neutral-100 truncate">
               {seller.name}
             </h3>
             <Badge
@@ -83,7 +83,7 @@ function SellerCard({ seller, className }: SellerCardProps) {
               halfStars
               starClassName="h-4 w-4"
             />
-            <span className="text-sm font-semibold text-neutral-700">
+            <span className="text-sm font-semibold text-neutral-300">
               {seller.avgRating.toFixed(1)}
             </span>
             <span className="text-sm text-neutral-400">
@@ -95,7 +95,7 @@ function SellerCard({ seller, className }: SellerCardProps) {
         )}
 
         {/* Divider */}
-        <div className="h-px bg-neutral-100" />
+        <div className="h-px bg-neutral-800" />
 
         {/* Details */}
         <div className="space-y-2.5">
@@ -116,7 +116,7 @@ function SellerCard({ seller, className }: SellerCardProps) {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-neutral-100" />
+        <div className="h-px bg-neutral-800" />
 
         {/* Actions */}
         <div className="space-y-2.5">

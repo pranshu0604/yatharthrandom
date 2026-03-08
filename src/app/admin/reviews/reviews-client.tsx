@@ -62,7 +62,7 @@ export function AdminReviewsClient({
       render: (row) => (
         <div className="flex items-center gap-2">
           <Avatar name={row.buyerName} src={row.buyerImage} size="sm" />
-          <span className="text-sm font-medium text-neutral-800">
+          <span className="text-sm font-medium text-neutral-100">
             {row.buyerName}
           </span>
         </div>
@@ -75,7 +75,7 @@ export function AdminReviewsClient({
       render: (row) => (
         <div className="flex items-center gap-2">
           <Avatar name={row.sellerName} src={row.sellerImage} size="sm" />
-          <span className="text-sm text-neutral-700">{row.sellerName}</span>
+          <span className="text-sm text-neutral-300">{row.sellerName}</span>
         </div>
       ),
     },
@@ -84,7 +84,7 @@ export function AdminReviewsClient({
       header: "Listing",
       minWidth: "min-w-[180px]",
       render: (row) => (
-        <span className="text-sm text-neutral-700 truncate block max-w-[200px]">
+        <span className="text-sm text-neutral-300 truncate block max-w-[200px]">
           {row.listingTitle}
         </span>
       ),
@@ -130,7 +130,7 @@ export function AdminReviewsClient({
             <button
               type="button"
               onClick={() => handleDelete(row.id)}
-              className="rounded-lg p-1.5 text-neutral-400 hover:text-error hover:bg-error/10 transition-colors cursor-pointer"
+              className="rounded-lg p-1.5 text-neutral-400 hover:text-error hover:bg-error/15 transition-colors cursor-pointer"
               title="Delete review"
             >
               <Trash2 className="h-4 w-4" />
@@ -141,7 +141,7 @@ export function AdminReviewsClient({
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between px-4 py-3 border-t border-neutral-100">
+        <div className="flex items-center justify-between px-4 py-3 border-t border-neutral-800">
           <p className="text-sm text-neutral-500">
             Showing {(page - 1) * 20 + 1} to {Math.min(page * 20, total)} of{" "}
             {total} reviews
@@ -151,18 +151,18 @@ export function AdminReviewsClient({
               type="button"
               disabled={page <= 1}
               onClick={() => pushPage(page - 1)}
-              className="rounded-lg p-1.5 text-neutral-500 hover:bg-neutral-100 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+              className="rounded-lg p-1.5 text-neutral-500 hover:bg-neutral-800 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
-            <span className="text-sm text-neutral-700 font-medium">
+            <span className="text-sm text-neutral-300 font-medium">
               {page} / {totalPages}
             </span>
             <button
               type="button"
               disabled={page >= totalPages}
               onClick={() => pushPage(page + 1)}
-              className="rounded-lg p-1.5 text-neutral-500 hover:bg-neutral-100 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+              className="rounded-lg p-1.5 text-neutral-500 hover:bg-neutral-800 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
             >
               <ChevronRight className="h-5 w-5" />
             </button>

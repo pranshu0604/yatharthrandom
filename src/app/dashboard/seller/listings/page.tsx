@@ -79,14 +79,14 @@ export default async function SellerListingsPage({
       {/* Page header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-neutral-900">My Listings</h1>
+          <h1 className="text-2xl font-bold text-white">My Listings</h1>
           <p className="text-neutral-500 mt-1">
             Manage all your membership listings.
           </p>
         </div>
         <Link
           href="/dashboard/seller/listings/new"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white text-sm font-medium hover:brightness-110 transition-all"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent text-white text-sm font-medium hover:brightness-110 transition-all"
         >
           <PlusCircle className="h-4 w-4" />
           Create New Listing
@@ -105,8 +105,8 @@ export default async function SellerListingsPage({
             }
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               statusFilter === opt
-                ? "bg-primary text-white"
-                : "bg-white text-neutral-600 border border-neutral-200 hover:bg-neutral-50"
+                ? "bg-white text-neutral-900"
+                : "bg-neutral-900 text-neutral-400 border border-neutral-800 hover:bg-neutral-950"
             }`}
           >
             {opt === "ALL" ? "All" : opt.charAt(0) + opt.slice(1).toLowerCase()}
@@ -119,7 +119,7 @@ export default async function SellerListingsPage({
         <Card>
           <CardContent className="text-center py-16">
             <ListOrdered className="h-12 w-12 mx-auto text-neutral-300 mb-4" />
-            <h3 className="text-lg font-semibold text-neutral-700 mb-1">
+            <h3 className="text-lg font-semibold text-neutral-300 mb-1">
               No listings found
             </h3>
             <p className="text-neutral-500 text-sm mb-4">
@@ -140,7 +140,7 @@ export default async function SellerListingsPage({
         <Card>
           {/* Desktop table header */}
           <div className="hidden lg:block">
-            <div className="grid grid-cols-12 gap-4 px-6 py-3 bg-neutral-50 border-b border-neutral-100 text-xs font-semibold text-neutral-500 uppercase tracking-wider">
+            <div className="grid grid-cols-12 gap-4 px-6 py-3 bg-neutral-950 border-b border-neutral-800 text-xs font-semibold text-neutral-500 uppercase tracking-wider">
               <div className="col-span-4">Listing</div>
               <div className="col-span-2">Category</div>
               <div className="col-span-1 text-right">Price</div>
@@ -151,13 +151,13 @@ export default async function SellerListingsPage({
             </div>
           </div>
 
-          <div className="divide-y divide-neutral-100">
+          <div className="divide-y divide-neutral-800">
             {listings.map((listing) => {
               const badge = statusBadge[listing.status] ?? statusBadge.PENDING;
               return (
                 <div
                   key={listing.id}
-                  className="px-6 py-4 hover:bg-neutral-50/50 transition-colors"
+                  className="px-6 py-4 hover:bg-neutral-950/50 transition-colors"
                 >
                   {/* Desktop row */}
                   <div className="hidden lg:grid lg:grid-cols-12 lg:gap-4 lg:items-center">
@@ -175,12 +175,12 @@ export default async function SellerListingsPage({
                           />
                         </div>
                       ) : (
-                        <div className="h-12 w-12 rounded-lg bg-neutral-100 flex items-center justify-center shrink-0">
+                        <div className="h-12 w-12 rounded-lg bg-neutral-800 flex items-center justify-center shrink-0">
                           <ListOrdered className="h-5 w-5 text-neutral-400" />
                         </div>
                       )}
                       <div className="min-w-0">
-                        <p className="text-sm font-medium text-neutral-900 truncate">
+                        <p className="text-sm font-medium text-white truncate">
                           {listing.title}
                         </p>
                         <p className="text-xs text-neutral-500">
@@ -191,14 +191,14 @@ export default async function SellerListingsPage({
 
                     {/* Category */}
                     <div className="col-span-2">
-                      <span className="text-sm text-neutral-600">
+                      <span className="text-sm text-neutral-400">
                         {listing.category.name}
                       </span>
                     </div>
 
                     {/* Price */}
                     <div className="col-span-1 text-right">
-                      <span className="text-sm font-medium text-neutral-900">
+                      <span className="text-sm font-medium text-white">
                         {formatCurrency(listing.askingPrice)}
                       </span>
                     </div>
@@ -210,7 +210,7 @@ export default async function SellerListingsPage({
 
                     {/* Views */}
                     <div className="col-span-1 text-center">
-                      <span className="text-sm text-neutral-600 inline-flex items-center gap-1">
+                      <span className="text-sm text-neutral-400 inline-flex items-center gap-1">
                         <Eye className="h-3.5 w-3.5" />
                         {listing.views}
                       </span>
@@ -218,7 +218,7 @@ export default async function SellerListingsPage({
 
                     {/* Reviews */}
                     <div className="col-span-1 text-center">
-                      <span className="text-sm text-neutral-600 inline-flex items-center gap-1">
+                      <span className="text-sm text-neutral-400 inline-flex items-center gap-1">
                         <Star className="h-3.5 w-3.5" />
                         {listing._count.reviews}
                       </span>
@@ -228,7 +228,7 @@ export default async function SellerListingsPage({
                     <div className="col-span-2 flex items-center justify-end gap-2">
                       <Link
                         href={`/dashboard/seller/listings/${listing.id}/edit`}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-neutral-200 text-neutral-700 hover:bg-neutral-50 transition-colors"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-neutral-800 text-neutral-300 hover:bg-neutral-950 transition-colors"
                       >
                         <Pencil className="h-3.5 w-3.5" />
                         Edit
@@ -257,12 +257,12 @@ export default async function SellerListingsPage({
                           />
                         </div>
                       ) : (
-                        <div className="h-16 w-16 rounded-lg bg-neutral-100 flex items-center justify-center shrink-0">
+                        <div className="h-16 w-16 rounded-lg bg-neutral-800 flex items-center justify-center shrink-0">
                           <ListOrdered className="h-6 w-6 text-neutral-400" />
                         </div>
                       )}
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-neutral-900 truncate">
+                        <p className="text-sm font-medium text-white truncate">
                           {listing.title}
                         </p>
                         <p className="text-xs text-neutral-500 mt-0.5">
@@ -271,7 +271,7 @@ export default async function SellerListingsPage({
                         </p>
                         <div className="flex items-center gap-2 mt-1.5">
                           <Badge variant={badge.variant}>{badge.label}</Badge>
-                          <span className="text-sm font-medium text-neutral-900">
+                          <span className="text-sm font-medium text-white">
                             {formatCurrency(listing.askingPrice)}
                           </span>
                         </div>
@@ -290,7 +290,7 @@ export default async function SellerListingsPage({
                       <div className="flex items-center gap-2">
                         <Link
                           href={`/dashboard/seller/listings/${listing.id}/edit`}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-neutral-200 text-neutral-700 hover:bg-neutral-50 transition-colors"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-neutral-800 text-neutral-300 hover:bg-neutral-950 transition-colors"
                         >
                           <Pencil className="h-3.5 w-3.5" />
                           Edit

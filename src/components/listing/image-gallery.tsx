@@ -20,7 +20,7 @@ interface ImageGalleryProps {
 /* ------------------------------------------------------------------ */
 function EmptyPlaceholder() {
   return (
-    <div className="aspect-[16/10] rounded-2xl bg-neutral-100 flex flex-col items-center justify-center gap-3">
+    <div className="aspect-[16/10] rounded-2xl bg-neutral-800 flex flex-col items-center justify-center gap-3">
       <ImageOff className="h-12 w-12 text-neutral-300" />
       <p className="text-sm text-neutral-400 font-medium">
         No images available
@@ -160,7 +160,7 @@ function ImageGallery({ images, title, className }: ImageGalleryProps) {
     <div className={cn("space-y-3", className)}>
       {/* Main Image */}
       <div
-        className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-neutral-100 cursor-zoom-in group"
+        className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-neutral-800 cursor-zoom-in group"
         onClick={() => setLightboxOpen(true)}
       >
         <AnimatePresence mode="wait">
@@ -194,7 +194,7 @@ function ImageGallery({ images, title, className }: ImageGalleryProps) {
                 e.stopPropagation();
                 handlePrev();
               }}
-              className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/80 hover:bg-white shadow-lg p-2 text-neutral-700 opacity-0 group-hover:opacity-100 transition-all duration-200 cursor-pointer"
+              className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm p-2 text-neutral-300 opacity-0 group-hover:opacity-100 transition-all duration-200 cursor-pointer"
               aria-label="Previous image"
             >
               <ChevronLeft className="h-5 w-5" />
@@ -204,7 +204,7 @@ function ImageGallery({ images, title, className }: ImageGalleryProps) {
                 e.stopPropagation();
                 handleNext();
               }}
-              className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/80 hover:bg-white shadow-lg p-2 text-neutral-700 opacity-0 group-hover:opacity-100 transition-all duration-200 cursor-pointer"
+              className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm p-2 text-neutral-300 opacity-0 group-hover:opacity-100 transition-all duration-200 cursor-pointer"
               aria-label="Next image"
             >
               <ChevronRight className="h-5 w-5" />

@@ -42,7 +42,7 @@ const trustItems: TrustItem[] = [
 
 export default function TrustIndicators() {
   return (
-    <section className="py-24 sm:py-32 bg-white">
+    <section className="py-24 sm:py-32 bg-neutral-900">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <SectionHeading
           title="Why ReMemberX"
@@ -56,19 +56,19 @@ export default function TrustIndicators() {
             return (
               <motion.div
                 key={item.title}
-                className="rounded-2xl border border-neutral-200 bg-white p-8 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                className="rounded-2xl border border-neutral-800 bg-neutral-900 p-8 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: index * 0.1, ease }}
               >
                 {/* Icon */}
-                <div className="mx-auto w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6">
+                <div className="mx-auto w-14 h-14 rounded-xl bg-accent/15 flex items-center justify-center mb-6">
                   <Icon className="h-7 w-7 text-accent" />
                 </div>
 
                 {/* Stat */}
-                <p className="text-4xl font-bold text-neutral-900">
+                <p className="text-4xl font-bold text-white">
                   {item.stat}
                 </p>
 

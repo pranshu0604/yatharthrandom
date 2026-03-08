@@ -53,11 +53,11 @@ function SortSelect({ className }: { className?: string }) {
           value={currentSort}
           onChange={handleChange}
           className={cn(
-            "appearance-none rounded-lg border border-neutral-200 bg-white",
-            "pl-3 pr-8 py-2 text-sm font-medium text-neutral-700",
+            "appearance-none rounded-lg border border-neutral-800 bg-neutral-900",
+            "pl-3 pr-8 py-2 text-sm font-medium text-neutral-300",
             "transition-all duration-200 cursor-pointer",
             "focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent",
-            "hover:border-neutral-300",
+            "hover:border-neutral-700",
           )}
           aria-label="Sort listings"
         >

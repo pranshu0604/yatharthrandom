@@ -36,7 +36,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="block text-sm font-medium text-neutral-700 mb-1.5"
+            className="block text-sm font-medium text-neutral-300 mb-1.5"
           >
             {label}
           </label>
@@ -54,14 +54,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             id={inputId}
             disabled={disabled}
             className={cn(
-              "w-full rounded-lg border bg-white px-4 py-2.5 text-sm text-neutral-800",
-              "placeholder:text-neutral-400",
+              "w-full rounded-lg border bg-neutral-900 px-4 py-2.5 text-sm text-neutral-100",
+              "placeholder:text-neutral-600",
               "transition-shadow duration-200",
               "focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent",
-              "disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-neutral-50",
+              "disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-neutral-950",
               error
                 ? "border-error focus:ring-error/40 focus:border-error"
-                : "border-neutral-300",
+                : "border-neutral-700",
               leftIcon && "pl-10",
               className,
             )}

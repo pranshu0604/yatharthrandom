@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased bg-black text-white selection:bg-amber-500/30`}>
+      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased bg-[#050505] text-neutral-200 selection:bg-secondary/30`}>
         <AuthProvider>
           <Navbar />
           <main className="min-h-screen pt-20">{children}</main>

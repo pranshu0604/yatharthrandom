@@ -27,7 +27,7 @@ export default async function AdminCategoriesPage() {
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-neutral-800">Categories</h1>
+        <h1 className="text-2xl font-bold text-neutral-100">Categories</h1>
         <p className="text-neutral-500 mt-1">
           Manage listing categories. {categories.length} total categories.
         </p>

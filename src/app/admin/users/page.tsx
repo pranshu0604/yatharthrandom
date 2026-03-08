@@ -73,7 +73,7 @@ export default async function AdminUsersPage({
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-neutral-800">Users</h1>
+        <h1 className="text-2xl font-bold text-neutral-100">Users</h1>
         <p className="text-neutral-500 mt-1">
           Manage all {total} registered users.
         </p>

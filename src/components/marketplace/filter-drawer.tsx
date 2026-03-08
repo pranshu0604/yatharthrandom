@@ -56,11 +56,11 @@ function FilterSection({
   const [open, setOpen] = useState(defaultOpen);
 
   return (
-    <div className="border-b border-neutral-100 last:border-0">
+    <div className="border-b border-neutral-800 last:border-0">
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between py-3.5 text-sm font-semibold text-neutral-700 hover:text-primary transition-colors cursor-pointer"
+        className="flex w-full items-center justify-between py-3.5 text-sm font-semibold text-neutral-300 hover:text-white transition-colors cursor-pointer"
       >
         {title}
         <ChevronDown
@@ -105,9 +105,9 @@ function CheckboxItem({
         type="checkbox"
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
-        className="h-4 w-4 rounded border-neutral-300 text-accent focus:ring-accent/40 cursor-pointer accent-accent"
+        className="h-4 w-4 rounded border-neutral-700 text-accent focus:ring-accent/40 cursor-pointer accent-accent"
       />
-      <span className="text-sm text-neutral-600 group-hover:text-neutral-800 transition-colors">
+      <span className="text-sm text-neutral-400 group-hover:text-neutral-100 transition-colors">
         {label}
       </span>
     </label>
@@ -219,7 +219,7 @@ function FilterContent({
                 onChange={(e) => setMinPrice(e.target.value)}
                 placeholder="Min"
                 min="0"
-                className="w-full rounded-lg border border-neutral-200 bg-white pl-7 pr-3 py-2 text-sm text-neutral-700 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent"
+                className="w-full rounded-lg border border-neutral-800 bg-neutral-900 pl-7 pr-3 py-2 text-sm text-neutral-300 placeholder:text-neutral-600 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent"
               />
             </div>
             <span className="text-neutral-300 text-xs font-medium">to</span>
@@ -233,7 +233,7 @@ function FilterContent({
                 onChange={(e) => setMaxPrice(e.target.value)}
                 placeholder="Max"
                 min="0"
-                className="w-full rounded-lg border border-neutral-200 bg-white pl-7 pr-3 py-2 text-sm text-neutral-700 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent"
+                className="w-full rounded-lg border border-neutral-800 bg-neutral-900 pl-7 pr-3 py-2 text-sm text-neutral-300 placeholder:text-neutral-600 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent"
               />
             </div>
           </div>
@@ -245,7 +245,7 @@ function FilterContent({
             <select
               value={selectedCity}
               onChange={(e) => setSelectedCity(e.target.value)}
-              className="w-full appearance-none rounded-lg border border-neutral-200 bg-white px-3 py-2 pr-8 text-sm text-neutral-700 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent cursor-pointer"
+              className="w-full appearance-none rounded-lg border border-neutral-800 bg-neutral-900 px-3 py-2 pr-8 text-sm text-neutral-300 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent cursor-pointer"
             >
               <option value="">All Cities</option>
               {cities.map((city) => (
@@ -287,7 +287,7 @@ function FilterContent({
       </div>
 
       {/* Action buttons */}
-      <div className="shrink-0 pt-4 border-t border-neutral-100 space-y-2">
+      <div className="shrink-0 pt-4 border-t border-neutral-800 space-y-2">
         <Button
           variant="primary"
           size="md"
@@ -466,8 +466,8 @@ function FilterDrawer({ categories, cities, className }: FilterDrawerProps) {
           className,
         )}
       >
-        <div className="sticky top-[88px] rounded-xl border border-neutral-100 bg-white p-5 shadow-sm">
-          <h2 className="text-sm font-bold text-neutral-800 uppercase tracking-wider mb-4">
+        <div className="sticky top-[88px] rounded-xl border border-neutral-800 bg-neutral-900 p-5 shadow-none">
+          <h2 className="text-sm font-bold text-neutral-100 uppercase tracking-wider mb-4">
             Filters
           </h2>
           {filterContent}
@@ -499,7 +499,7 @@ function FilterDrawer({ categories, cities, className }: FilterDrawerProps) {
             {/* Backdrop */}
             <motion.div
               ref={backdropRef}
-              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -509,7 +509,7 @@ function FilterDrawer({ categories, cities, className }: FilterDrawerProps) {
 
             {/* Drawer panel */}
             <motion.div
-              className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] rounded-t-2xl bg-white shadow-2xl lg:hidden flex flex-col"
+              className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] rounded-t-2xl bg-neutral-900 shadow-2xl lg:hidden flex flex-col"
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
@@ -517,18 +517,18 @@ function FilterDrawer({ categories, cities, className }: FilterDrawerProps) {
             >
               {/* Handle bar */}
               <div className="flex justify-center pt-3 pb-1">
-                <div className="h-1 w-10 rounded-full bg-neutral-200" />
+                <div className="h-1 w-10 rounded-full bg-neutral-700" />
               </div>
 
               {/* Header */}
-              <div className="flex items-center justify-between px-5 pb-3 border-b border-neutral-100">
-                <h2 className="text-base font-bold text-neutral-800">
+              <div className="flex items-center justify-between px-5 pb-3 border-b border-neutral-800">
+                <h2 className="text-base font-bold text-neutral-100">
                   Filters
                 </h2>
                 <button
                   type="button"
                   onClick={() => setMobileOpen(false)}
-                  className="rounded-lg p-1.5 text-neutral-400 hover:text-neutral-600 hover:bg-neutral-100 transition-colors cursor-pointer"
+                  className="rounded-lg p-1.5 text-neutral-400 hover:text-neutral-400 hover:bg-neutral-800 transition-colors cursor-pointer"
                   aria-label="Close filters"
                 >
                   <X className="h-5 w-5" />
