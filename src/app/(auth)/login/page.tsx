@@ -116,7 +116,7 @@ export default function LoginPage() {
     >
       {/* Header */}
       <motion.div variants={itemVariants}>
-        <h2 className="text-3xl font-bold text-neutral-900 tracking-tight">
+        <h2 className="font-serif text-3xl font-bold text-white tracking-tight">
           Welcome back
         </h2>
         <p className="mt-2 text-neutral-500">
@@ -166,7 +166,7 @@ export default function LoginPage() {
           <button
             type="button"
             onClick={() => setShowPassword((v) => !v)}
-            className="absolute right-3 top-8.5 text-neutral-400 hover:text-neutral-600 transition-colors"
+            className="absolute right-3 top-8.5 text-neutral-400 hover:text-neutral-400 transition-colors"
             tabIndex={-1}
             aria-label={showPassword ? "Hide password" : "Show password"}
           >
@@ -202,10 +202,10 @@ export default function LoginPage() {
       {/* Divider */}
       <motion.div variants={itemVariants} className="relative">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-neutral-200" />
+          <div className="w-full border-t border-neutral-800" />
         </div>
         <div className="relative flex justify-center text-sm">
-          <span className="bg-neutral-50 px-4 text-neutral-400">
+          <span className="bg-[#050505] px-4 text-neutral-500">
             or continue with
           </span>
         </div>
@@ -233,7 +233,7 @@ export default function LoginPage() {
         Don&apos;t have an account?{" "}
         <Link
           href="/register"
-          className="font-semibold text-primary hover:text-primary-light transition-colors"
+          className="font-semibold text-white hover:text-primary-light transition-colors"
         >
           Sign Up
         </Link>

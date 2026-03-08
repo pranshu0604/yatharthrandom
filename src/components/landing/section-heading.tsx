@@ -19,7 +19,7 @@ export default function SectionHeading({
   return (
     <div className={cn("text-center", className)}>
       <motion.h2
-        className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-neutral-900"
+        className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}

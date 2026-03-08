@@ -65,7 +65,7 @@ function ListingActions({
         type="button"
         onClick={() => setMenuOpen(!menuOpen)}
         disabled={loading}
-        className="inline-flex items-center justify-center p-1.5 rounded-lg text-neutral-500 hover:bg-neutral-100 transition-colors cursor-pointer disabled:opacity-50"
+        className="inline-flex items-center justify-center p-1.5 rounded-lg text-neutral-500 hover:bg-neutral-800 transition-colors cursor-pointer disabled:opacity-50"
         aria-label="More actions"
       >
         <MoreVertical className="h-4 w-4" />
@@ -81,12 +81,12 @@ function ListingActions({
           />
 
           {/* Dropdown */}
-          <div className="absolute right-0 top-full mt-1 z-40 w-48 bg-white rounded-lg shadow-lg border border-neutral-200 py-1">
+          <div className="absolute right-0 top-full mt-1 z-40 w-48 bg-neutral-900 rounded-lg shadow-lg border border-neutral-800 py-1">
             {status === "ACTIVE" && (
               <button
                 type="button"
                 onClick={() => handleAction("sold")}
-                className="w-full flex items-center gap-2 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50 transition-colors cursor-pointer"
+                className="w-full flex items-center gap-2 px-4 py-2 text-sm text-neutral-300 hover:bg-neutral-950 transition-colors cursor-pointer"
               >
                 <CheckCircle className="h-4 w-4 text-success" />
                 Mark as Sold
@@ -97,7 +97,7 @@ function ListingActions({
               <button
                 type="button"
                 onClick={() => handleAction("toggle-featured")}
-                className="w-full flex items-center gap-2 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50 transition-colors cursor-pointer"
+                className="w-full flex items-center gap-2 px-4 py-2 text-sm text-neutral-300 hover:bg-neutral-950 transition-colors cursor-pointer"
               >
                 <Star
                   className={`h-4 w-4 ${

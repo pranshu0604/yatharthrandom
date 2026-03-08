@@ -84,7 +84,7 @@ export default async function AdminOverviewPage() {
       sub: `${buyerCount} buyers, ${sellerCount} sellers`,
       icon: Users,
       color: "text-accent",
-      bg: "bg-accent/10",
+      bg: "bg-accent/15",
     },
     {
       label: "Total Listings",
@@ -92,7 +92,7 @@ export default async function AdminOverviewPage() {
       sub: `${activeListings} active, ${pendingListings} pending, ${soldListings} sold`,
       icon: Package,
       color: "text-secondary",
-      bg: "bg-secondary/10",
+      bg: "bg-secondary/15",
     },
     {
       label: "Transactions",
@@ -100,7 +100,7 @@ export default async function AdminOverviewPage() {
       sub: `${formatCurrency(totalRevenue)} commission earned`,
       icon: DollarSign,
       color: "text-success",
-      bg: "bg-success/10",
+      bg: "bg-success/15",
     },
     {
       label: "Average Rating",
@@ -108,7 +108,7 @@ export default async function AdminOverviewPage() {
       sub: "across all reviews",
       icon: Star,
       color: "text-warning",
-      bg: "bg-warning/10",
+      bg: "bg-warning/15",
     },
   ];
 
@@ -129,7 +129,7 @@ export default async function AdminOverviewPage() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-neutral-800">Dashboard Overview</h1>
+        <h1 className="font-serif text-2xl font-bold text-neutral-100">Dashboard Overview</h1>
         <p className="text-neutral-500 mt-1">
           Key metrics and recent activity across the platform.
         </p>
@@ -147,7 +147,7 @@ export default async function AdminOverviewPage() {
                   <stat.icon className={`h-5 w-5 ${stat.color}`} />
                 </div>
               </div>
-              <p className="text-2xl font-bold text-neutral-800">{stat.value}</p>
+              <p className="text-2xl font-bold text-neutral-100">{stat.value}</p>
               <p className="text-sm text-neutral-500 mt-0.5">{stat.label}</p>
               <p className="text-xs text-neutral-400 mt-1">{stat.sub}</p>
             </CardContent>
@@ -158,7 +158,7 @@ export default async function AdminOverviewPage() {
       {/* Key Metrics Summary */}
       <Card className="mb-8">
         <CardHeader>
-          <h2 className="text-lg font-semibold text-neutral-800 flex items-center gap-2">
+          <h2 className="text-lg font-semibold text-neutral-100 flex items-center gap-2">
             <TrendingUp className="h-5 w-5 text-accent" />
             Key Metrics
           </h2>
@@ -169,7 +169,7 @@ export default async function AdminOverviewPage() {
               <p className="text-xs text-neutral-500 uppercase tracking-wider">
                 Revenue
               </p>
-              <p className="text-xl font-bold text-neutral-800 mt-1">
+              <p className="text-xl font-bold text-neutral-100 mt-1">
                 {formatCurrency(totalRevenue)}
               </p>
             </div>
@@ -177,7 +177,7 @@ export default async function AdminOverviewPage() {
               <p className="text-xs text-neutral-500 uppercase tracking-wider">
                 Pending Approvals
               </p>
-              <p className="text-xl font-bold text-neutral-800 mt-1">
+              <p className="text-xl font-bold text-neutral-100 mt-1">
                 {pendingListings}
               </p>
             </div>
@@ -185,7 +185,7 @@ export default async function AdminOverviewPage() {
               <p className="text-xs text-neutral-500 uppercase tracking-wider">
                 Completion Rate
               </p>
-              <p className="text-xl font-bold text-neutral-800 mt-1">
+              <p className="text-xl font-bold text-neutral-100 mt-1">
                 {totalTransactions > 0
                   ? `${Math.round((totalTransactions / Math.max(soldListings, 1)) * 100)}%`
                   : "N/A"}
@@ -195,7 +195,7 @@ export default async function AdminOverviewPage() {
               <p className="text-xs text-neutral-500 uppercase tracking-wider">
                 Avg. Rating
               </p>
-              <p className="text-xl font-bold text-neutral-800 mt-1">
+              <p className="text-xl font-bold text-neutral-100 mt-1">
                 {avgRating ? `${avgRating} / 5` : "N/A"}
               </p>
             </div>
@@ -208,7 +208,7 @@ export default async function AdminOverviewPage() {
         {/* Recent Listings */}
         <Card>
           <CardHeader>
-            <h2 className="text-base font-semibold text-neutral-800 flex items-center gap-2">
+            <h2 className="text-base font-semibold text-neutral-100 flex items-center gap-2">
               <Clock className="h-4 w-4 text-neutral-400" />
               Latest Listings
             </h2>
@@ -222,7 +222,7 @@ export default async function AdminOverviewPage() {
               recentListings.map((listing) => (
                 <div
                   key={listing.id}
-                  className="flex items-center gap-3 py-2 border-b border-neutral-50 last:border-0"
+                  className="flex items-center gap-3 py-2 border-b border-neutral-900 last:border-0"
                 >
                   <Avatar
                     name={listing.seller.name}
@@ -230,7 +230,7 @@ export default async function AdminOverviewPage() {
                     size="sm"
                   />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-neutral-800 truncate">
+                    <p className="text-sm font-medium text-neutral-100 truncate">
                       {listing.title}
                     </p>
                     <p className="text-xs text-neutral-500">
@@ -253,7 +253,7 @@ export default async function AdminOverviewPage() {
         {/* Recent Reviews */}
         <Card>
           <CardHeader>
-            <h2 className="text-base font-semibold text-neutral-800 flex items-center gap-2">
+            <h2 className="text-base font-semibold text-neutral-100 flex items-center gap-2">
               <MessageSquare className="h-4 w-4 text-neutral-400" />
               Latest Reviews
             </h2>
@@ -267,7 +267,7 @@ export default async function AdminOverviewPage() {
               recentReviews.map((review) => (
                 <div
                   key={review.id}
-                  className="flex items-center gap-3 py-2 border-b border-neutral-50 last:border-0"
+                  className="flex items-center gap-3 py-2 border-b border-neutral-900 last:border-0"
                 >
                   <Avatar
                     name={review.buyer.name}
@@ -275,7 +275,7 @@ export default async function AdminOverviewPage() {
                     size="sm"
                   />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-neutral-800 truncate">
+                    <p className="text-sm font-medium text-neutral-100 truncate">
                       {review.listing.title}
                     </p>
                     <p className="text-xs text-neutral-500">
@@ -295,7 +295,7 @@ export default async function AdminOverviewPage() {
         {/* Recent Registrations */}
         <Card>
           <CardHeader>
-            <h2 className="text-base font-semibold text-neutral-800 flex items-center gap-2">
+            <h2 className="text-base font-semibold text-neutral-100 flex items-center gap-2">
               <UserPlus className="h-4 w-4 text-neutral-400" />
               Recent Registrations
             </h2>
@@ -309,11 +309,11 @@ export default async function AdminOverviewPage() {
               recentUsers.map((user) => (
                 <div
                   key={user.id}
-                  className="flex items-center gap-3 py-2 border-b border-neutral-50 last:border-0"
+                  className="flex items-center gap-3 py-2 border-b border-neutral-900 last:border-0"
                 >
                   <Avatar name={user.name} src={user.image} size="sm" />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-neutral-800 truncate">
+                    <p className="text-sm font-medium text-neutral-100 truncate">
                       {user.name}
                     </p>
                     <p className="text-xs text-neutral-500">{user.email}</p>

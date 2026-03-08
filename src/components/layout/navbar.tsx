@@ -52,59 +52,61 @@ export default function Navbar() {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-[0.22,1,0.36,1]",
           scrolled
-            ? "bg-white/95 backdrop-blur-sm shadow-[0_1px_3px_rgba(0,0,0,0.05),0_4px_12px_rgba(0,0,0,0.03)] border-b border-neutral-100"
-            : "bg-white border-b border-transparent"
+            ? "bg-black/80 backdrop-blur-xl border-b border-white/5 py-4"
+            : "bg-transparent border-transparent py-6"
         )}
       >
-        <nav className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-          <div className="flex h-16 items-center justify-between">
-            {/* Logo */}
-            <Link href="/" className="relative z-10 flex items-center gap-0.5">
-              <span className="text-[22px] font-bold tracking-tight text-neutral-900">
-                ReMember
-              </span>
-              <span className="text-[22px] font-bold tracking-tight text-accent">
-                X
+        <nav className="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-12">
+          <div className="flex items-center justify-between">
+            {/* Logo - Minimal & Bold */}
+            <Link href="/" className="relative z-10 flex items-center gap-3 group">
+              <span className="text-2xl font-serif font-bold tracking-tight text-white group-hover:text-neutral-300 transition-colors">
+                ReMember<span className="text-secondary italic">X</span>
               </span>
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden items-center gap-1 lg:flex">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "relative px-4 py-2 text-[15px] font-medium transition-colors duration-200",
-                    pathname === link.href
-                      ? "text-neutral-900"
-                      : "text-neutral-500 hover:text-neutral-900"
-                  )}
-                >
-                  {link.label}
-                </Link>
-              ))}
+            {/* Desktop Navigation - Minimal Text Links */}
+            <div className="hidden items-center gap-8 lg:flex">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={cn(
+                      "text-sm tracking-wide transition-all duration-300 relative group",
+                      isActive
+                        ? "text-white font-medium"
+                        : "text-neutral-400 hover:text-white"
+                    )}
+                  >
+                    {link.label}
+                    <span className={cn(
+                        "absolute -bottom-1 left-0 w-full h-px bg-secondary transform origin-left transition-transform duration-300",
+                        isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    )}/>
+                  </Link>
+                );
+              })}
             </div>
 
             {/* Desktop Right Side */}
-            <div className="hidden items-center gap-3 lg:flex">
+            <div className="hidden items-center gap-6 lg:flex">
               {session ? (
                 <>
                   <Link
                     href={dashboardHref}
-                    className="flex items-center gap-2 px-4 py-2 text-[15px] font-medium text-neutral-500 hover:text-neutral-900 transition-colors duration-200"
+                    className="text-sm font-medium text-neutral-400 hover:text-white transition-colors"
                   >
-                    <LayoutDashboard className="h-4 w-4" />
                     Dashboard
                   </Link>
 
-                  {/* Profile Dropdown */}
                   <div className="relative">
                     <button
                       onClick={() => setProfileOpen(!profileOpen)}
-                      className="relative flex h-9 w-9 items-center justify-center rounded-full bg-neutral-900 text-xs font-semibold text-white transition-shadow hover:shadow-md overflow-hidden"
+                      className="relative flex h-10 w-10 items-center justify-center rounded-full bg-neutral-900 border border-white/10 hover:border-white/30 transition-colors overflow-hidden"
                     >
                       {session.user?.image ? (
                         <Image
@@ -112,15 +114,17 @@ export default function Navbar() {
                           alt={session.user?.name || "Profile"}
                           fill
                           className="rounded-full object-cover"
-                          sizes="36px"
+                          sizes="40px"
                           unoptimized
                         />
                       ) : (
-                        getInitials(session.user?.name || "U")
+                        <span className="text-sm font-serif text-white">
+                          {getInitials(session.user?.name || "U")}
+                        </span>
                       )}
                     </button>
-
-                    <AnimatePresence>
+                    {/* ... keeping existing dropdown logic but styled dark ... */}
+                     <AnimatePresence>
                       {profileOpen && (
                         <>
                           <div
@@ -128,31 +132,31 @@ export default function Navbar() {
                             onClick={() => setProfileOpen(false)}
                           />
                           <motion.div
-                            initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: 8, scale: 0.95 }}
-                            transition={{ duration: 0.15 }}
-                            className="absolute right-0 top-12 z-50 w-56 rounded-xl border border-neutral-200 bg-white py-2 shadow-lg"
+                            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                            transition={{ duration: 0.2 }}
+                            className="absolute right-0 top-14 z-50 w-64 rounded-xl glass-panel p-2 shadow-2xl"
                           >
-                            <div className="border-b border-neutral-100 px-4 py-3">
-                              <p className="text-sm font-semibold text-neutral-800">
+                            <div className="px-3 py-3 border-b border-white/10 mb-1">
+                              <p className="text-sm font-medium text-white truncate">
                                 {session.user?.name}
                               </p>
-                              <p className="text-xs text-neutral-500">
+                              <p className="text-xs text-neutral-500 truncate">
                                 {session.user?.email}
                               </p>
                             </div>
                             <Link
                               href={dashboardHref}
                               onClick={() => setProfileOpen(false)}
-                              className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-600 transition-colors hover:bg-neutral-50 hover:text-neutral-900"
+                              className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-neutral-400 rounded-lg hover:bg-neutral-900/5 hover:text-white transition-colors"
                             >
                               <LayoutDashboard className="h-4 w-4" />
                               Dashboard
                             </Link>
                             <button
                               onClick={() => signOut({ callbackUrl: "/" })}
-                              className="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-neutral-600 transition-colors hover:bg-neutral-50 hover:text-error"
+                              className="flex w-full items-center gap-3 px-3 py-2.5 text-sm font-medium text-neutral-400 rounded-lg hover:bg-red-500/10 hover:text-red-400 transition-colors"
                             >
                               <LogOut className="h-4 w-4" />
                               Sign Out
@@ -164,40 +168,29 @@ export default function Navbar() {
                   </div>
                 </>
               ) : (
-                <>
+                <div className="flex items-center gap-6">
                   <Link
                     href="/login"
-                    className="px-4 py-2 text-[15px] font-medium text-neutral-500 hover:text-neutral-900 transition-colors duration-200"
+                    className="text-sm font-medium text-neutral-400 hover:text-white transition-colors"
                   >
-                    Login
+                    Log in
                   </Link>
                   <Link
                     href="/register"
-                    className="px-4 py-2 text-[15px] font-medium text-neutral-500 hover:text-neutral-900 transition-colors duration-200"
+                    className="relative px-6 py-2.5 bg-neutral-900 text-black text-sm font-semibold tracking-wide hover:bg-neutral-700 transition-colors duration-300"
                   >
-                    Sign Up
+                    Get Access
                   </Link>
-                </>
+                </div>
               )}
-              <motion.div
-                initial={{ scale: 1 }}
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ delay: 2, duration: 0.6, ease: "easeInOut" }}
-              >
-                <Link
-                  href="/dashboard/seller/listings/new"
-                  className="group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-semibold text-white bg-neutral-900 hover:bg-neutral-800 hover:shadow-[0_0_20px_rgba(46,196,182,0.3)] transition-all duration-300"
-                >
-                  List Your Membership
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-                </Link>
-              </motion.div>
             </div>
+
+
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="relative z-10 flex h-10 w-10 items-center justify-center rounded-lg text-neutral-700 hover:bg-neutral-100 transition-colors lg:hidden"
+              className="relative z-10 flex h-10 w-10 items-center justify-center rounded-lg text-neutral-300 hover:bg-neutral-800 transition-colors lg:hidden"
               aria-label={isOpen ? "Close menu" : "Open menu"}
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -246,7 +239,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 z-40 flex h-full w-[85%] max-w-sm flex-col bg-white shadow-[-8px_0_30px_rgba(0,0,0,0.08)]"
+              className="fixed top-0 right-0 z-40 flex h-full w-[85%] max-w-sm flex-col bg-neutral-900 shadow-[-8px_0_30px_rgba(0,0,0,0.08)]"
             >
               <div className="h-16 shrink-0" />
 
@@ -262,7 +255,7 @@ export default function Navbar() {
                       <Link
                         href={link.href}
                         onClick={() => setIsOpen(false)}
-                        className="flex items-center rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-neutral-900"
+                        className="flex items-center rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-300 transition-colors hover:bg-neutral-950 hover:text-white"
                       >
                         {link.label}
                       </Link>
@@ -270,7 +263,7 @@ export default function Navbar() {
                   ))}
                 </div>
 
-                <div className="my-5 h-px bg-neutral-100" />
+                <div className="my-5 h-px bg-neutral-800" />
 
                 <div className="space-y-1">
                   {session ? (
@@ -283,7 +276,7 @@ export default function Navbar() {
                         <Link
                           href={dashboardHref}
                           onClick={() => setIsOpen(false)}
-                          className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-neutral-900"
+                          className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-300 transition-colors hover:bg-neutral-950 hover:text-white"
                         >
                           <LayoutDashboard className="h-5 w-5" />
                           Dashboard
@@ -299,7 +292,7 @@ export default function Navbar() {
                             setIsOpen(false);
                             signOut({ callbackUrl: "/" });
                           }}
-                          className="flex w-full items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-error"
+                          className="flex w-full items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-300 transition-colors hover:bg-neutral-950 hover:text-error"
                         >
                           <LogOut className="h-5 w-5" />
                           Sign Out
@@ -316,7 +309,7 @@ export default function Navbar() {
                         <Link
                           href="/login"
                           onClick={() => setIsOpen(false)}
-                          className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-neutral-900"
+                          className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-300 transition-colors hover:bg-neutral-950 hover:text-white"
                         >
                           <User className="h-5 w-5" />
                           Login
@@ -330,7 +323,7 @@ export default function Navbar() {
                         <Link
                           href="/register"
                           onClick={() => setIsOpen(false)}
-                          className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-neutral-900"
+                          className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-[16px] font-medium text-neutral-300 transition-colors hover:bg-neutral-950 hover:text-white"
                         >
                           <User className="h-5 w-5" />
                           Sign Up

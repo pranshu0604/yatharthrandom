@@ -148,7 +148,7 @@ export function AdminCategoriesClient({ categories }: Props) {
           />
         ) : (
           <div>
-            <p className="font-medium text-neutral-800">{row.name}</p>
+            <p className="font-medium text-neutral-100">{row.name}</p>
             <p className="text-xs text-neutral-400">{row.slug}</p>
           </div>
         ),
@@ -197,7 +197,7 @@ export function AdminCategoriesClient({ categories }: Props) {
   return (
     <div>
       {/* Create form toggle */}
-      <div className="flex items-center justify-between p-4 border-b border-neutral-100">
+      <div className="flex items-center justify-between p-4 border-b border-neutral-800">
         <span className="text-sm text-neutral-500">
           {categories.length} categories
         </span>
@@ -220,7 +220,7 @@ export function AdminCategoriesClient({ categories }: Props) {
 
       {/* Inline create form */}
       {showCreate && (
-        <div className="flex flex-col sm:flex-row gap-3 p-4 bg-neutral-50 border-b border-neutral-100">
+        <div className="flex flex-col sm:flex-row gap-3 p-4 bg-neutral-950 border-b border-neutral-800">
           <Input
             placeholder="Category name"
             value={newName}
@@ -263,7 +263,7 @@ export function AdminCategoriesClient({ categories }: Props) {
               <button
                 type="button"
                 onClick={handleEdit}
-                className="rounded-lg p-1.5 text-success hover:bg-success/10 transition-colors cursor-pointer"
+                className="rounded-lg p-1.5 text-success hover:bg-success/15 transition-colors cursor-pointer"
                 title="Save"
               >
                 <Check className="h-4 w-4" />
@@ -271,7 +271,7 @@ export function AdminCategoriesClient({ categories }: Props) {
               <button
                 type="button"
                 onClick={() => setEditId(null)}
-                className="rounded-lg p-1.5 text-neutral-400 hover:bg-neutral-100 transition-colors cursor-pointer"
+                className="rounded-lg p-1.5 text-neutral-400 hover:bg-neutral-800 transition-colors cursor-pointer"
                 title="Cancel"
               >
                 <X className="h-4 w-4" />
@@ -282,7 +282,7 @@ export function AdminCategoriesClient({ categories }: Props) {
               <button
                 type="button"
                 onClick={() => startEdit(row)}
-                className="rounded-lg p-1.5 text-neutral-400 hover:text-accent hover:bg-accent/10 transition-colors cursor-pointer"
+                className="rounded-lg p-1.5 text-neutral-400 hover:text-accent hover:bg-accent/15 transition-colors cursor-pointer"
                 title="Edit"
               >
                 <Pencil className="h-4 w-4" />
@@ -293,8 +293,8 @@ export function AdminCategoriesClient({ categories }: Props) {
                 className={cn(
                   "rounded-lg p-1.5 transition-colors cursor-pointer",
                   row.isActive
-                    ? "text-success hover:text-error hover:bg-error/10"
-                    : "text-neutral-400 hover:text-success hover:bg-success/10",
+                    ? "text-success hover:text-error hover:bg-error/15"
+                    : "text-neutral-400 hover:text-success hover:bg-success/15",
                 )}
                 title={row.isActive ? "Deactivate" : "Activate"}
               >

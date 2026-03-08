@@ -93,11 +93,11 @@ function DashboardSidebar({ user }: DashboardSidebarProps) {
   const sidebarContent = (
     <>
       {/* User profile section */}
-      <div className="p-6 border-b border-neutral-100">
+      <div className="p-6 border-b border-neutral-800">
         <div className="flex items-center gap-3">
           <Avatar name={user.name} src={user.image} size="lg" />
           <div className="min-w-0 flex-1">
-            <p className="font-semibold text-neutral-900 truncate">
+            <p className="font-semibold text-white truncate">
               {user.name}
             </p>
             <p className="text-xs text-neutral-500 truncate">{user.email}</p>
@@ -124,14 +124,14 @@ function DashboardSidebar({ user }: DashboardSidebarProps) {
                   className={cn(
                     "flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors duration-150",
                     active
-                      ? "bg-primary/10 text-primary"
-                      : "text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900",
+                      ? "bg-white/10 text-white"
+                      : "text-neutral-400 hover:bg-neutral-950 hover:text-white",
                   )}
                 >
                   <Icon
                     className={cn(
                       "h-5 w-5 shrink-0",
-                      active ? "text-primary" : "text-neutral-400",
+                      active ? "text-white" : "text-neutral-400",
                     )}
                   />
                   {link.label}
@@ -143,7 +143,7 @@ function DashboardSidebar({ user }: DashboardSidebarProps) {
       </nav>
 
       {/* Footer */}
-      <div className="p-4 border-t border-neutral-100">
+      <div className="p-4 border-t border-neutral-800">
         <p className="text-xs text-neutral-400 text-center">
           ReMemberX Dashboard
         </p>
@@ -154,15 +154,15 @@ function DashboardSidebar({ user }: DashboardSidebarProps) {
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 lg:top-[72px] bg-white border-r border-neutral-200 z-30">
+      <aside className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 lg:top-[72px] bg-neutral-900 border-r border-neutral-800 z-30">
         {sidebarContent}
       </aside>
 
       {/* Mobile header bar */}
-      <div className="lg:hidden fixed top-[72px] left-0 right-0 z-30 bg-white border-b border-neutral-200 px-4 py-3 flex items-center justify-between">
+      <div className="lg:hidden fixed top-[72px] left-0 right-0 z-30 bg-neutral-900 border-b border-neutral-800 px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Avatar name={user.name} src={user.image} size="sm" />
-          <span className="font-semibold text-sm text-neutral-900 truncate">
+          <span className="font-semibold text-sm text-white truncate">
             {user.name}
           </span>
           {user.role === "SELLER" && (
@@ -174,7 +174,7 @@ function DashboardSidebar({ user }: DashboardSidebarProps) {
         <button
           type="button"
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="p-2 rounded-lg text-neutral-600 hover:bg-neutral-100 transition-colors cursor-pointer"
+          className="p-2 rounded-lg text-neutral-400 hover:bg-neutral-800 transition-colors cursor-pointer"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
         >
           {mobileOpen ? (
@@ -188,7 +188,7 @@ function DashboardSidebar({ user }: DashboardSidebarProps) {
       {/* Mobile drawer overlay */}
       {mobileOpen && (
         <div
-          className="lg:hidden fixed inset-0 z-40 bg-neutral-900/40"
+          className="lg:hidden fixed inset-0 z-40 bg-black/60"
           onClick={() => setMobileOpen(false)}
           aria-hidden="true"
         />
@@ -197,7 +197,7 @@ function DashboardSidebar({ user }: DashboardSidebarProps) {
       {/* Mobile drawer */}
       <aside
         className={cn(
-          "lg:hidden fixed top-0 left-0 bottom-0 z-50 w-72 bg-white shadow-xl transition-transform duration-300 ease-in-out pt-[72px]",
+          "lg:hidden fixed top-0 left-0 bottom-0 z-50 w-72 bg-neutral-900 shadow-xl transition-transform duration-300 ease-in-out pt-[72px]",
           mobileOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >

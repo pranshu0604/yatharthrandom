@@ -48,7 +48,7 @@ export default async function AdminReviewsPage({
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-neutral-800">Reviews</h1>
+        <h1 className="text-2xl font-bold text-neutral-100">Reviews</h1>
         <p className="text-neutral-500 mt-1">
           Moderate all {total} reviews on the platform.
         </p>

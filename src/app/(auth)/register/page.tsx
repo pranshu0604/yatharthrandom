@@ -74,7 +74,7 @@ function RoleToggle({
 }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-neutral-700 mb-2">
+      <label className="block text-sm font-medium text-neutral-300 mb-2">
         I want to...
       </label>
       <div className="grid grid-cols-2 gap-3">
@@ -84,8 +84,8 @@ function RoleToggle({
           className={cn(
             "flex items-center justify-center gap-2 rounded-lg border-2 px-4 py-3 text-sm font-medium transition-all duration-200",
             value === "BUYER"
-              ? "border-accent bg-accent/5 text-accent shadow-sm"
-              : "border-neutral-200 text-neutral-500 hover:border-neutral-300 hover:text-neutral-700",
+              ? "border-accent bg-accent/5 text-accent shadow-none"
+              : "border-neutral-800 text-neutral-500 hover:border-neutral-700 hover:text-neutral-300",
           )}
         >
           <ShoppingBag className="h-4 w-4" />
@@ -97,8 +97,8 @@ function RoleToggle({
           className={cn(
             "flex items-center justify-center gap-2 rounded-lg border-2 px-4 py-3 text-sm font-medium transition-all duration-200",
             value === "SELLER"
-              ? "border-secondary bg-secondary/5 text-secondary shadow-sm"
-              : "border-neutral-200 text-neutral-500 hover:border-neutral-300 hover:text-neutral-700",
+              ? "border-secondary bg-secondary/5 text-secondary shadow-none"
+              : "border-neutral-800 text-neutral-500 hover:border-neutral-700 hover:text-neutral-300",
           )}
         >
           <Store className="h-4 w-4" />
@@ -198,7 +198,7 @@ export default function RegisterPage() {
     >
       {/* Header */}
       <motion.div variants={itemVariants}>
-        <h2 className="text-3xl font-bold text-neutral-900 tracking-tight">
+        <h2 className="font-serif text-3xl font-bold text-white tracking-tight">
           Create your account
         </h2>
         <p className="mt-2 text-neutral-500">
@@ -258,7 +258,7 @@ export default function RegisterPage() {
           <button
             type="button"
             onClick={() => setShowPassword((v) => !v)}
-            className="absolute right-3 top-8.5 text-neutral-400 hover:text-neutral-600 transition-colors"
+            className="absolute right-3 top-8.5 text-neutral-400 hover:text-neutral-400 transition-colors"
             tabIndex={-1}
             aria-label={showPassword ? "Hide password" : "Show password"}
           >
@@ -283,7 +283,7 @@ export default function RegisterPage() {
           <button
             type="button"
             onClick={() => setShowConfirm((v) => !v)}
-            className="absolute right-3 top-8.5 text-neutral-400 hover:text-neutral-600 transition-colors"
+            className="absolute right-3 top-8.5 text-neutral-400 hover:text-neutral-400 transition-colors"
             tabIndex={-1}
             aria-label={showConfirm ? "Hide password" : "Show password"}
           >
@@ -322,10 +322,10 @@ export default function RegisterPage() {
       {/* Divider */}
       <motion.div variants={itemVariants} className="relative">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-neutral-200" />
+          <div className="w-full border-t border-neutral-800" />
         </div>
         <div className="relative flex justify-center text-sm">
-          <span className="bg-neutral-50 px-4 text-neutral-400">
+          <span className="bg-[#050505] px-4 text-neutral-500">
             or continue with
           </span>
         </div>
@@ -353,7 +353,7 @@ export default function RegisterPage() {
         Already have an account?{" "}
         <Link
           href="/login"
-          className="font-semibold text-primary hover:text-primary-light transition-colors"
+          className="font-semibold text-white hover:text-primary-light transition-colors"
         >
           Sign In
         </Link>

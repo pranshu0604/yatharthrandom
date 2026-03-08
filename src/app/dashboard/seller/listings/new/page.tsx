@@ -201,12 +201,12 @@ export default function NewListingPage() {
       <div className="mb-8">
         <Link
           href="/dashboard/seller/listings"
-          className="inline-flex items-center gap-1.5 text-sm text-neutral-500 hover:text-neutral-700 transition-colors mb-4"
+          className="inline-flex items-center gap-1.5 text-sm text-neutral-500 hover:text-neutral-300 transition-colors mb-4"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to Listings
         </Link>
-        <h1 className="text-2xl font-bold text-neutral-900">
+        <h1 className="text-2xl font-bold text-white">
           Create New Listing
         </h1>
         <p className="text-neutral-500 mt-1">
@@ -221,7 +221,7 @@ export default function NewListingPage() {
             {/* Basic info */}
             <Card>
               <CardHeader>
-                <h2 className="text-lg font-semibold text-neutral-900">
+                <h2 className="text-lg font-semibold text-white">
                   Basic Information
                 </h2>
               </CardHeader>
@@ -236,7 +236,7 @@ export default function NewListingPage() {
                 <div>
                   <label
                     htmlFor="description"
-                    className="block text-sm font-medium text-neutral-700 mb-1.5"
+                    className="block text-sm font-medium text-neutral-300 mb-1.5"
                   >
                     Description
                   </label>
@@ -244,7 +244,7 @@ export default function NewListingPage() {
                     id="description"
                     rows={5}
                     placeholder="Describe your membership in detail: what's included, benefits, terms of transfer, etc."
-                    className="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-800 placeholder:text-neutral-400 transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent resize-y"
+                    className="w-full rounded-lg border border-neutral-700 bg-neutral-900 px-4 py-2.5 text-sm text-neutral-100 placeholder:text-neutral-600 transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent resize-y"
                     {...register("description")}
                   />
                   {errors.description && (
@@ -291,7 +291,7 @@ export default function NewListingPage() {
             {/* Pricing */}
             <Card>
               <CardHeader>
-                <h2 className="text-lg font-semibold text-neutral-900">
+                <h2 className="text-lg font-semibold text-white">
                   Pricing
                 </h2>
               </CardHeader>
@@ -325,7 +325,7 @@ export default function NewListingPage() {
             {/* Location */}
             <Card>
               <CardHeader>
-                <h2 className="text-lg font-semibold text-neutral-900">
+                <h2 className="text-lg font-semibold text-white">
                   Location
                 </h2>
               </CardHeader>
@@ -352,7 +352,7 @@ export default function NewListingPage() {
             {/* Images */}
             <Card>
               <CardHeader>
-                <h2 className="text-lg font-semibold text-neutral-900">
+                <h2 className="text-lg font-semibold text-white">
                   Images
                 </h2>
               </CardHeader>
@@ -390,7 +390,7 @@ export default function NewListingPage() {
                     {imageUrls.map((url, index) => (
                       <div
                         key={index}
-                        className="relative group rounded-lg overflow-hidden border border-neutral-200"
+                        className="relative group rounded-lg overflow-hidden border border-neutral-800"
                       >
                         <Image
                           src={url}
@@ -409,7 +409,7 @@ export default function NewListingPage() {
                           <X className="h-3 w-3" />
                         </button>
                         {index === 0 && (
-                          <span className="absolute bottom-1 left-1 text-[10px] font-medium bg-primary text-white px-1.5 py-0.5 rounded">
+                          <span className="absolute bottom-1 left-1 text-[10px] font-medium bg-neutral-800 text-neutral-300 px-1.5 py-0.5 rounded">
                             Thumbnail
                           </span>
                         )}
@@ -431,7 +431,7 @@ export default function NewListingPage() {
             <div className="flex items-center justify-end gap-3">
               <Link
                 href="/dashboard/seller/listings"
-                className="px-5 py-2.5 rounded-lg text-sm font-medium text-neutral-600 hover:bg-neutral-100 transition-colors"
+                className="px-5 py-2.5 rounded-lg text-sm font-medium text-neutral-400 hover:bg-neutral-800 transition-colors"
               >
                 Cancel
               </Link>
@@ -449,16 +449,16 @@ export default function NewListingPage() {
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <Eye className="h-4 w-4 text-neutral-500" />
-                  <h3 className="text-sm font-semibold text-neutral-700">
+                  <h3 className="text-sm font-semibold text-neutral-300">
                     Preview
                   </h3>
                 </div>
               </CardHeader>
               <CardContent>
                 {/* Preview card */}
-                <div className="rounded-lg border border-neutral-200 overflow-hidden">
+                <div className="rounded-lg border border-neutral-800 overflow-hidden">
                   {/* Image area */}
-                  <div className="h-40 bg-neutral-100 relative">
+                  <div className="h-40 bg-neutral-800 relative">
                     {imageUrls[0] ? (
                       <Image
                         src={imageUrls[0]}
@@ -485,7 +485,7 @@ export default function NewListingPage() {
 
                   {/* Content */}
                   <div className="p-4 space-y-2">
-                    <p className="text-sm font-semibold text-neutral-900 line-clamp-2">
+                    <p className="text-sm font-semibold text-white line-clamp-2">
                       {watchedTitle || "Your Listing Title"}
                     </p>
 
@@ -509,13 +509,13 @@ export default function NewListingPage() {
                       </Badge>
                     )}
 
-                    <div className="pt-2 border-t border-neutral-100">
+                    <div className="pt-2 border-t border-neutral-800">
                       {watchedOriginal ? (
                         <p className="text-xs text-neutral-400 line-through">
                           {formatCurrency(watchedOriginal)}
                         </p>
                       ) : null}
-                      <p className="text-lg font-bold text-primary">
+                      <p className="text-lg font-bold text-white">
                         {watchedAsking
                           ? formatCurrency(watchedAsking)
                           : "Price"}

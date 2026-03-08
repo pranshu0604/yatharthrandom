@@ -102,7 +102,7 @@ export function AdminListingsClient({
       minWidth: "min-w-[260px]",
       render: (row) => (
         <div className="flex items-center gap-3">
-          <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-neutral-100">
+          <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-neutral-800">
             {row.image ? (
               <Image
                 src={row.image}
@@ -118,7 +118,7 @@ export function AdminListingsClient({
             )}
           </div>
           <div className="min-w-0">
-            <p className="font-medium text-neutral-800 truncate">{row.title}</p>
+            <p className="font-medium text-neutral-100 truncate">{row.title}</p>
             <p className="text-xs text-neutral-500">{row.sellerName}</p>
           </div>
         </div>
@@ -175,7 +175,7 @@ export function AdminListingsClient({
   return (
     <div>
       {/* Filters */}
-      <div className="flex items-center gap-3 p-4 border-b border-neutral-100">
+      <div className="flex items-center gap-3 p-4 border-b border-neutral-800">
         <div className="w-48">
           <Select
             options={statusOptions}
@@ -199,7 +199,7 @@ export function AdminListingsClient({
                   <button
                     type="button"
                     onClick={() => adminAction(row.id, "approve")}
-                    className="rounded-lg p-1.5 text-success hover:bg-success/10 transition-colors cursor-pointer"
+                    className="rounded-lg p-1.5 text-success hover:bg-success/15 transition-colors cursor-pointer"
                     title="Approve"
                   >
                     <Check className="h-4 w-4" />
@@ -207,7 +207,7 @@ export function AdminListingsClient({
                   <button
                     type="button"
                     onClick={() => adminAction(row.id, "reject")}
-                    className="rounded-lg p-1.5 text-error hover:bg-error/10 transition-colors cursor-pointer"
+                    className="rounded-lg p-1.5 text-error hover:bg-error/15 transition-colors cursor-pointer"
                     title="Reject"
                   >
                     <X className="h-4 w-4" />
@@ -222,8 +222,8 @@ export function AdminListingsClient({
                 className={cn(
                   "rounded-lg p-1.5 transition-colors cursor-pointer",
                   row.featured
-                    ? "text-secondary hover:bg-secondary/10"
-                    : "text-neutral-400 hover:bg-neutral-100",
+                    ? "text-secondary hover:bg-secondary/15"
+                    : "text-neutral-400 hover:bg-neutral-800",
                 )}
                 title={row.featured ? "Remove featured" : "Mark as featured"}
               >
@@ -236,7 +236,7 @@ export function AdminListingsClient({
                     adminAction(row.id, "delete");
                   }
                 }}
-                className="rounded-lg p-1.5 text-neutral-400 hover:text-error hover:bg-error/10 transition-colors cursor-pointer"
+                className="rounded-lg p-1.5 text-neutral-400 hover:text-error hover:bg-error/15 transition-colors cursor-pointer"
                 title="Delete"
               >
                 <Trash2 className="h-4 w-4" />
@@ -248,7 +248,7 @@ export function AdminListingsClient({
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between px-4 py-3 border-t border-neutral-100">
+        <div className="flex items-center justify-between px-4 py-3 border-t border-neutral-800">
           <p className="text-sm text-neutral-500">
             Showing {(page - 1) * 20 + 1} to {Math.min(page * 20, total)} of{" "}
             {total} listings
@@ -260,11 +260,11 @@ export function AdminListingsClient({
               onClick={() =>
                 pushParams({ status: statusFilter, page: String(page - 1) })
               }
-              className="rounded-lg p-1.5 text-neutral-500 hover:bg-neutral-100 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+              className="rounded-lg p-1.5 text-neutral-500 hover:bg-neutral-800 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
-            <span className="text-sm text-neutral-700 font-medium">
+            <span className="text-sm text-neutral-300 font-medium">
               {page} / {totalPages}
             </span>
             <button
@@ -273,7 +273,7 @@ export function AdminListingsClient({
               onClick={() =>
                 pushParams({ status: statusFilter, page: String(page + 1) })
               }
-              className="rounded-lg p-1.5 text-neutral-500 hover:bg-neutral-100 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+              className="rounded-lg p-1.5 text-neutral-500 hover:bg-neutral-800 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
             >
               <ChevronRight className="h-5 w-5" />
             </button>

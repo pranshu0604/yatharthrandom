@@ -48,14 +48,14 @@ export function SavedListingCard({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
       className={cn(
-        "group relative flex items-center gap-4 rounded-xl border border-neutral-100",
-        "bg-white p-3 shadow-sm transition-shadow hover:shadow-md",
+        "group relative flex items-center gap-4 rounded-xl border border-neutral-800",
+        "bg-neutral-900 p-3 shadow-none transition-shadow hover:shadow-md",
       )}
     >
       {/* Thumbnail */}
       <Link
         href={`/listing/${listingId}`}
-        className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-neutral-100"
+        className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-neutral-800"
       >
         {image ? (
           <Image
@@ -76,11 +76,11 @@ export function SavedListingCard({
       <div className="flex-1 min-w-0">
         <Link
           href={`/listing/${listingId}`}
-          className="block text-sm font-semibold text-neutral-800 truncate hover:text-accent transition-colors"
+          className="block text-sm font-semibold text-neutral-100 truncate hover:text-accent transition-colors"
         >
           {title}
         </Link>
-        <p className="text-base font-bold text-primary mt-0.5">
+        <p className="text-base font-bold text-white mt-0.5">
           {formatCurrency(askingPrice)}
         </p>
         <div className="flex items-center gap-2 mt-1">
@@ -97,7 +97,7 @@ export function SavedListingCard({
       <div className="flex flex-col items-center gap-1.5 shrink-0">
         <Link
           href={`/listing/${listingId}`}
-          className="rounded-lg p-1.5 text-neutral-400 hover:bg-accent/10 hover:text-accent transition-colors"
+          className="rounded-lg p-1.5 text-neutral-400 hover:bg-accent/15 hover:text-accent transition-colors"
           title="View listing"
         >
           <ExternalLink className="h-4 w-4" />
@@ -106,7 +106,7 @@ export function SavedListingCard({
           type="button"
           onClick={handleRemove}
           disabled={removing}
-          className="rounded-lg p-1.5 text-neutral-400 hover:bg-error/10 hover:text-error transition-colors disabled:opacity-50 cursor-pointer"
+          className="rounded-lg p-1.5 text-neutral-400 hover:bg-error/15 hover:text-error transition-colors disabled:opacity-50 cursor-pointer"
           title="Remove from saved"
         >
           <X className="h-4 w-4" />

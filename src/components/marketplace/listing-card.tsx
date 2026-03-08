@@ -58,7 +58,7 @@ const tierConfig = {
   },
   GOLD: {
     label: "Gold",
-    bg: "bg-secondary/10",
+    bg: "bg-secondary/15",
     text: "text-secondary",
     border: "border-secondary/20",
   },
@@ -78,165 +78,59 @@ function ListingCard({ listing, className }: ListingCardProps) {
 
   return (
     <Link href={`/listing/${listing.id}`} className={cn("block group", className)}>
-      <article
-        className={cn(
-          "relative rounded-2xl bg-white overflow-hidden",
-          "border border-neutral-100",
-          "shadow-[0_1px_3px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.06)]",
-          "transition-all duration-300 ease-out",
-          "hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.12),0_8px_20px_-8px_rgba(0,0,0,0.06)]",
-          "hover:-translate-y-1",
-          listing.featured &&
-            "ring-1 ring-secondary/30 shadow-[0_2px_8px_rgba(201,169,110,0.12)]",
-        )}
-      >
+      <article className="relative bg-transparent transition-transform duration-500 hover:-translate-y-1">
+        
         {/* ---- Image Section ---- */}
-        <div className="relative aspect-4/3 overflow-hidden">
+        <div className="relative aspect-[4/5] overflow-hidden bg-neutral-900 rounded-lg mb-4">
           <Image
             src={heroImage}
             alt={listing.title}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
           />
 
-          {/* Hover overlay */}
-          <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/10 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
-
-          {/* Category badge — top left */}
-          <div className="absolute top-3 left-3">
-            <span className="inline-flex items-center rounded-lg bg-white/90 backdrop-blur-sm px-2.5 py-1 text-xs font-semibold text-primary shadow-sm">
-              {listing.category.name}
-            </span>
+          {/* Badges - Floating on Image */}
+          <div className="absolute top-3 left-3 flex gap-2">
+            {listing.featured && (
+               <span className="bg-neutral-900 text-black text-[10px] font-bold px-2 py-1 tracking-widest uppercase">Featured</span>
+            )}
+             {discount > 0 && (
+               <span className="bg-neutral-900 text-white text-[10px] font-bold px-2 py-1 tracking-widest uppercase border border-white/20">-{discount}%</span>
+            )}
           </div>
 
-          {/* Discount badge — top right */}
-          {discount > 0 && (
-            <div className="absolute top-3 right-12">
-              <span className="inline-flex items-center rounded-lg bg-accent px-2.5 py-1 text-xs font-bold text-white shadow-sm">
-                {discount}% off
-              </span>
-            </div>
-          )}
-
-          {/* Heart/save button — top right */}
-          <div className="absolute top-3 right-3">
-            <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm shadow-sm text-neutral-500 transition-colors duration-200 hover:text-red-500 hover:bg-white">
-              <Heart className="h-4 w-4" />
-            </span>
-          </div>
-
-          {/* Featured badge */}
-          {listing.featured && (
-            <div className="absolute bottom-3 left-3">
-              <span className="inline-flex items-center gap-1 rounded-lg bg-secondary/90 backdrop-blur-sm px-2.5 py-1 text-xs font-bold text-white shadow-sm">
-                <Star className="h-3 w-3 fill-current" />
-                Featured
-              </span>
-            </div>
-          )}
-
-          {/* Views — bottom right over image */}
-          <div className="absolute bottom-3 right-3">
-            <span className="inline-flex items-center gap-1 rounded-md bg-black/40 backdrop-blur-sm px-2 py-0.5 text-[11px] font-medium text-white/90">
-              <Eye className="h-3 w-3" />
-              {listing.views}
-            </span>
+          <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">
+             <div className="bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+               <span className="text-xs font-medium text-white tracking-wide">{listing.category.name}</span>
+             </div>
           </div>
         </div>
 
-        {/* ---- Content Section ---- */}
-        <div className="p-4 sm:p-5">
-          {/* Title + Verified */}
-          <div className="flex items-start gap-1.5">
-            <h3 className="text-[15px] font-semibold text-neutral-800 leading-snug line-clamp-2 mb-2 group-hover:text-primary transition-colors duration-200 flex-1">
+        {/* ---- Content Section - Minimalist Typography ---- */}
+        <div className="space-y-1">
+          <div className="flex justify-between items-start">
+             <h3 className="text-lg font-serif text-white group-hover:text-neutral-300 transition-colors line-clamp-1">
               {listing.title}
             </h3>
-            {isVerified && (
-              <ShieldCheck className="h-4 w-4 text-accent shrink-0 mt-0.5" />
-            )}
-          </div>
-
-          {/* Location */}
-          <div className="flex items-center gap-1.5 text-neutral-400 mb-3">
-            <MapPin className="h-3.5 w-3.5 shrink-0" />
-            <span className="text-xs font-medium truncate">
-              {listing.city}, {listing.state}
-            </span>
-          </div>
-
-          {/* Price + Rating row */}
-          <div className="flex items-baseline justify-between mb-4">
-            <div className="flex items-baseline gap-2.5">
-              <span className="text-xl font-bold text-primary tracking-tight">
-                {formatCurrency(listing.askingPrice)}
-              </span>
-              {listing.originalPrice > listing.askingPrice && (
-                <span className="text-sm text-neutral-400 line-through">
-                  {formatCurrency(listing.originalPrice)}
+             <div className="flex items-center gap-1">
+                <span className="text-sm font-medium text-neutral-400 font-mono">
+                  {formatCurrency(listing.askingPrice)}
                 </span>
-              )}
+             </div>
+          </div>
+          
+          <div className="flex justify-between items-center text-xs text-neutral-500 uppercase tracking-widest">
+            <span>{listing.city}</span>
+            <div className="flex items-center gap-2">
+               {isVerified && <span className="text-secondary">Verified</span>}
+               {reviewCount > 0 && (
+                 <div className="flex items-center gap-1">
+                   <Star className="h-3 w-3 fill-white text-white" />
+                   <span className="text-white">{avgRating.toFixed(1)}</span>
+                 </div>
+               )}
             </div>
-            {/* Star rating */}
-            {reviewCount > 0 && (
-              <div className="flex items-center gap-1">
-                <Star className="h-3.5 w-3.5 fill-secondary text-secondary" />
-                <span className="text-sm font-semibold text-neutral-700">{avgRating.toFixed(1)}</span>
-                <span className="text-xs text-neutral-400">({reviewCount})</span>
-              </div>
-            )}
-          </div>
-
-          {/* Divider */}
-          <div className="h-px bg-neutral-100 mb-3" />
-
-          {/* Seller info row */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 min-w-0">
-              {/* Seller avatar placeholder */}
-              <div className="h-7 w-7 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                <span className="text-[10px] font-bold text-primary">
-                  {listing.seller.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")
-                    .toUpperCase()
-                    .slice(0, 2)}
-                </span>
-              </div>
-              <div className="min-w-0">
-                <p className="text-xs font-medium text-neutral-700 truncate">
-                  {listing.seller.name}
-                </p>
-                <div className="flex items-center gap-1.5 mt-0.5">
-                  {/* Tier badge */}
-                  <span
-                    className={cn(
-                      "inline-flex items-center rounded px-1.5 py-px text-[10px] font-semibold border",
-                      tier.bg,
-                      tier.text,
-                      tier.border,
-                    )}
-                  >
-                    {tier.label}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Duration / Expiry info */}
-            {(listing.duration || daysLeft !== null) && (
-              <div className="flex items-center gap-1 text-neutral-400 shrink-0 ml-2">
-                <Clock className="h-3.5 w-3.5" />
-                <span className="text-[11px] font-medium">
-                  {daysLeft !== null && daysLeft > 0
-                    ? `${daysLeft}d left`
-                    : daysLeft !== null && daysLeft <= 0
-                      ? "Expired"
-                      : listing.duration}
-                </span>
-              </div>
-            )}
           </div>
         </div>
       </article>

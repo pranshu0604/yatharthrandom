@@ -113,7 +113,7 @@ export default async function SellerOverviewPage() {
       {/* Page header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-neutral-900">
+          <h1 className="font-serif text-2xl font-bold text-white">
             Seller Dashboard
           </h1>
           <p className="text-neutral-500 mt-1">
@@ -122,7 +122,7 @@ export default async function SellerOverviewPage() {
         </div>
         <Link
           href="/dashboard/seller/listings/new"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white text-sm font-medium hover:brightness-110 transition-all"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent text-white text-sm font-medium hover:brightness-110 transition-all"
         >
           <PlusCircle className="h-4 w-4" />
           New Listing
@@ -174,7 +174,7 @@ export default async function SellerOverviewPage() {
           <CardHeader>
             <div className="flex items-center gap-2">
               <Crown className={`h-5 w-5 ${currentTier.color}`} />
-              <h2 className="text-lg font-semibold text-neutral-900">
+              <h2 className="text-lg font-semibold text-white">
                 {currentTier.label} Tier
               </h2>
             </div>
@@ -183,11 +183,11 @@ export default async function SellerOverviewPage() {
             <div className="space-y-3">
               <div className="flex justify-between text-sm">
                 <span className="text-neutral-500">Listings Used</span>
-                <span className="font-medium text-neutral-900">
+                <span className="font-medium text-white">
                   {totalListings} / {maxListings}
                 </span>
               </div>
-              <div className="w-full h-2 bg-neutral-100 rounded-full overflow-hidden">
+              <div className="w-full h-2 bg-neutral-800 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-accent rounded-full transition-all duration-500"
                   style={{
@@ -202,14 +202,14 @@ export default async function SellerOverviewPage() {
 
             <div className="flex justify-between text-sm">
               <span className="text-neutral-500">Featured / month</span>
-              <span className="font-medium text-neutral-900">
+              <span className="font-medium text-white">
                 {featuredAllowed}
               </span>
             </div>
 
             {user?.tier !== "GOLD" && (
-              <div className="pt-3 border-t border-neutral-100">
-                <p className="text-sm text-neutral-600 mb-2">
+              <div className="pt-3 border-t border-neutral-800">
+                <p className="text-sm text-neutral-400 mb-2">
                   Upgrade to unlock more listings, featured slots, and priority
                   visibility.
                 </p>
@@ -229,7 +229,7 @@ export default async function SellerOverviewPage() {
         <Card className="lg:col-span-2">
           <CardHeader>
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-neutral-900">
+              <h2 className="text-lg font-semibold text-white">
                 Recent Listings
               </h2>
               <Link
@@ -256,7 +256,7 @@ export default async function SellerOverviewPage() {
                 </Link>
               </div>
             ) : (
-              <div className="divide-y divide-neutral-100">
+              <div className="divide-y divide-neutral-800">
                 {recentListings.map((listing) => {
                   const badge = statusBadge[listing.status] ?? statusBadge.PENDING;
                   return (
@@ -277,14 +277,14 @@ export default async function SellerOverviewPage() {
                             />
                           </div>
                         ) : (
-                          <div className="h-10 w-10 rounded-lg bg-neutral-100 flex items-center justify-center shrink-0">
+                          <div className="h-10 w-10 rounded-lg bg-neutral-800 flex items-center justify-center shrink-0">
                             <ListOrdered className="h-4 w-4 text-neutral-400" />
                           </div>
                         )}
                         <div className="min-w-0">
                           <Link
                             href={`/dashboard/seller/listings/${listing.id}/edit`}
-                            className="text-sm font-medium text-neutral-900 truncate block hover:text-primary transition-colors"
+                            className="text-sm font-medium text-white truncate block hover:text-white transition-colors"
                           >
                             {listing.title}
                           </Link>
@@ -313,7 +313,7 @@ export default async function SellerOverviewPage() {
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-neutral-900">
+            <h2 className="text-lg font-semibold text-white">
               Recent Reviews
             </h2>
             <Link
@@ -334,7 +334,7 @@ export default async function SellerOverviewPage() {
               </p>
             </div>
           ) : (
-            <div className="divide-y divide-neutral-100">
+            <div className="divide-y divide-neutral-800">
               {recentReviews.map((review) => (
                 <div key={review.id} className="py-4 first:pt-0 last:pb-0">
                   <div className="flex items-start gap-3">
@@ -345,7 +345,7 @@ export default async function SellerOverviewPage() {
                     />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-2">
-                        <p className="text-sm font-medium text-neutral-900">
+                        <p className="text-sm font-medium text-white">
                           {review.buyer.name}
                         </p>
                         <StarRating
@@ -361,7 +361,7 @@ export default async function SellerOverviewPage() {
                         &middot; {formatDate(review.createdAt)}
                       </p>
                       {review.comment && (
-                        <p className="text-sm text-neutral-600 mt-1.5">
+                        <p className="text-sm text-neutral-400 mt-1.5">
                           {review.comment}
                         </p>
                       )}

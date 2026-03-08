@@ -70,7 +70,7 @@ export default function FeaturedCarousel({ listings }: FeaturedCarouselProps) {
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 i === activeIndex
                   ? "w-6 bg-accent"
-                  : "w-1.5 bg-neutral-200"
+                  : "w-1.5 bg-neutral-700"
               }`}
             />
           ))}

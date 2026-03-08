@@ -77,7 +77,7 @@ export function DataTable<T>({
     <div className={cn("w-full overflow-x-auto", className)}>
       <table className="w-full text-sm">
         <thead>
-          <tr className="border-b border-neutral-200">
+          <tr className="border-b border-neutral-800">
             {columns.map((col) => (
               <th
                 key={col.key}
@@ -87,7 +87,7 @@ export function DataTable<T>({
                   col.headerAlign === "right" && "text-right",
                   !col.headerAlign && "text-left",
                   col.minWidth,
-                  col.sortable && "cursor-pointer select-none hover:text-neutral-700",
+                  col.sortable && "cursor-pointer select-none hover:text-neutral-300",
                 )}
                 onClick={col.sortable ? () => handleSort(col.key) : undefined}
               >
@@ -116,7 +116,7 @@ export function DataTable<T>({
             )}
           </tr>
         </thead>
-        <tbody className="divide-y divide-neutral-100">
+        <tbody className="divide-y divide-neutral-800">
           {sortedData.length === 0 ? (
             <tr>
               <td
@@ -130,13 +130,13 @@ export function DataTable<T>({
             sortedData.map((row) => (
               <tr
                 key={rowKey(row)}
-                className="hover:bg-neutral-50/60 transition-colors"
+                className="hover:bg-neutral-950/60 transition-colors"
               >
                 {columns.map((col) => (
                   <td
                     key={col.key}
                     className={cn(
-                      "px-4 py-3 text-neutral-700",
+                      "px-4 py-3 text-neutral-300",
                       col.headerAlign === "center" && "text-center",
                       col.headerAlign === "right" && "text-right",
                       col.minWidth,

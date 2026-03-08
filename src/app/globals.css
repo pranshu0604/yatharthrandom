@@ -1,94 +1,63 @@
 @import "tailwindcss";
 
-:root {
-  --color-primary: #1B1F3B;
-  --color-primary-light: #2A2F52;
-  --color-secondary: #C9A96E;
-  --color-secondary-light: #D4BC8E;
-  --color-accent: #2EC4B6;
-  --color-accent-light: #5DD4C8;
-
-  --neutral-50: #FAFBFC;
-  --neutral-100: #F1F3F5;
-  --neutral-200: #E2E6EA;
-  --neutral-300: #CED4DA;
-  --neutral-400: #ADB5BD;
-  --neutral-500: #868E96;
-  --neutral-600: #495057;
-  --neutral-700: #343A40;
-  --neutral-800: #212529;
-  --neutral-900: #0D0F1A;
-
-  --success: #16A34A;
-  --success-light: #DCFCE7;
-  --warning: #EAB308;
-  --warning-light: #FEF9C3;
-  --error: #DC2626;
-  --error-light: #FEE2E2;
-}
-
 @theme inline {
-  --color-primary: var(--color-primary);
-  --color-primary-light: var(--color-primary-light);
-  --color-secondary: var(--color-secondary);
-  --color-secondary-light: var(--color-secondary-light);
-  --color-accent: var(--color-accent);
-  --color-accent-light: var(--color-accent-light);
+  --color-primary: #1B1F3B;
+  --color-primary-light: #2A305A;
+  --color-secondary: #D4AF37;
+  --color-secondary-light: #E5C76B;
+  --color-accent: #2EC4B6;
+  --color-accent-light: #5ED4C8;
 
-  --color-neutral-50: var(--neutral-50);
-  --color-neutral-100: var(--neutral-100);
-  --color-neutral-200: var(--neutral-200);
-  --color-neutral-300: var(--neutral-300);
-  --color-neutral-400: var(--neutral-400);
-  --color-neutral-500: var(--neutral-500);
-  --color-neutral-600: var(--neutral-600);
-  --color-neutral-700: var(--neutral-700);
-  --color-neutral-800: var(--neutral-800);
-  --color-neutral-900: var(--neutral-900);
+  --color-success: #22c55e;
+  --color-success-light: #052e16;
+  --color-warning: #f59e0b;
+  --color-warning-light: #451a03;
+  --color-error: #ef4444;
+  --color-error-light: #450a0a;
 
-  --color-success: var(--success);
-  --color-success-light: var(--success-light);
-  --color-warning: var(--warning);
-  --color-warning-light: var(--warning-light);
-  --color-error: var(--error);
-  --color-error-light: var(--error-light);
-
+  --font-serif: var(--font-playfair);
   --font-sans: var(--font-inter);
 }
 
 body {
-  background: #ffffff;
-  color: var(--neutral-700);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  background: #050505;
+  color: #e5e5e5;
+  font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Gold gradient text */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #D4AF37, #F3E5AB, #D4AF37);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
+  animation: shimmer 4s linear infinite;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
+@keyframes shimmer {
+  to { background-position: 200% center; }
 }
 
-::-webkit-scrollbar-track {
-  background: var(--neutral-100);
+/* Glass morphism */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--neutral-300);
-  border-radius: 3px;
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
+
+/* Native select options for dark mode */
+select option {
+  background: #171717;
+  color: #e5e5e5;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--neutral-400);
-}
-
-/* Selection */
-::selection {
-  background: rgba(124, 58, 237, 0.15);
-  color: var(--neutral-900);
-}

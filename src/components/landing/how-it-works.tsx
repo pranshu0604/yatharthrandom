@@ -15,7 +15,7 @@ const steps = [
     title: "List or Browse",
     description:
       "Sellers create a listing in minutes. Buyers browse verified memberships across categories and cities.",
-    color: "bg-accent/10",
+    color: "bg-accent/15",
     iconColor: "text-accent",
   },
   {
@@ -48,7 +48,7 @@ export default function HowItWorks() {
   const lineWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section ref={sectionRef} id="how-it-works" className="py-20 sm:py-28 bg-neutral-50">
+    <section ref={sectionRef} id="how-it-works" className="py-20 sm:py-28 bg-neutral-950">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <SectionHeading
           title="How It Works"
@@ -61,7 +61,7 @@ export default function HowItWorks() {
           {/* Animated connector line (desktop only) */}
           <div className="hidden md:block absolute top-10 left-[16.67%] right-[16.67%] h-px">
             {/* Track */}
-            <div className="absolute inset-0 bg-neutral-200 rounded-full" />
+            <div className="absolute inset-0 bg-neutral-700 rounded-full" />
             {/* Animated fill */}
             <motion.div
               className="absolute inset-y-0 left-0 bg-linear-to-r from-accent via-purple-500 to-amber-500 rounded-full"
@@ -82,7 +82,7 @@ export default function HowItWorks() {
               >
                 {/* Icon */}
                 <div
-                  className={`mx-auto flex items-center justify-center w-20 h-20 rounded-2xl ${step.color} border border-neutral-100 shadow-sm mb-6`}
+                  className={`mx-auto flex items-center justify-center w-20 h-20 rounded-2xl ${step.color} border border-neutral-800 shadow-none mb-6`}
                 >
                   <Icon className={`h-8 w-8 ${step.iconColor}`} />
                 </div>
@@ -93,7 +93,7 @@ export default function HowItWorks() {
                 </span>
 
                 {/* Title */}
-                <h3 className="mt-2 text-xl font-bold text-neutral-900">
+                <h3 className="mt-2 text-xl font-bold text-white">
                   {step.title}
                 </h3>
 
@@ -123,7 +123,7 @@ export default function HowItWorks() {
           </Link>
           <Link
             href="/marketplace"
-            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-full text-neutral-700 border border-neutral-300 hover:border-neutral-400 hover:bg-white transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-full text-neutral-300 border border-neutral-700 hover:border-neutral-500 hover:bg-neutral-900 transition-all"
           >
             Browse Marketplace
           </Link>

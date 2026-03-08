@@ -82,7 +82,7 @@ function Modal({
         >
           {/* Backdrop */}
           <motion.div
-            className="absolute inset-0 bg-neutral-900/40 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
             variants={overlayVariants}
             transition={{ duration: 0.2 }}
             onClick={onClose}
@@ -98,7 +98,7 @@ function Modal({
             variants={panelVariants}
             transition={{ type: "spring", stiffness: 350, damping: 30 }}
             className={cn(
-              "relative z-10 w-full rounded-2xl bg-white shadow-xl",
+              "relative z-10 w-full rounded-2xl bg-neutral-900 shadow-xl",
               maxWidth,
               className,
             )}
@@ -106,13 +106,13 @@ function Modal({
             {/* Header */}
             {title && (
               <div className="flex items-center justify-between px-6 pt-6 pb-2">
-                <h2 className="text-lg font-semibold text-neutral-800">
+                <h2 className="text-lg font-semibold text-neutral-100">
                   {title}
                 </h2>
                 <button
                   type="button"
                   onClick={onClose}
-                  className="rounded-lg p-1.5 text-neutral-400 hover:text-neutral-600 hover:bg-neutral-100 transition-colors cursor-pointer"
+                  className="rounded-lg p-1.5 text-neutral-400 hover:text-neutral-400 hover:bg-neutral-800 transition-colors cursor-pointer"
                   aria-label="Close dialog"
                 >
                   <X className="h-5 w-5" />
@@ -125,7 +125,7 @@ function Modal({
               <button
                 type="button"
                 onClick={onClose}
-                className="absolute top-4 right-4 rounded-lg p-1.5 text-neutral-400 hover:text-neutral-600 hover:bg-neutral-100 transition-colors cursor-pointer"
+                className="absolute top-4 right-4 rounded-lg p-1.5 text-neutral-400 hover:text-neutral-400 hover:bg-neutral-800 transition-colors cursor-pointer"
                 aria-label="Close dialog"
               >
                 <X className="h-5 w-5" />

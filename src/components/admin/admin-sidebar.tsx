@@ -35,14 +35,14 @@ export function AdminSidebar() {
   };
 
   const sidebar = (
-    <div className="flex h-full flex-col bg-white border-r border-neutral-200">
+    <div className="flex h-full flex-col bg-neutral-900 border-r border-neutral-800">
       {/* Logo / Brand */}
-      <div className="flex items-center gap-3 px-6 py-6 border-b border-neutral-100">
+      <div className="flex items-center gap-3 px-6 py-6 border-b border-neutral-800">
         <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-neutral-900">
           <Shield className="h-5 w-5 text-white" />
         </div>
         <div>
-          <p className="text-sm font-bold tracking-wide text-neutral-900">ReMemberX</p>
+          <p className="text-sm font-bold tracking-wide text-white">ReMemberX</p>
           <p className="text-[11px] text-neutral-400 uppercase tracking-wider">
             Admin Panel
           </p>
@@ -61,8 +61,8 @@ export function AdminSidebar() {
               className={cn(
                 "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                 active
-                  ? "bg-neutral-100 text-neutral-900"
-                  : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50",
+                  ? "bg-neutral-800 text-white"
+                  : "text-neutral-500 hover:text-white hover:bg-neutral-950",
               )}
             >
               <item.icon className="h-5 w-5 shrink-0" />
@@ -73,10 +73,10 @@ export function AdminSidebar() {
       </nav>
 
       {/* Footer */}
-      <div className="border-t border-neutral-100 px-6 py-4">
+      <div className="border-t border-neutral-800 px-6 py-4">
         <Link
           href="/"
-          className="text-xs text-neutral-400 hover:text-neutral-600 transition-colors"
+          className="text-xs text-neutral-400 hover:text-neutral-400 transition-colors"
         >
           Back to site
         </Link>
@@ -95,7 +95,7 @@ export function AdminSidebar() {
       <button
         type="button"
         onClick={() => setMobileOpen(true)}
-        className="fixed top-4 left-4 z-50 md:hidden rounded-lg bg-white border border-neutral-200 p-2 text-neutral-700 shadow-sm cursor-pointer"
+        className="fixed top-4 left-4 z-50 md:hidden rounded-lg bg-neutral-900 border border-neutral-800 p-2 text-neutral-300 shadow-none cursor-pointer"
         aria-label="Open admin menu"
       >
         <Menu className="h-5 w-5" />
@@ -105,7 +105,7 @@ export function AdminSidebar() {
       {mobileOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
           <div
-            className="absolute inset-0 bg-black/20"
+            className="absolute inset-0 bg-black/60"
             onClick={() => setMobileOpen(false)}
           />
           <aside className="relative w-64 h-full">
@@ -113,7 +113,7 @@ export function AdminSidebar() {
             <button
               type="button"
               onClick={() => setMobileOpen(false)}
-              className="absolute top-4 right-4 text-neutral-400 hover:text-neutral-600 cursor-pointer"
+              className="absolute top-4 right-4 text-neutral-400 hover:text-neutral-400 cursor-pointer"
               aria-label="Close admin menu"
             >
               <X className="h-5 w-5" />

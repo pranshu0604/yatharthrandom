@@ -40,7 +40,7 @@ function MiniListingCard({ listing }: { listing: MiniListing }) {
   return (
     <Link
       href={`/listing/${listing.id}`}
-      className="group block rounded-xl bg-white border border-neutral-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300"
+      className="group block rounded-xl bg-neutral-900 border border-neutral-800 overflow-hidden shadow-none hover:shadow-md transition-shadow duration-300"
     >
       {/* Image */}
       <div className="relative aspect-4/3 overflow-hidden">
@@ -53,7 +53,7 @@ function MiniListingCard({ listing }: { listing: MiniListing }) {
         />
         {discount > 0 && (
           <div className="absolute top-2.5 right-2.5">
-            <span className="inline-flex items-center rounded-md bg-accent px-2 py-0.5 text-[11px] font-bold text-white shadow-sm">
+            <span className="inline-flex items-center rounded-md bg-accent px-2 py-0.5 text-[11px] font-bold text-white shadow-none">
               {discount}% off
             </span>
           </div>
@@ -62,7 +62,7 @@ function MiniListingCard({ listing }: { listing: MiniListing }) {
 
       {/* Content */}
       <div className="p-3.5">
-        <h4 className="text-sm font-semibold text-neutral-800 leading-snug line-clamp-2 mb-1.5 group-hover:text-primary transition-colors">
+        <h4 className="text-sm font-semibold text-neutral-100 leading-snug line-clamp-2 mb-1.5 group-hover:text-white transition-colors">
           {listing.title}
         </h4>
         <div className="flex items-center gap-1 text-neutral-400 mb-2">
@@ -72,7 +72,7 @@ function MiniListingCard({ listing }: { listing: MiniListing }) {
           </span>
         </div>
         <div className="flex items-baseline gap-2">
-          <span className="text-base font-bold text-primary tracking-tight">
+          <span className="text-base font-bold text-white tracking-tight">
             {formatCurrency(listing.askingPrice)}
           </span>
           {listing.originalPrice > listing.askingPrice && (
@@ -128,7 +128,7 @@ async function RelatedListings({
     <section className={cn("space-y-6", className)}>
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold text-primary tracking-tight">
+        <h2 className="text-xl font-bold text-white tracking-tight">
           More in {categoryName}
         </h2>
         <Link
