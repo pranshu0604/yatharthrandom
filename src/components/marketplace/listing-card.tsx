@@ -80,162 +80,114 @@ function ListingCard({ listing, className }: ListingCardProps) {
     <Link href={`/listing/${listing.id}`} className={cn("block group", className)}>
       <article
         className={cn(
-          "relative rounded-2xl bg-white overflow-hidden",
-          "border border-neutral-100",
-          "shadow-[0_1px_3px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.06)]",
+          "relative rounded-xl bg-white overflow-hidden",
+          "border border-neutral-100", // Subtle border
+          "shadow-sm hover:shadow-xl hover:shadow-neutral-900/5", // Clean shadow lift
           "transition-all duration-300 ease-out",
-          "hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.12),0_8px_20px_-8px_rgba(0,0,0,0.06)]",
-          "hover:-translate-y-1",
-          listing.featured &&
-            "ring-1 ring-secondary/30 shadow-[0_2px_8px_rgba(201,169,110,0.12)]",
+          "hover:-translate-y-1"
         )}
       >
         {/* ---- Image Section ---- */}
-        <div className="relative aspect-4/3 overflow-hidden">
+        <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
           <Image
             src={heroImage}
             alt={listing.title}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
 
-          {/* Hover overlay */}
-          <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/10 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80" />
+          {/* Top Overlay Gradient (for text readability if needed) */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-          {/* Category badge — top left */}
-          <div className="absolute top-3 left-3">
-            <span className="inline-flex items-center rounded-lg bg-white/90 backdrop-blur-sm px-2.5 py-1 text-xs font-semibold text-primary shadow-sm">
+          {/* Floating Badges - Cleanly Grouped */}
+          <div className="absolute top-3 left-3 flex flex-col gap-1.5 items-start">
+             {listing.featured && (
+              <span className="inline-flex items-center gap-1 rounded-md bg-white/95 backdrop-blur-md px-2 py-1 text-[10px] font-bold text-neutral-900 shadow-sm border border-neutral-200/50">
+                <Star className="h-3 w-3 fill-neutral-900" />
+                FEATURED
+              </span>
+            )}
+            <span className="inline-flex items-center rounded-md bg-neutral-900/90 backdrop-blur-md px-2 py-1 text-[10px] font-bold text-white shadow-sm">
               {listing.category.name}
             </span>
           </div>
 
-          {/* Discount badge — top right */}
+          {/* Discount Badge */}
           {discount > 0 && (
-            <div className="absolute top-3 right-12">
-              <span className="inline-flex items-center rounded-lg bg-accent px-2.5 py-1 text-xs font-bold text-white shadow-sm">
-                {discount}% off
-              </span>
-            </div>
+             <div className="absolute bottom-3 right-3">
+               <span className="inline-flex items-center rounded-md bg-green-500 px-2 py-1 text-[10px] font-bold text-white shadow-sm">
+                 {discount}% OFF
+               </span>
+             </div>
           )}
-
-          {/* Heart/save button — top right */}
+          
+          {/* Wishlist Button - Minimal */}
           <div className="absolute top-3 right-3">
-            <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm shadow-sm text-neutral-500 transition-colors duration-200 hover:text-red-500 hover:bg-white">
+            <button className="flex items-center justify-center w-8 h-8 rounded-full bg-white/60 backdrop-blur-sm hover:bg-white text-neutral-600 transition-all duration-200 hover:scale-110 active:scale-95">
               <Heart className="h-4 w-4" />
-            </span>
-          </div>
-
-          {/* Featured badge */}
-          {listing.featured && (
-            <div className="absolute bottom-3 left-3">
-              <span className="inline-flex items-center gap-1 rounded-lg bg-secondary/90 backdrop-blur-sm px-2.5 py-1 text-xs font-bold text-white shadow-sm">
-                <Star className="h-3 w-3 fill-current" />
-                Featured
-              </span>
-            </div>
-          )}
-
-          {/* Views — bottom right over image */}
-          <div className="absolute bottom-3 right-3">
-            <span className="inline-flex items-center gap-1 rounded-md bg-black/40 backdrop-blur-sm px-2 py-0.5 text-[11px] font-medium text-white/90">
-              <Eye className="h-3 w-3" />
-              {listing.views}
-            </span>
+            </button>
           </div>
         </div>
 
         {/* ---- Content Section ---- */}
-        <div className="p-4 sm:p-5">
-          {/* Title + Verified */}
-          <div className="flex items-start gap-1.5">
-            <h3 className="text-[15px] font-semibold text-neutral-800 leading-snug line-clamp-2 mb-2 group-hover:text-primary transition-colors duration-200 flex-1">
-              {listing.title}
-            </h3>
-            {isVerified && (
-              <ShieldCheck className="h-4 w-4 text-accent shrink-0 mt-0.5" />
-            )}
-          </div>
-
-          {/* Location */}
-          <div className="flex items-center gap-1.5 text-neutral-400 mb-3">
-            <MapPin className="h-3.5 w-3.5 shrink-0" />
-            <span className="text-xs font-medium truncate">
-              {listing.city}, {listing.state}
-            </span>
-          </div>
-
-          {/* Price + Rating row */}
-          <div className="flex items-baseline justify-between mb-4">
-            <div className="flex items-baseline gap-2.5">
-              <span className="text-xl font-bold text-primary tracking-tight">
-                {formatCurrency(listing.askingPrice)}
-              </span>
-              {listing.originalPrice > listing.askingPrice && (
-                <span className="text-sm text-neutral-400 line-through">
-                  {formatCurrency(listing.originalPrice)}
+        <div className="p-4">
+          
+          {/* Header Row: Title & Price */}
+          <div className="flex justify-between items-start gap-4 mb-2">
+            <div>
+               <h3 className="text-[15px] font-semibold text-neutral-900 leading-snug line-clamp-1 group-hover:text-neutral-700 transition-colors">
+                {listing.title}
+              </h3>
+              <div className="flex items-center gap-1 text-neutral-500 mt-1">
+                <MapPin className="h-3 w-3 shrink-0" />
+                <span className="text-xs truncate max-w-[150px]">
+                  {listing.city}, {listing.state}
                 </span>
-              )}
-            </div>
-            {/* Star rating */}
-            {reviewCount > 0 && (
-              <div className="flex items-center gap-1">
-                <Star className="h-3.5 w-3.5 fill-secondary text-secondary" />
-                <span className="text-sm font-semibold text-neutral-700">{avgRating.toFixed(1)}</span>
-                <span className="text-xs text-neutral-400">({reviewCount})</span>
               </div>
-            )}
+            </div>
+            <div className="text-right shrink-0">
+               <div className="text-[17px] font-bold text-neutral-900 tracking-tight">
+                 {formatCurrency(listing.askingPrice)}
+               </div>
+               {listing.originalPrice > listing.askingPrice && (
+                 <div className="text-[11px] text-neutral-400 line-through decoration-neutral-400/50">
+                   {formatCurrency(listing.originalPrice)}
+                 </div>
+               )}
+            </div>
           </div>
 
           {/* Divider */}
-          <div className="h-px bg-neutral-100 mb-3" />
+          <div className="h-px w-full bg-neutral-100 my-3" />
 
-          {/* Seller info row */}
+          {/* Footer Row: Seller & Meta */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 min-w-0">
-              {/* Seller avatar placeholder */}
-              <div className="h-7 w-7 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                <span className="text-[10px] font-bold text-primary">
-                  {listing.seller.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")
-                    .toUpperCase()
-                    .slice(0, 2)}
-                </span>
+            <div className="flex items-center gap-2">
+              <div className="h-6 w-6 rounded-full bg-neutral-100 border border-neutral-200 flex items-center justify-center shrink-0 text-[9px] font-bold text-neutral-600">
+                {listing.seller.name.slice(0, 2).toUpperCase()}
               </div>
-              <div className="min-w-0">
-                <p className="text-xs font-medium text-neutral-700 truncate">
-                  {listing.seller.name}
-                </p>
-                <div className="flex items-center gap-1.5 mt-0.5">
-                  {/* Tier badge */}
-                  <span
-                    className={cn(
-                      "inline-flex items-center rounded px-1.5 py-px text-[10px] font-semibold border",
-                      tier.bg,
-                      tier.text,
-                      tier.border,
-                    )}
-                  >
-                    {tier.label}
-                  </span>
-                </div>
+              <div className="flex flex-col">
+                 <span className="text-[11px] font-medium text-neutral-900 leading-none">
+                   {listing.seller.name}
+                 </span>
+                 <div className="flex items-center gap-1 mt-0.5">
+                    {isVerified && <ShieldCheck className="h-2.5 w-2.5 text-blue-500" />}
+                    <span className="text-[10px] text-neutral-500">
+                      {tier.label} Seller
+                    </span>
+                 </div>
               </div>
             </div>
 
-            {/* Duration / Expiry info */}
-            {(listing.duration || daysLeft !== null) && (
-              <div className="flex items-center gap-1 text-neutral-400 shrink-0 ml-2">
-                <Clock className="h-3.5 w-3.5" />
-                <span className="text-[11px] font-medium">
-                  {daysLeft !== null && daysLeft > 0
-                    ? `${daysLeft}d left`
-                    : daysLeft !== null && daysLeft <= 0
-                      ? "Expired"
-                      : listing.duration}
-                </span>
-              </div>
+            {/* Rating or New Label */}
+            {reviewCount > 0 ? (
+               <div className="flex items-center gap-1 rounded-full bg-neutral-50 px-1.5 py-0.5 border border-neutral-100">
+                  <Star className="h-3 w-3 fill-neutral-900 text-neutral-900" />
+                  <span className="text-[10px] font-bold text-neutral-900">{avgRating.toFixed(1)}</span>
+               </div>
+            ) : (
+               <span className="text-[10px] font-medium text-neutral-400 bg-neutral-50 px-2 py-0.5 rounded-full">New</span>
             )}
           </div>
         </div>

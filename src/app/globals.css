@@ -1,30 +1,39 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: #1B1F3B;
-  --color-primary-light: #2A2F52;
-  --color-secondary: #C9A96E;
-  --color-secondary-light: #D4BC8E;
-  --color-accent: #2EC4B6;
-  --color-accent-light: #5DD4C8;
+  /* Brand Colors - Deep, Rich, Enterprise */
+  --color-primary: #0F172A; /* Slate 900 - Darker, cleaner than Indigo */
+  --color-primary-light: #1E293B; /* Slate 800 */
+  --color-secondary: #BFA15F; /* Muted Gold/Champagne - less yellow */
+  --color-secondary-light: #E3C88B;
+  --color-accent: #0F766E; /* Deep Teal - more sophisticated than bright teal */
+  --color-accent-light: #14B8A6;
 
-  --neutral-50: #FAFBFC;
-  --neutral-100: #F1F3F5;
-  --neutral-200: #E2E6EA;
-  --neutral-300: #CED4DA;
-  --neutral-400: #ADB5BD;
-  --neutral-500: #868E96;
-  --neutral-600: #495057;
-  --neutral-700: #343A40;
-  --neutral-800: #212529;
-  --neutral-900: #0D0F1A;
+  /* Neutrals - Cool & Crisp */
+  --neutral-50: #F8FAFC;
+  --neutral-100: #F1F5F9;
+  --neutral-200: #E2E8F0;
+  --neutral-300: #CBD5E1;
+  --neutral-400: #94A3B8;
+  --neutral-500: #64748B;
+  --neutral-600: #475569;
+  --neutral-700: #334155;
+  --neutral-800: #1E293B;
+  --neutral-900: #020617; /* Almost Black */
 
-  --success: #16A34A;
-  --success-light: #DCFCE7;
-  --warning: #EAB308;
-  --warning-light: #FEF9C3;
-  --error: #DC2626;
+  /* Semantic */
+  --success: #10B981;
+  --success-light: #D1FAE5;
+  --warning: #F59E0B;
+  --warning-light: #FEF3C7;
+  --error: #EF4444;
   --error-light: #FEE2E2;
+
+  /* Shadows - Apple/Stripe style diffuse shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.01);
 }
 
 @theme inline {
@@ -89,6 +98,21 @@ html {
 
 /* Selection */
 ::selection {
-  background: rgba(124, 58, 237, 0.15);
-  color: var(--neutral-900);
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+/* Glass Utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
