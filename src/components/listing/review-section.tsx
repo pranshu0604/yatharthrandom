@@ -64,7 +64,7 @@ function RatingBar({
 function EmptyReviews() {
   return (
     <div className="flex flex-col items-center justify-center py-16 px-4">
-      <div className="h-16 w-16 rounded-full bg-neutral-800 flex items-center justify-center mb-4">
+      <div className="h-16 w-16 rounded-full bg-neutral-800/80 flex items-center justify-center mb-4">
         <MessageSquare className="h-7 w-7 text-neutral-300" />
       </div>
       <h4 className="text-base font-semibold text-neutral-300 mb-1">

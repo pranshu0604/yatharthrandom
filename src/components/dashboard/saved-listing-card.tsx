@@ -49,7 +49,7 @@ export function SavedListingCard({
       exit={{ opacity: 0, scale: 0.95 }}
       className={cn(
         "group relative flex items-center gap-4 rounded-xl border border-neutral-800",
-        "bg-neutral-900 p-3 shadow-none transition-shadow hover:shadow-md",
+        "bg-neutral-900 p-3 shadow-none transition-shadow hover:shadow-[0_4px_20px_rgba(0,0,0,0.3)]",
       )}
     >
       {/* Thumbnail */}

@@ -34,7 +34,7 @@ export default function StatsBar() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.08, ease }}
               >
-                <div className="mx-auto flex items-center justify-center w-10 h-10 rounded-xl bg-accent/15 mb-3">
+                <div className="mx-auto flex items-center justify-center w-10 h-10 rounded-xl bg-accent/20 mb-3">
                   <Icon className="h-5 w-5 text-accent" />
                 </div>
                 <p className="text-3xl md:text-4xl font-bold text-white">

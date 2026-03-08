@@ -93,7 +93,7 @@ function ListingCard({ listing, className }: ListingCardProps) {
           {/* Badges - Floating on Image */}
           <div className="absolute top-3 left-3 flex gap-2">
             {listing.featured && (
-               <span className="bg-neutral-900 text-black text-[10px] font-bold px-2 py-1 tracking-widest uppercase">Featured</span>
+               <span className="bg-secondary/90 text-black text-[10px] font-bold px-2 py-1 tracking-widest uppercase">Featured</span>
             )}
              {discount > 0 && (
                <span className="bg-neutral-900 text-white text-[10px] font-bold px-2 py-1 tracking-widest uppercase border border-white/20">-{discount}%</span>

@@ -45,7 +45,7 @@ interface ListingGridProps {
 function EmptyState() {
   return (
     <div className="flex flex-col items-center justify-center py-20 px-4 text-center">
-      <div className="h-20 w-20 rounded-2xl bg-neutral-800 flex items-center justify-center mb-6">
+      <div className="h-20 w-20 rounded-2xl bg-neutral-800/80 flex items-center justify-center mb-6">
         <PackageSearch className="h-10 w-10 text-neutral-300" />
       </div>
       <h3 className="text-lg font-semibold text-neutral-100 mb-2">

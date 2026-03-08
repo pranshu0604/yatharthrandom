@@ -56,14 +56,14 @@ export default function TrustIndicators() {
             return (
               <motion.div
                 key={item.title}
-                className="rounded-2xl border border-neutral-800 bg-neutral-900 p-8 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                className="rounded-2xl border border-neutral-800 bg-neutral-900 p-8 text-center transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:-translate-y-1"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: index * 0.1, ease }}
               >
                 {/* Icon */}
-                <div className="mx-auto w-14 h-14 rounded-xl bg-accent/15 flex items-center justify-center mb-6">
+                <div className="mx-auto w-14 h-14 rounded-xl bg-accent/20 flex items-center justify-center mb-6">
                   <Icon className="h-7 w-7 text-accent" />
                 </div>
 

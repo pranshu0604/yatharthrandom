@@ -98,7 +98,7 @@ function Modal({
             variants={panelVariants}
             transition={{ type: "spring", stiffness: 350, damping: 30 }}
             className={cn(
-              "relative z-10 w-full rounded-2xl bg-neutral-900 shadow-xl",
+              "relative z-10 w-full rounded-2xl bg-neutral-900 shadow-[0_8px_40px_rgba(0,0,0,0.5)]",
               maxWidth,
               className,
             )}
