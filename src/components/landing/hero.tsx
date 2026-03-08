@@ -30,7 +30,7 @@ export default function Hero() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="text-[12vw] leading-[0.85] font-serif tracking-tighter text-white mix-blend-difference"
           >
-            Access
+            Trade
           </motion.h1>
           
           <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-16">
@@ -40,21 +40,23 @@ export default function Hero() {
               transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="text-[12vw] leading-[0.85] font-serif tracking-tighter text-neutral-500 italic mix-blend-difference"
             >
-              The
+              Premium
             </motion.h1>
             
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.2, delay: 0.4 }}
-              className="hidden lg:block w-64 h-24 rounded-full border border-white/20 backdrop-blur-md flex items-center justify-between px-2 relative overflow-hidden group cursor-pointer"
-            >
-               <div className="absolute inset-0 bg-neutral-900/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-               <span className="ml-6 text-sm font-mono text-white/60">EST. 2026</span>
-               <div className="h-20 w-20 rounded-full bg-white/10 text-white flex items-center justify-center">
-                 <ArrowRight className="h-6 w-6 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
-               </div>
-            </motion.div>
+            <Link href="/marketplace">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.2, delay: 0.4 }}
+                className="hidden lg:flex w-64 h-24 rounded-full border border-white/20 backdrop-blur-md items-center justify-between px-2 relative overflow-hidden group cursor-pointer"
+              >
+                 <div className="absolute inset-0 bg-white/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                 <span className="ml-6 text-sm font-mono text-white/60">EST. 2026</span>
+                 <div className="h-20 w-20 rounded-full bg-white/10 text-white flex items-center justify-center">
+                   <ArrowRight className="h-6 w-6 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+                 </div>
+              </motion.div>
+            </Link>
           </div>
 
           <motion.h1
@@ -63,7 +65,7 @@ export default function Hero() {
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="text-[12vw] leading-[0.85] font-serif tracking-tighter text-white mix-blend-difference"
           >
-            Impossible.
+            Memberships.
           </motion.h1>
         </div>
 
