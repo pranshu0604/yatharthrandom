@@ -1,49 +1,38 @@
 @import "tailwindcss";
 
 :root {
-  /* Brand Colors - Deep, Rich, Enterprise */
-  --color-primary: #0F172A; /* Slate 900 - Darker, cleaner than Indigo */
-  --color-primary-light: #1E293B; /* Slate 800 */
-  --color-secondary: #BFA15F; /* Muted Gold/Champagne - less yellow */
-  --color-secondary-light: #E3C88B;
-  --color-accent: #0F766E; /* Deep Teal - more sophisticated than bright teal */
-  --color-accent-light: #14B8A6;
+  /* Brand Colors - Luxury Dark Theme */
+  --color-primary: #ffffff; 
+  --color-secondary: #D4AF37; /* Metallic Gold */
+  --color-accent: #38bdf8; /* Electric Blue for subtle tech accents */
+  
+  /* Backgrounds */
+  --bg-page: #050505; /* Deepest Charcoal/Black */
+  --bg-card: #0F0F0F;
+  --bg-surface: #1A1A1A;
 
-  /* Neutrals - Cool & Crisp */
-  --neutral-50: #F8FAFC;
-  --neutral-100: #F1F5F9;
-  --neutral-200: #E2E8F0;
-  --neutral-300: #CBD5E1;
-  --neutral-400: #94A3B8;
-  --neutral-500: #64748B;
-  --neutral-600: #475569;
-  --neutral-700: #334155;
-  --neutral-800: #1E293B;
-  --neutral-900: #020617; /* Almost Black */
+  /* Neutrals (Inverted for Dark Mode) */
+  --neutral-50: #171717;
+  --neutral-100: #262626;
+  --neutral-200: #404040;
+  --neutral-300: #525252;
+  --neutral-400: #737373;
+  --neutral-500: #a3a3a3;
+  --neutral-600: #d4d4d4;
+  --neutral-700: #e5e5e5;
+  --neutral-800: #f5f5f5;
+  --neutral-900: #ffffff;
 
-  /* Semantic */
-  --success: #10B981;
-  --success-light: #D1FAE5;
-  --warning: #F59E0B;
-  --warning-light: #FEF3C7;
-  --error: #EF4444;
-  --error-light: #FEE2E2;
-
-  /* Shadows - Apple/Stripe style diffuse shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.01);
+  /* Fonts */
+  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-inter);
 }
 
 @theme inline {
   --color-primary: var(--color-primary);
-  --color-primary-light: var(--color-primary-light);
   --color-secondary: var(--color-secondary);
-  --color-secondary-light: var(--color-secondary-light);
   --color-accent: var(--color-accent);
-  --color-accent-light: var(--color-accent-light);
-
+  
   --color-neutral-50: var(--neutral-50);
   --color-neutral-100: var(--neutral-100);
   --color-neutral-200: var(--neutral-200);
@@ -55,64 +44,49 @@
   --color-neutral-800: var(--neutral-800);
   --color-neutral-900: var(--neutral-900);
 
-  --color-success: var(--success);
-  --color-success-light: var(--success-light);
-  --color-warning: var(--warning);
-  --color-warning-light: var(--warning-light);
-  --color-error: var(--error);
-  --color-error-light: var(--error-light);
-
-  --font-sans: var(--font-inter);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
 }
 
 body {
-  background: #ffffff;
-  color: var(--neutral-700);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  background: var(--bg-page);
+  color: var(--neutral-900);
+  font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Utilities */
+.text-gradient-gold {
+  background: linear-gradient(to right, #D4AF37, #F3E5AB, #D4AF37);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
+  animation: shine 4s linear infinite;
 }
 
-/* Custom scrollbar */
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Custom Scrollbar for Dark Mode */
 ::-webkit-scrollbar {
   width: 6px;
 }
-
 ::-webkit-scrollbar-track {
-  background: var(--neutral-100);
+  background: var(--bg-page);
 }
-
 ::-webkit-scrollbar-thumb {
-  background: var(--neutral-300);
+  background: var(--neutral-200);
   border-radius: 3px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--neutral-400);
-}
-
-/* Selection */
-::selection {
-  background: var(--color-primary);
-  color: #ffffff;
-}
-
-/* Glass Utilities */
-.glass {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-.glass-dark {
-  background: rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}

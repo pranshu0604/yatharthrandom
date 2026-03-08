@@ -52,26 +52,23 @@ export default function Navbar() {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out border-b",
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-[0.22,1,0.36,1]",
           scrolled
-            ? "bg-white/80 backdrop-blur-xl border-neutral-200/60 shadow-sm"
-            : "bg-transparent border-transparent py-2"
+            ? "bg-black/80 backdrop-blur-xl border-b border-white/5 py-4"
+            : "bg-transparent border-transparent py-6"
         )}
       >
-        <nav className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-          <div className="flex h-16 items-center justify-between">
-            {/* Logo - Modern & Minimal */}
-            <Link href="/" className="relative z-10 flex items-center gap-2 group">
-              <div className="h-8 w-8 bg-neutral-900 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-neutral-500/20 group-hover:shadow-neutral-500/40 transition-shadow duration-300">
-                R
-              </div>
-              <span className="text-xl font-bold tracking-tight text-neutral-900 group-hover:text-black transition-colors">
-                ReMember<span className="text-secondary">X</span>
+        <nav className="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-12">
+          <div className="flex items-center justify-between">
+            {/* Logo - Minimal & Bold */}
+            <Link href="/" className="relative z-10 flex items-center gap-3 group">
+              <span className="text-2xl font-serif font-bold tracking-tight text-white group-hover:text-neutral-300 transition-colors">
+                ReMember<span className="text-secondary italic">X</span>
               </span>
             </Link>
 
-            {/* Desktop Navigation - Enterprise Pill Style */}
-            <div className="hidden items-center gap-1 lg:flex bg-neutral-100/50 p-1 rounded-full border border-neutral-200/50 backdrop-blur-md">
+            {/* Desktop Navigation - Minimal Text Links */}
+            <div className="hidden items-center gap-8 lg:flex">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
@@ -79,35 +76,37 @@ export default function Navbar() {
                     key={link.href}
                     href={link.href}
                     className={cn(
-                      "relative px-5 py-2 text-[14px] font-medium transition-all duration-300 rounded-full",
+                      "text-sm tracking-wide transition-all duration-300 relative group",
                       isActive
-                        ? "text-neutral-900 bg-white shadow-sm font-semibold"
-                        : "text-neutral-500 hover:text-neutral-900 hover:bg-white/50"
+                        ? "text-white font-medium"
+                        : "text-neutral-400 hover:text-white"
                     )}
                   >
                     {link.label}
+                    <span className={cn(
+                        "absolute -bottom-1 left-0 w-full h-px bg-secondary transform origin-left transition-transform duration-300",
+                        isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    )}/>
                   </Link>
                 );
               })}
             </div>
 
             {/* Desktop Right Side */}
-            <div className="hidden items-center gap-4 lg:flex">
+            <div className="hidden items-center gap-6 lg:flex">
               {session ? (
                 <>
-                  {/* Dashboard Link */}
                   <Link
                     href={dashboardHref}
-                    className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors"
+                    className="text-sm font-medium text-neutral-400 hover:text-white transition-colors"
                   >
                     Dashboard
                   </Link>
 
-                  {/* Profile Dropdown - Refined */}
                   <div className="relative">
                     <button
                       onClick={() => setProfileOpen(!profileOpen)}
-                      className="relative flex h-10 w-10 items-center justify-center rounded-full bg-neutral-100 border border-neutral-200 hover:border-neutral-300 transition-colors overflow-hidden"
+                      className="relative flex h-10 w-10 items-center justify-center rounded-full bg-neutral-900 border border-white/10 hover:border-white/30 transition-colors overflow-hidden"
                     >
                       {session.user?.image ? (
                         <Image
@@ -119,13 +118,13 @@ export default function Navbar() {
                           unoptimized
                         />
                       ) : (
-                        <span className="text-sm font-semibold text-neutral-700">
+                        <span className="text-sm font-serif text-white">
                           {getInitials(session.user?.name || "U")}
                         </span>
                       )}
                     </button>
-
-                    <AnimatePresence>
+                    {/* ... keeping existing dropdown logic but styled dark ... */}
+                     <AnimatePresence>
                       {profileOpen && (
                         <>
                           <div
@@ -133,32 +132,31 @@ export default function Navbar() {
                             onClick={() => setProfileOpen(false)}
                           />
                           <motion.div
-                            initial={{ opacity: 0, y: 4, scale: 0.98 }}
+                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: 4, scale: 0.98 }}
-                            transition={{ duration: 0.2, ease: "easeOut" }}
-                            className="absolute right-0 top-14 z-50 w-64 rounded-2xl border border-neutral-200 bg-white p-2 shadow-xl shadow-neutral-900/5"
+                            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                            transition={{ duration: 0.2 }}
+                            className="absolute right-0 top-14 z-50 w-64 rounded-xl glass-panel p-2 shadow-2xl"
                           >
-                            <div className="px-3 py-2 mb-1">
-                              <p className="text-sm font-semibold text-neutral-900 truncate">
+                            <div className="px-3 py-3 border-b border-white/10 mb-1">
+                              <p className="text-sm font-medium text-white truncate">
                                 {session.user?.name}
                               </p>
                               <p className="text-xs text-neutral-500 truncate">
                                 {session.user?.email}
                               </p>
                             </div>
-                            <div className="h-px bg-neutral-100 my-1 mx-2" />
                             <Link
                               href={dashboardHref}
                               onClick={() => setProfileOpen(false)}
-                              className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-neutral-600 rounded-lg hover:bg-neutral-50 hover:text-neutral-900 transition-colors"
+                              className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-neutral-400 rounded-lg hover:bg-white/5 hover:text-white transition-colors"
                             >
                               <LayoutDashboard className="h-4 w-4" />
                               Dashboard
                             </Link>
                             <button
                               onClick={() => signOut({ callbackUrl: "/" })}
-                              className="flex w-full items-center gap-3 px-3 py-2.5 text-sm font-medium text-neutral-600 rounded-lg hover:bg-red-50 hover:text-red-600 transition-colors"
+                              className="flex w-full items-center gap-3 px-3 py-2.5 text-sm font-medium text-neutral-400 rounded-lg hover:bg-red-500/10 hover:text-red-400 transition-colors"
                             >
                               <LogOut className="h-4 w-4" />
                               Sign Out
@@ -170,23 +168,23 @@ export default function Navbar() {
                   </div>
                 </>
               ) : (
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-6">
                   <Link
                     href="/login"
-                    className="text-[14px] font-semibold text-neutral-600 hover:text-neutral-900 transition-colors"
+                    className="text-sm font-medium text-neutral-400 hover:text-white transition-colors"
                   >
                     Log in
                   </Link>
                   <Link
                     href="/register"
-                    className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-neutral-900 px-6 py-2.5 text-[14px] font-semibold text-white shadow-lg shadow-neutral-900/20 hover:bg-black hover:shadow-xl hover:shadow-neutral-900/30 hover:-translate-y-0.5 transition-all duration-300"
+                    className="relative px-6 py-2.5 bg-white text-black text-sm font-semibold tracking-wide hover:bg-neutral-200 transition-colors duration-300"
                   >
-                    Sign up
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                    Get Access
                   </Link>
                 </div>
               )}
             </div>
+
 
 
             {/* Mobile Menu Button */}
