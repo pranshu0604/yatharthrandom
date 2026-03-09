@@ -43,56 +43,77 @@
                 0% { transform: translate(0px, 0px) rotate(0deg); }
                 100% { transform: translate(-25px, 30px) rotate(-1deg); }
             }
+            @keyframes pulse1 {
+                0%, 100% { opacity: 0.12; }
+                50% { opacity: 0.22; }
+            }
+            @keyframes pulse2 {
+                0%, 100% { opacity: 0.08; }
+                50% { opacity: 0.16; }
+            }
         </style>
         <radialGradient id="gradIndigo" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#1B1F3B" stop-opacity="0.18"/>
+            <stop offset="0%" stop-color="#1B1F3B" stop-opacity="0.85"/>
+            <stop offset="50%" stop-color="#1B1F3B" stop-opacity="0.35"/>
             <stop offset="100%" stop-color="#1B1F3B" stop-opacity="0"/>
         </radialGradient>
         <radialGradient id="gradGold" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.06"/>
+            <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.4"/>
+            <stop offset="50%" stop-color="#D4AF37" stop-opacity="0.12"/>
             <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
         </radialGradient>
         <radialGradient id="gradTeal" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#2EC4B6" stop-opacity="0.05"/>
+            <stop offset="0%" stop-color="#2EC4B6" stop-opacity="0.3"/>
+            <stop offset="50%" stop-color="#2EC4B6" stop-opacity="0.1"/>
             <stop offset="100%" stop-color="#2EC4B6" stop-opacity="0"/>
         </radialGradient>
-        <pattern id="dotGrid" width="48" height="48" patternUnits="userSpaceOnUse">
-            <circle cx="24" cy="24" r="1" fill="#FFFFFF" opacity="0.03"/>
+        <pattern id="dotGrid" width="36" height="36" patternUnits="userSpaceOnUse">
+            <circle cx="18" cy="18" r="1" fill="#FFFFFF" opacity="0.15"/>
         </pattern>
         <g id="node">
-            <circle cx="0" cy="0" r="2.5" fill="#FFFFFF" opacity="0.08"/>
-            <circle cx="0" cy="0" r="8" fill="none" stroke="#FFFFFF" stroke-opacity="0.03" stroke-width="1"/>
+            <circle cx="0" cy="0" r="3.5" fill="#FFFFFF" opacity="0.35"/>
+            <circle cx="0" cy="0" r="14" fill="none" stroke="#FFFFFF" stroke-opacity="0.15" stroke-width="1"/>
         </g>
     </defs>
-    <rect width="100%" height="100%" fill="#000000" />
-    <g class="blobs">
-        <circle class="blob1" cx="300" cy="200" r="900" fill="url(#gradIndigo)" />
-        <circle class="blob2" cx="1600" cy="900" r="800" fill="url(#gradGold)" />
-        <circle class="blob3" cx="1000" cy="400" r="750" fill="url(#gradTeal)" />
-        <circle class="blob4" cx="1400" cy="200" r="1000" fill="url(#gradIndigo)" />
-    </g>
-    <rect width="100%" height="100%" fill="url(#dotGrid)" />
+
+    <rect width="100%" height="100%" fill="#000000"/>
+
+    <!-- Gradient blobs -->
+    <circle class="blob1" cx="250" cy="180" r="700" fill="url(#gradIndigo)"/>
+    <circle class="blob2" cx="1650" cy="850" r="600" fill="url(#gradGold)"/>
+    <circle class="blob3" cx="1050" cy="350" r="550" fill="url(#gradTeal)"/>
+    <circle class="blob4" cx="1500" cy="150" r="800" fill="url(#gradIndigo)"/>
+
+    <!-- Dot grid overlay -->
+    <rect width="100%" height="100%" fill="url(#dotGrid)"/>
+
+    <!-- Constellation network left -->
     <g class="net1">
-        <path d="M 250 350 L 400 480 L 320 600 L 550 520 L 600 380" fill="none" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1"/>
-        <path d="M 400 480 L 550 520" fill="none" stroke="#FFFFFF" stroke-opacity="0.02" stroke-width="1"/>
-        <use href="#node" x="250" y="350"/>
-        <use href="#node" x="400" y="480"/>
-        <use href="#node" x="320" y="600"/>
-        <use href="#node" x="550" y="520"/>
-        <use href="#node" x="600" y="380"/>
+        <path d="M 200 300 L 380 450 L 290 590 L 520 500 L 580 340 L 450 250 Z" fill="none" stroke="#FFFFFF" stroke-opacity="0.2" stroke-width="1"/>
+        <path d="M 380 450 L 520 500" fill="none" stroke="#D4AF37" stroke-opacity="0.18" stroke-width="1"/>
+        <path d="M 290 590 L 450 250" fill="none" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="1"/>
+        <use href="#node" x="200" y="300"/>
+        <use href="#node" x="380" y="450"/>
+        <use href="#node" x="290" y="590"/>
+        <use href="#node" x="520" y="500"/>
+        <use href="#node" x="580" y="340"/>
+        <use href="#node" x="450" y="250"/>
     </g>
+
+    <!-- Constellation network right -->
     <g class="net2">
-        <path d="M 1550 800 L 1750 750 L 1650 600 L 1450 650 L 1400 850" fill="none" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1"/>
-        <path d="M 1650 600 L 1550 800" fill="none" stroke="#FFFFFF" stroke-opacity="0.02" stroke-width="1"/>
-        <use href="#node" x="1550" y="800"/>
-        <use href="#node" x="1750" y="750"/>
-        <use href="#node" x="1650" y="600"/>
-        <use href="#node" x="1450" y="650"/>
-        <use href="#node" x="1400" y="850"/>
+        <path d="M 1500 780 L 1720 720 L 1630 560 L 1420 620 L 1360 830 L 1500 780" fill="none" stroke="#FFFFFF" stroke-opacity="0.2" stroke-width="1"/>
+        <path d="M 1630 560 L 1500 780" fill="none" stroke="#2EC4B6" stroke-opacity="0.18" stroke-width="1"/>
+        <path d="M 1720 720 L 1360 830" fill="none" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="1"/>
+        <use href="#node" x="1500" y="780"/>
+        <use href="#node" x="1720" y="720"/>
+        <use href="#node" x="1630" y="560"/>
+        <use href="#node" x="1420" y="620"/>
+        <use href="#node" x="1360" y="830"/>
     </g>
-    <g class="arcs">
-        <circle class="arc arc1" cx="960" cy="540" r="480" stroke="#FFFFFF" stroke-opacity="0.06" stroke-width="1" stroke-dasharray="200 600 150 900 50 400" />
-        <circle class="arc arc2" cx="960" cy="540" r="640" stroke="#D4AF37" stroke-opacity="0.05" stroke-width="1.5" stroke-dasharray="400 800 100 1200" />
-        <circle class="arc arc3" cx="960" cy="540" r="820" stroke="#FFFFFF" stroke-opacity="0.04" stroke-width="1" stroke-dasharray="600 1500 300 900" />
-    </g>
+
+    <!-- Rotating arcs -->
+    <circle class="arc arc1" cx="960" cy="540" r="420" stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="1.5" stroke-dasharray="150 500 100 800"/>
+    <circle class="arc arc2" cx="960" cy="540" r="580" stroke="#D4AF37" stroke-opacity="0.25" stroke-width="2" stroke-dasharray="300 700 80 1000"/>
+    <circle class="arc arc3" cx="960" cy="540" r="750" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="1.5" stroke-dasharray="500 1200 200 800"/>
 </svg>

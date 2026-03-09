@@ -26,7 +26,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[12vw] leading-[0.85] font-serif tracking-tighter text-white mix-blend-difference"
+            className="text-[12vw] leading-[0.85] font-serif tracking-tighter text-white drop-shadow-[0_2px_30px_rgba(0,0,0,0.8)]"
           >
             Trade
           </motion.h1>
@@ -36,7 +36,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[12vw] leading-[0.85] font-serif tracking-tighter text-neutral-500 italic mix-blend-difference"
+              className="text-[12vw] leading-[0.85] font-serif tracking-tighter text-neutral-500 italic drop-shadow-[0_2px_30px_rgba(0,0,0,0.8)]"
             >
               Premium
             </motion.h1>
@@ -61,7 +61,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[12vw] leading-[0.85] font-serif tracking-tighter text-white mix-blend-difference"
+            className="text-[12vw] leading-[0.85] font-serif tracking-tighter text-white drop-shadow-[0_2px_30px_rgba(0,0,0,0.8)]"
           >
             Memberships.
           </motion.h1>
