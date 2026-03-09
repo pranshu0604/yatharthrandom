@@ -15,9 +15,7 @@ export default function Hero() {
       
       {/* Background Ambience */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-[-20%] left-[-10%] h-[800px] w-[800px] rounded-full bg-blue-900/10 blur-[120px]" />
-        <div className="absolute bottom-[-20%] right-[-10%] h-[800px] w-[800px] rounded-full bg-amber-900/10 blur-[120px]" />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay"></div>
+        <img src="/hero-bg.svg" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-12 w-full h-full flex flex-col justify-center">
