@@ -2,25 +2,64 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Star, Shield, MapPin, ChevronDown } from "lucide-react";
-
-const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
+import { ArrowRight } from "lucide-react";
+import HeroBgCanvas from "./hero-bg-canvas";
 
 /* ------------------------------------------------------------------ */
-/* Minimalist Hero Section                                            */
+/* Hero — video background with canvas fallback                        */
 /* ------------------------------------------------------------------ */
 export default function Hero() {
   return (
     <section className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-black pt-20">
-      
-      {/* Background Ambience */}
+
+      {/* ---- Background layers ---- */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <img src="/hero-bg.svg" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover" />
+        {/* Canvas fallback — renders immediately while video loads */}
+        <HeroBgCanvas />
+
+        {/* Desktop video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="hidden sm:block absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/hero-desktop.webm" type="video/webm" />
+          <source src="/hero-desktop.mp4" type="video/mp4" />
+        </video>
+
+        {/* Mobile video (lighter) */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          className="sm:hidden absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/hero-mobile.webm" type="video/webm" />
+          <source src="/hero-mobile.mp4" type="video/mp4" />
+        </video>
+
+        {/* Darken for text readability */}
+        <div className="absolute inset-0 bg-black/55" />
+
+        {/* Dot-grid texture */}
+        <div
+          className="absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
+          }}
+        />
       </div>
 
+      {/* ---- Content ---- */}
       <div className="relative z-10 mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-12 w-full h-full flex flex-col justify-center">
-        
-        {/* Massive Typography */}
+
         <div className="space-y-2 lg:space-y-0">
           <motion.h1
             initial={{ opacity: 0, y: 100 }}
@@ -30,7 +69,7 @@ export default function Hero() {
           >
             Trade
           </motion.h1>
-          
+
           <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-16">
             <motion.h1
               initial={{ opacity: 0, y: 100 }}
@@ -40,7 +79,7 @@ export default function Hero() {
             >
               Premium
             </motion.h1>
-            
+
             <Link href="/marketplace">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -48,11 +87,11 @@ export default function Hero() {
                 transition={{ duration: 1.2, delay: 0.4 }}
                 className="hidden lg:flex w-64 h-24 rounded-full border border-white/20 backdrop-blur-md items-center justify-between px-2 relative overflow-hidden group cursor-pointer"
               >
-                 <div className="absolute inset-0 bg-white/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                 <span className="ml-6 text-sm font-mono text-white/60">EST. 2026</span>
-                 <div className="h-20 w-20 rounded-full bg-white/10 text-white flex items-center justify-center">
-                   <ArrowRight className="h-6 w-6 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
-                 </div>
+                <div className="absolute inset-0 bg-white/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                <span className="ml-6 text-sm font-mono text-white/60">EST. 2026</span>
+                <div className="h-20 w-20 rounded-full bg-white/10 text-white flex items-center justify-center">
+                  <ArrowRight className="h-6 w-6 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+                </div>
               </motion.div>
             </Link>
           </div>
@@ -67,35 +106,34 @@ export default function Hero() {
           </motion.h1>
         </div>
 
-        {/* Subtext & CTA - Bottom Aligned */}
         <div className="mt-24 lg:mt-32 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end border-t border-white/10 pt-8">
           <div className="lg:col-span-4">
-             <p className="text-neutral-400 text-lg leading-relaxed max-w-sm">
-               The exclusive marketplace for buying and selling transferable memberships to the world's most prestigious clubs.
-             </p>
+            <p className="text-neutral-400 text-lg leading-relaxed max-w-sm">
+              The exclusive marketplace for buying and selling transferable
+              memberships to the world&apos;s most prestigious clubs.
+            </p>
           </div>
-          
+
           <div className="lg:col-span-4 flex gap-8">
-             <div>
-                <span className="block text-2xl font-serif text-white">5k+</span>
-                <span className="text-xs text-neutral-500 uppercase tracking-widest">Members</span>
-             </div>
-             <div>
-                <span className="block text-2xl font-serif text-white">₹45Cr</span>
-                <span className="text-xs text-neutral-500 uppercase tracking-widest">Volume</span>
-             </div>
+            <div>
+              <span className="block text-2xl font-serif text-white">5k+</span>
+              <span className="text-xs text-neutral-500 uppercase tracking-widest">Members</span>
+            </div>
+            <div>
+              <span className="block text-2xl font-serif text-white">₹45Cr</span>
+              <span className="text-xs text-neutral-500 uppercase tracking-widest">Volume</span>
+            </div>
           </div>
 
           <div className="lg:col-span-4 lg:text-right">
-             <Link 
-               href="/marketplace"
-               className="inline-flex items-center gap-3 text-white border-b border-white pb-1 hover:text-neutral-300 hover:border-neutral-700 transition-colors"
-             >
-               Start Exploring <ArrowRight className="h-4 w-4" />
-             </Link>
+            <Link
+              href="/marketplace"
+              className="inline-flex items-center gap-3 text-white border-b border-white pb-1 hover:text-neutral-300 hover:border-neutral-700 transition-colors"
+            >
+              Start Exploring <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
-
       </div>
     </section>
   );

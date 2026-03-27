@@ -61,3 +61,41 @@ select option {
   color: #e5e5e5;
 }
 
+/* ------------------------------------------------------------------ */
+/* Logo marquee — infinite scroll (mobile)                             */
+/* ------------------------------------------------------------------ */
+.logo-marquee {
+  width: max-content;
+  animation: marquee-scroll 20s linear infinite;
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Pause on hover for accessibility */
+.logo-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Reduced motion: no marquee */
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Glass panel — used in dropdowns / overlays                          */
+/* ------------------------------------------------------------------ */
+.glass-panel {
+  background: rgba(23, 23, 23, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+

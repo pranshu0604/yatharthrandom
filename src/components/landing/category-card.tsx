@@ -38,6 +38,9 @@ interface CategoryCardProps {
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
+/* ------------------------------------------------------------------ */
+/* Category card — left-aligned, no icon-in-circle, border-left accent */
+/* ------------------------------------------------------------------ */
 export default function CategoryCard({
   name,
   slug,
@@ -52,25 +55,23 @@ export default function CategoryCard({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, delay: index * 0.06, ease }}
+      transition={{ duration: 0.4, delay: index * 0.05, ease }}
     >
       <Link href={`/marketplace?category=${slug}`} className="group block">
-        <div className="relative rounded-xl border border-neutral-800 bg-neutral-900 p-6 sm:p-8 text-center transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:-translate-y-1 hover:border-neutral-600">
-          {/* Icon */}
-          <div className="mx-auto flex items-center justify-center w-14 h-14 rounded-xl bg-white/8 text-neutral-400 transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
-            <Icon className="h-7 w-7" />
+        <div className="relative border-l-2 border-neutral-800 bg-neutral-900/40 px-5 py-5 sm:px-6 sm:py-6 transition-all duration-300 group-hover:border-accent group-hover:bg-neutral-900/80">
+          {/* Icon + Name row */}
+          <div className="flex items-center gap-3">
+            <Icon className="h-5 w-5 text-neutral-600 transition-colors duration-300 group-hover:text-accent shrink-0" />
+            <h3 className="font-medium text-[15px] text-neutral-300 transition-colors duration-300 group-hover:text-white">
+              {name}
+            </h3>
           </div>
 
-          {/* Name */}
-          <h3 className="mt-4 font-semibold text-neutral-100 transition-colors duration-300 group-hover:text-white">
-            {name}
-          </h3>
-
           {/* Count */}
-          <p className="mt-1 text-sm text-neutral-400">
+          <p className="mt-2 text-xs text-neutral-600 pl-8">
             {listingCount} {listingCount === 1 ? "listing" : "listings"}
           </p>
         </div>
