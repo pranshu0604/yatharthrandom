@@ -48,7 +48,7 @@ export default function HowItWorks() {
   const lineWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section ref={sectionRef} id="how-it-works" className="py-20 sm:py-28 bg-neutral-950">
+    <section ref={sectionRef} id="how-it-works" className="py-20 sm:py-28 bg-black">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <SectionHeading
           title="How It Works"

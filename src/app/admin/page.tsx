@@ -1,21 +1,21 @@
+import Link from "next/link";
 import {
   Users,
   Package,
   DollarSign,
-  TrendingUp,
   Star,
   Clock,
   UserPlus,
   MessageSquare,
+  ArrowRight,
+  AlertCircle,
 } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import { formatCurrency, formatDate } from "@/lib/utils";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar } from "@/components/ui/avatar";
 
 export default async function AdminOverviewPage() {
-  // Fetch all stats in parallel
   const [
     totalUsers,
     buyerCount,
@@ -30,6 +30,7 @@ export default async function AdminOverviewPage() {
     recentListings,
     recentReviews,
     recentUsers,
+    pendingForApproval,
   ] = await Promise.all([
     prisma.user.count(),
     prisma.user.count({ where: { role: "BUYER" } }),
@@ -54,7 +55,7 @@ export default async function AdminOverviewPage() {
     }),
     prisma.review.findMany({
       orderBy: { createdAt: "desc" },
-      take: 5,
+      take: 4,
       include: {
         buyer: { select: { name: true, image: true } },
         listing: { select: { title: true } },
@@ -62,7 +63,7 @@ export default async function AdminOverviewPage() {
     }),
     prisma.user.findMany({
       orderBy: { createdAt: "desc" },
-      take: 5,
+      take: 4,
       select: {
         id: true,
         name: true,
@@ -72,45 +73,19 @@ export default async function AdminOverviewPage() {
         createdAt: true,
       },
     }),
+    prisma.listing.findMany({
+      where: { status: "PENDING" },
+      orderBy: { createdAt: "asc" },
+      take: 3,
+      include: {
+        seller: { select: { name: true } },
+        category: { select: { name: true } },
+      },
+    }),
   ]);
 
   const totalRevenue = revenueResult._sum.commission ?? 0;
   const avgRating = Math.round((avgRatingResult._avg.rating ?? 0) * 10) / 10;
-
-  const stats = [
-    {
-      label: "Total Users",
-      value: totalUsers,
-      sub: `${buyerCount} buyers, ${sellerCount} sellers`,
-      icon: Users,
-      color: "text-accent",
-      bg: "bg-accent/15",
-    },
-    {
-      label: "Total Listings",
-      value: totalListings,
-      sub: `${activeListings} active, ${pendingListings} pending, ${soldListings} sold`,
-      icon: Package,
-      color: "text-secondary",
-      bg: "bg-secondary/15",
-    },
-    {
-      label: "Transactions",
-      value: totalTransactions,
-      sub: `${formatCurrency(totalRevenue)} commission earned`,
-      icon: DollarSign,
-      color: "text-success",
-      bg: "bg-success/15",
-    },
-    {
-      label: "Average Rating",
-      value: avgRating || "N/A",
-      sub: "across all reviews",
-      icon: Star,
-      color: "text-warning",
-      bg: "bg-warning/15",
-    },
-  ];
 
   const statusColorMap: Record<string, "success" | "warning" | "error" | "default" | "secondary"> = {
     ACTIVE: "success",
@@ -127,213 +102,204 @@ export default async function AdminOverviewPage() {
   };
 
   return (
-    <div>
-      <div className="mb-8">
-        <h1 className="font-serif text-2xl font-bold text-neutral-100">Dashboard Overview</h1>
-        <p className="text-neutral-500 mt-1">
-          Key metrics and recent activity across the platform.
-        </p>
+    <div className="space-y-8">
+      {/* Page title */}
+      <div className="border-b border-neutral-800/60 pb-6">
+        <p className="text-[10px] font-medium uppercase tracking-[0.25em] text-neutral-600 mb-1">Admin</p>
+        <h1 className="font-serif text-2xl font-bold text-white">Overview</h1>
       </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        {stats.map((stat) => (
-          <Card key={stat.label}>
-            <CardContent className="py-5">
-              <div className="flex items-center justify-between mb-3">
-                <div
-                  className={`flex h-10 w-10 items-center justify-center rounded-lg ${stat.bg}`}
-                >
-                  <stat.icon className={`h-5 w-5 ${stat.color}`} />
-                </div>
-              </div>
-              <p className="text-2xl font-bold text-neutral-100">{stat.value}</p>
-              <p className="text-sm text-neutral-500 mt-0.5">{stat.label}</p>
-              <p className="text-xs text-neutral-400 mt-1">{stat.sub}</p>
-            </CardContent>
-          </Card>
+      {/* Pending approvals alert strip */}
+      {pendingListings > 0 && (
+        <div className="flex items-center justify-between gap-4 border-l-2 border-warning bg-warning/5 px-5 py-4">
+          <div className="flex items-center gap-3">
+            <AlertCircle className="h-4 w-4 text-warning shrink-0" />
+            <p className="text-sm font-medium text-neutral-200">
+              <span className="text-warning font-bold">{pendingListings}</span> listing{pendingListings !== 1 ? "s" : ""} waiting for approval
+            </p>
+          </div>
+          <Link
+            href="/admin/listings?status=PENDING"
+            className="flex items-center gap-1.5 text-xs font-semibold text-warning hover:text-warning/80 transition-colors shrink-0"
+          >
+            Review <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </div>
+      )}
+
+      {/* Stats — typography-driven, no icon boxes */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-neutral-800/40">
+        {[
+          {
+            label: "Total Users",
+            value: totalUsers,
+            sub: `${buyerCount} buyers · ${sellerCount} sellers`,
+            icon: Users,
+            href: "/admin/users",
+          },
+          {
+            label: "Listings",
+            value: totalListings,
+            sub: `${activeListings} active · ${pendingListings} pending · ${soldListings} sold`,
+            icon: Package,
+            href: "/admin/listings",
+          },
+          {
+            label: "Transactions",
+            value: totalTransactions,
+            sub: `${formatCurrency(totalRevenue)} commission`,
+            icon: DollarSign,
+            href: "/admin/listings?status=SOLD",
+          },
+          {
+            label: "Avg. Rating",
+            value: avgRating || "—",
+            sub: "across all reviews",
+            icon: Star,
+            href: "/admin/reviews",
+          },
+        ].map((stat) => (
+          <Link
+            key={stat.label}
+            href={stat.href}
+            className="group bg-neutral-900/60 px-6 py-6 hover:bg-neutral-900 transition-colors"
+          >
+            <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-neutral-600 mb-3">{stat.label}</p>
+            <p className="text-3xl sm:text-4xl font-serif font-bold text-white tracking-tight">{stat.value}</p>
+            <p className="mt-2 text-xs text-neutral-600 leading-relaxed">{stat.sub}</p>
+            <div className="mt-4 flex items-center gap-1 text-[10px] text-neutral-700 group-hover:text-neutral-400 transition-colors">
+              View all <ArrowRight className="h-3 w-3" />
+            </div>
+          </Link>
         ))}
       </div>
 
-      {/* Key Metrics Summary */}
-      <Card className="mb-8">
-        <CardHeader>
-          <h2 className="text-lg font-semibold text-neutral-100 flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-accent" />
-            Key Metrics
-          </h2>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-            <div>
-              <p className="text-xs text-neutral-500 uppercase tracking-wider">
-                Revenue
-              </p>
-              <p className="text-xl font-bold text-neutral-100 mt-1">
-                {formatCurrency(totalRevenue)}
-              </p>
-            </div>
-            <div>
-              <p className="text-xs text-neutral-500 uppercase tracking-wider">
-                Pending Approvals
-              </p>
-              <p className="text-xl font-bold text-neutral-100 mt-1">
-                {pendingListings}
-              </p>
-            </div>
-            <div>
-              <p className="text-xs text-neutral-500 uppercase tracking-wider">
-                Completion Rate
-              </p>
-              <p className="text-xl font-bold text-neutral-100 mt-1">
-                {totalTransactions > 0
-                  ? `${Math.round((totalTransactions / Math.max(soldListings, 1)) * 100)}%`
-                  : "N/A"}
-              </p>
-            </div>
-            <div>
-              <p className="text-xs text-neutral-500 uppercase tracking-wider">
-                Avg. Rating
-              </p>
-              <p className="text-xl font-bold text-neutral-100 mt-1">
-                {avgRating ? `${avgRating} / 5` : "N/A"}
-              </p>
-            </div>
+      {/* Pending approvals — quick action cards */}
+      {pendingForApproval.length > 0 && (
+        <div>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-sm font-semibold text-neutral-300 flex items-center gap-2">
+              <Clock className="h-4 w-4 text-neutral-600" />
+              Needs Approval
+            </h2>
+            <Link href="/admin/listings?status=PENDING" className="text-xs text-neutral-500 hover:text-white transition-colors flex items-center gap-1">
+              View all <ArrowRight className="h-3 w-3" />
+            </Link>
           </div>
-        </CardContent>
-      </Card>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-neutral-800/40">
+            {pendingForApproval.map((listing) => (
+              <Link
+                key={listing.id}
+                href="/admin/listings?status=PENDING"
+                className="bg-neutral-900/60 px-5 py-4 hover:bg-neutral-900 transition-colors group"
+              >
+                <p className="text-xs font-medium uppercase tracking-widest text-neutral-600 mb-1">{listing.category.name}</p>
+                <p className="text-sm font-medium text-neutral-200 group-hover:text-white transition-colors line-clamp-1">{listing.title}</p>
+                <p className="text-xs text-neutral-600 mt-1">by {listing.seller.name}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
 
-      {/* Recent Activity Grid */}
+      {/* Activity grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Recent Listings */}
-        <Card>
-          <CardHeader>
-            <h2 className="text-base font-semibold text-neutral-100 flex items-center gap-2">
-              <Clock className="h-4 w-4 text-neutral-400" />
+        <div className="bg-neutral-900/40 border border-neutral-800/60">
+          <div className="px-5 py-4 border-b border-neutral-800/60 flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-neutral-300 flex items-center gap-2">
+              <Package className="h-4 w-4 text-neutral-600" />
               Latest Listings
             </h2>
-          </CardHeader>
-          <CardContent className="space-y-3">
+            <Link href="/admin/listings" className="text-[11px] text-neutral-600 hover:text-white transition-colors">
+              View all
+            </Link>
+          </div>
+          <div className="divide-y divide-neutral-800/40">
             {recentListings.length === 0 ? (
-              <p className="text-sm text-neutral-400 text-center py-6">
-                No listings yet.
-              </p>
+              <p className="text-sm text-neutral-600 text-center py-8">No listings yet.</p>
             ) : (
               recentListings.map((listing) => (
-                <div
-                  key={listing.id}
-                  className="flex items-center gap-3 py-2 border-b border-neutral-900 last:border-0"
-                >
-                  <Avatar
-                    name={listing.seller.name}
-                    src={listing.seller.image}
-                    size="sm"
-                  />
+                <div key={listing.id} className="flex items-center gap-3 px-5 py-3.5">
+                  <Avatar name={listing.seller.name} src={listing.seller.image} size="sm" />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-neutral-100 truncate">
-                      {listing.title}
-                    </p>
-                    <p className="text-xs text-neutral-500">
-                      {listing.seller.name} &middot;{" "}
-                      {listing.category.name}
-                    </p>
+                    <p className="text-sm font-medium text-neutral-200 truncate">{listing.title}</p>
+                    <p className="text-xs text-neutral-600">{listing.seller.name} · {listing.category.name}</p>
                   </div>
-                  <Badge
-                    variant={statusColorMap[listing.status] ?? "default"}
-                    className="text-[10px]"
-                  >
+                  <Badge variant={statusColorMap[listing.status] ?? "default"} className="text-[10px] shrink-0">
                     {listing.status}
                   </Badge>
                 </div>
               ))
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
         {/* Recent Reviews */}
-        <Card>
-          <CardHeader>
-            <h2 className="text-base font-semibold text-neutral-100 flex items-center gap-2">
-              <MessageSquare className="h-4 w-4 text-neutral-400" />
+        <div className="bg-neutral-900/40 border border-neutral-800/60">
+          <div className="px-5 py-4 border-b border-neutral-800/60 flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-neutral-300 flex items-center gap-2">
+              <MessageSquare className="h-4 w-4 text-neutral-600" />
               Latest Reviews
             </h2>
-          </CardHeader>
-          <CardContent className="space-y-3">
+            <Link href="/admin/reviews" className="text-[11px] text-neutral-600 hover:text-white transition-colors">
+              View all
+            </Link>
+          </div>
+          <div className="divide-y divide-neutral-800/40">
             {recentReviews.length === 0 ? (
-              <p className="text-sm text-neutral-400 text-center py-6">
-                No reviews yet.
-              </p>
+              <p className="text-sm text-neutral-600 text-center py-8">No reviews yet.</p>
             ) : (
               recentReviews.map((review) => (
-                <div
-                  key={review.id}
-                  className="flex items-center gap-3 py-2 border-b border-neutral-900 last:border-0"
-                >
-                  <Avatar
-                    name={review.buyer.name}
-                    src={review.buyer.image}
-                    size="sm"
-                  />
+                <div key={review.id} className="flex items-center gap-3 px-5 py-3.5">
+                  <Avatar name={review.buyer.name} src={review.buyer.image} size="sm" />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-neutral-100 truncate">
-                      {review.listing.title}
-                    </p>
-                    <p className="text-xs text-neutral-500">
-                      by {review.buyer.name}
-                    </p>
+                    <p className="text-sm font-medium text-neutral-200 truncate">{review.listing.title}</p>
+                    <p className="text-xs text-neutral-600">by {review.buyer.name}</p>
                   </div>
-                  <div className="flex items-center gap-1 text-secondary">
+                  <div className="flex items-center gap-1 text-secondary shrink-0">
                     <Star className="h-3.5 w-3.5 fill-secondary" />
                     <span className="text-xs font-semibold">{review.rating}</span>
                   </div>
                 </div>
               ))
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
         {/* Recent Registrations */}
-        <Card>
-          <CardHeader>
-            <h2 className="text-base font-semibold text-neutral-100 flex items-center gap-2">
-              <UserPlus className="h-4 w-4 text-neutral-400" />
-              Recent Registrations
+        <div className="bg-neutral-900/40 border border-neutral-800/60">
+          <div className="px-5 py-4 border-b border-neutral-800/60 flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-neutral-300 flex items-center gap-2">
+              <UserPlus className="h-4 w-4 text-neutral-600" />
+              New Users
             </h2>
-          </CardHeader>
-          <CardContent className="space-y-3">
+            <Link href="/admin/users" className="text-[11px] text-neutral-600 hover:text-white transition-colors">
+              View all
+            </Link>
+          </div>
+          <div className="divide-y divide-neutral-800/40">
             {recentUsers.length === 0 ? (
-              <p className="text-sm text-neutral-400 text-center py-6">
-                No users yet.
-              </p>
+              <p className="text-sm text-neutral-600 text-center py-8">No users yet.</p>
             ) : (
               recentUsers.map((user) => (
-                <div
-                  key={user.id}
-                  className="flex items-center gap-3 py-2 border-b border-neutral-900 last:border-0"
-                >
+                <div key={user.id} className="flex items-center gap-3 px-5 py-3.5">
                   <Avatar name={user.name} src={user.image} size="sm" />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-neutral-100 truncate">
-                      {user.name}
-                    </p>
-                    <p className="text-xs text-neutral-500">{user.email}</p>
+                    <p className="text-sm font-medium text-neutral-200 truncate">{user.name}</p>
+                    <p className="text-xs text-neutral-600 truncate">{user.email}</p>
                   </div>
-                  <div className="flex flex-col items-end gap-1">
-                    <Badge
-                      variant={roleColorMap[user.role] ?? "default"}
-                      className="text-[10px]"
-                    >
+                  <div className="flex flex-col items-end gap-1 shrink-0">
+                    <Badge variant={roleColorMap[user.role] ?? "default"} className="text-[10px]">
                       {user.role}
                     </Badge>
-                    <span className="text-[10px] text-neutral-400">
-                      {formatDate(user.createdAt)}
-                    </span>
+                    <span className="text-[10px] text-neutral-600">{formatDate(user.createdAt)}</span>
                   </div>
                 </div>
               ))
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   );

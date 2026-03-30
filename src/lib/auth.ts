@@ -44,10 +44,55 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async signIn({ user, account }) {
+      // For Google sign-ins, upsert the user into our DB
+      if (account?.provider === "google" && user.email) {
+        try {
+          const existing = await prisma.user.findUnique({
+            where: { email: user.email },
+          });
+
+          if (!existing) {
+            await prisma.user.create({
+              data: {
+                name: user.name ?? user.email.split("@")[0],
+                email: user.email,
+                image: user.image ?? null,
+                role: "BUYER",
+              },
+            });
+          } else if (user.image && existing.image !== user.image) {
+            await prisma.user.update({
+              where: { email: user.email },
+              data: { image: user.image },
+            });
+          }
+        } catch {
+          return false;
+        }
+      }
+      return true;
+    },
+    async jwt({ token, user, account }) {
       if (user) {
-        token.role = (user as { role: string }).role;
-        token.tier = (user as { tier: string }).tier;
+        token.role = (user as { role?: string }).role;
+        token.tier = (user as { tier?: string }).tier;
+      }
+      // For Google sign-ins, fetch role/tier from DB (not on user object)
+      if (account?.provider === "google" && token.email) {
+        try {
+          const dbUser = await prisma.user.findUnique({
+            where: { email: token.email },
+            select: { id: true, role: true, tier: true },
+          });
+          if (dbUser) {
+            token.sub = dbUser.id;
+            token.role = dbUser.role;
+            token.tier = dbUser.tier;
+          }
+        } catch {
+          // keep existing token values
+        }
       }
       return token;
     },

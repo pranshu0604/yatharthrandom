@@ -56,9 +56,9 @@ export function ListingMiniCard({ listing }: { listing: ListingMiniCardData }) {
       href={`/listing/${listing.id}`}
       className="block w-full group"
     >
-      <div className="overflow-hidden bg-neutral-900/50 transition-all duration-300 ease-out hover:bg-neutral-900 hover:shadow-[0_4px_24px_rgba(0,0,0,0.5)]">
+      <div className="overflow-hidden bg-white transition-all duration-300 ease-out hover:bg-neutral-50 hover:shadow-[0_4px_24px_rgba(0,0,0,0.12)]">
         {/* Image */}
-        <div className="relative aspect-[4/3] bg-neutral-800 overflow-hidden">
+        <div className="relative aspect-4/3 bg-neutral-800 overflow-hidden">
           {image ? (
             <Image
               src={image}
@@ -117,7 +117,7 @@ export function ListingMiniCard({ listing }: { listing: ListingMiniCardData }) {
         {/* Content */}
         <div className="px-4 py-4">
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-[10px] font-medium uppercase tracking-[0.15em] text-neutral-500">
+            <span className="text-[10px] font-medium uppercase tracking-[0.15em] text-neutral-400">
               {listing.category.name}
             </span>
             {isVerified && (
@@ -125,12 +125,12 @@ export function ListingMiniCard({ listing }: { listing: ListingMiniCardData }) {
             )}
           </div>
 
-          <h3 className="font-medium text-neutral-200 line-clamp-1 text-[15px] leading-snug group-hover:text-white transition-colors">
+          <h3 className="font-medium text-neutral-800 line-clamp-1 text-[15px] leading-snug group-hover:text-neutral-900 transition-colors">
             {listing.title}
           </h3>
 
           <div className="flex items-center justify-between mt-2.5">
-            <div className="flex items-center gap-1 text-xs text-neutral-500">
+            <div className="flex items-center gap-1 text-xs text-neutral-400">
               <MapPin className="h-3 w-3" />
               <span>{listing.city}</span>
             </div>
@@ -153,9 +153,16 @@ const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
 export default function FeaturedMarquee({ listings }: FeaturedMarqueeProps) {
   if (listings.length === 0) return null;
 
+  // Show only complete rows of 4 to avoid partial rows exposing gap-px color.
+  // If fewer than 4 total, show what we have (one row).
+  const total = Math.min(8, listings.length);
+  const completeRows = Math.floor(total / 4);
+  const displayCount = completeRows > 0 ? completeRows * 4 : Math.min(4, total);
+  const visible = listings.slice(0, displayCount);
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-neutral-800/40">
-      {listings.slice(0, 8).map((listing, i) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-neutral-200">
+      {visible.map((listing, i) => (
         <motion.div
           key={listing.id}
           initial={{ opacity: 0, y: 16 }}

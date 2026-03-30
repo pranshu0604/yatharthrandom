@@ -1,9 +1,71 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
 import HeroBgCanvas from "./hero-bg-canvas";
+
+/* ------------------------------------------------------------------ */
+/* Cycling word animation                                              */
+/* ------------------------------------------------------------------ */
+const cyclingWords = [
+  { word: "Memberships", color: "#ffffff" },
+  { word: "Gym",         color: "#2EC4B6" },   // teal accent
+  { word: "Club",        color: "#C9A96E" },   // gold secondary
+  { word: "Resort",      color: "#a78bfa" },   // violet
+  { word: "Hotel",       color: "#f472b6" },   // rose
+  { word: "Spa",         color: "#34d399" },   // emerald
+  { word: "Sports",      color: "#fb923c" },   // orange
+];
+
+function CyclingWord() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((i) => (i + 1) % cyclingWords.length);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const current = cyclingWords[index];
+
+  return (
+    /*
+     * Outer span clips horizontally (masks the slide-in/out motion)
+     * but NOT vertically — descenders like y/p/g need to bleed below.
+     * We achieve this by making the clip box taller than the font:
+     * extra top/bottom padding absorbs the clip boundary.
+     */
+    <span
+      className="relative inline-block align-bottom"
+      style={{
+        minWidth: "1ch",
+        overflowX: "hidden",
+        overflowY: "visible",
+        paddingTop: "0.15em",
+        paddingBottom: "0.25em",
+        marginTop: "-0.15em",
+        marginBottom: "-0.25em",
+      }}
+    >
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={current.word}
+          initial={{ y: "110%", opacity: 0 }}
+          animate={{ y: "0%", opacity: 1 }}
+          exit={{ y: "-110%", opacity: 0 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-block"
+          style={{ color: current.color }}
+        >
+          {current.word}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
 
 /* ------------------------------------------------------------------ */
 /* Hero — video background with canvas fallback                        */
@@ -100,9 +162,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[12vw] leading-[0.85] font-serif tracking-tighter text-white drop-shadow-[0_2px_30px_rgba(0,0,0,0.8)]"
+            className="text-[12vw] leading-[0.85] font-serif tracking-tighter drop-shadow-[0_2px_30px_rgba(0,0,0,0.8)]"
           >
-            Memberships.
+            <CyclingWord />.
           </motion.h1>
         </div>
 

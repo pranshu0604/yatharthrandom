@@ -32,12 +32,13 @@ export default async function Categories() {
   const categories = await getCategories();
 
   return (
-    <section className="py-20 sm:py-28 bg-neutral-900">
+    <section className="py-20 sm:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-14">
           <SectionHeading
             title="Browse by Category"
             subtitle="Find the perfect membership from our curated categories across India"
+            light
           />
         </div>
 

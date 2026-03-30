@@ -107,7 +107,7 @@ function FaqAccordionItem({ item, index }: { item: FaqItem; index: number }) {
 
 export default function FaqSection() {
   return (
-    <section className="py-20 sm:py-28 bg-neutral-900">
+    <section className="py-20 sm:py-28 bg-neutral-950">
       <div className="max-w-3xl mx-auto px-6 sm:px-8 lg:px-12">
         <SectionHeading
           title="Questions?"

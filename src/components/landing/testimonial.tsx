@@ -10,16 +10,16 @@ const ease = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 export default function Testimonial() {
   return (
-    <section className="py-20 sm:py-28 bg-neutral-950">
+    <section className="py-20 sm:py-28 bg-white">
       <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12">
         <motion.blockquote
-          className="border-t border-neutral-800 pt-12 sm:pt-16"
+          className="border-t border-neutral-200 pt-12 sm:pt-16"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, ease }}
         >
-          <p className="font-serif text-2xl sm:text-3xl lg:text-4xl font-medium text-white leading-snug tracking-tight">
+          <p className="font-serif text-2xl sm:text-3xl lg:text-4xl font-medium text-neutral-900 leading-snug tracking-tight">
             &ldquo;We saved over ₹3.5 lakhs on our family&apos;s club membership
             through ReMemberX. The whole process was transparent, verified, and
             incredibly smooth. It&apos;s like the marketplace premium memberships
@@ -33,7 +33,7 @@ export default function Testimonial() {
             </div>
 
             <cite className="not-italic">
-              <span className="block text-base font-semibold text-neutral-300">
+              <span className="block text-base font-semibold text-neutral-800">
                 Ananya Sharma
               </span>
               <span className="block text-sm text-neutral-500 mt-0.5">

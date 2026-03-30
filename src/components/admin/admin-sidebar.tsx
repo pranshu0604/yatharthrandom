@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
+import { useSession } from "next-auth/react";
+import { cn, getInitials } from "@/lib/utils";
 import {
   LayoutDashboard,
   Users,
@@ -14,6 +15,8 @@ import {
   Menu,
   X,
   Shield,
+  ExternalLink,
+  ChevronRight,
 } from "lucide-react";
 
 const navItems = [
@@ -27,6 +30,7 @@ const navItems = [
 
 export function AdminSidebar() {
   const pathname = usePathname();
+  const { data: session } = useSession();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const isActive = (href: string, exact?: boolean) => {
@@ -35,22 +39,20 @@ export function AdminSidebar() {
   };
 
   const sidebar = (
-    <div className="flex h-full flex-col bg-neutral-900 border-r border-neutral-800">
-      {/* Logo / Brand */}
-      <div className="flex items-center gap-3 px-6 py-6 border-b border-neutral-800">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10">
-          <Shield className="h-5 w-5 text-white" />
+    <div className="flex h-full flex-col bg-neutral-950 border-r border-neutral-800/60">
+      {/* Brand */}
+      <div className="flex items-center gap-3 px-5 py-5 border-b border-neutral-800/60">
+        <div className="flex h-8 w-8 items-center justify-center bg-white/8 border border-white/10">
+          <Shield className="h-4 w-4 text-white" />
         </div>
-        <div>
-          <p className="text-sm font-bold tracking-wide text-white">ReMemberX</p>
-          <p className="text-[11px] text-neutral-400 uppercase tracking-wider">
-            Admin Panel
-          </p>
+        <div className="min-w-0">
+          <p className="text-sm font-bold tracking-tight text-white">ReMemberX</p>
+          <p className="text-[10px] text-neutral-500 uppercase tracking-[0.15em]">Admin</p>
         </div>
       </div>
 
-      {/* Nav links */}
-      <nav className="flex-1 px-3 py-4 space-y-1">
+      {/* Nav */}
+      <nav className="flex-1 px-2 py-3 space-y-0.5 overflow-y-auto">
         {navItems.map((item) => {
           const active = isActive(item.href, item.exact);
           return (
@@ -59,35 +61,53 @@ export function AdminSidebar() {
               href={item.href}
               onClick={() => setMobileOpen(false)}
               className={cn(
-                "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                "group flex items-center justify-between px-3 py-2.5 text-sm font-medium transition-all duration-150",
                 active
-                  ? "bg-neutral-800 text-white"
-                  : "text-neutral-500 hover:text-white hover:bg-neutral-950",
+                  ? "bg-white/8 text-white border-l-2 border-accent pl-2.5"
+                  : "text-neutral-500 hover:text-neutral-200 hover:bg-white/4 border-l-2 border-transparent pl-2.5"
               )}
             >
-              <item.icon className="h-5 w-5 shrink-0" />
-              {item.label}
+              <div className="flex items-center gap-3">
+                <item.icon className={cn("h-4 w-4 shrink-0", active ? "text-accent" : "text-neutral-600 group-hover:text-neutral-400")} />
+                {item.label}
+              </div>
+              {active && <ChevronRight className="h-3.5 w-3.5 text-neutral-600" />}
             </Link>
           );
         })}
       </nav>
 
-      {/* Footer */}
-      <div className="border-t border-neutral-800 px-6 py-4">
+      {/* Divider + links */}
+      <div className="border-t border-neutral-800/60 px-2 py-3 space-y-0.5">
         <Link
           href="/"
-          className="text-xs text-neutral-400 hover:text-neutral-400 transition-colors"
+          target="_blank"
+          className="flex items-center gap-3 px-3 py-2.5 text-sm text-neutral-600 hover:text-neutral-300 transition-colors pl-2.5"
         >
-          Back to site
+          <ExternalLink className="h-4 w-4" />
+          View site
         </Link>
       </div>
+
+      {/* User */}
+      {session?.user && (
+        <div className="border-t border-neutral-800/60 px-4 py-3 flex items-center gap-3">
+          <div className="h-8 w-8 shrink-0 rounded-full bg-neutral-800 border border-white/10 flex items-center justify-center text-xs font-serif text-white">
+            {getInitials(session.user.name || "A")}
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-xs font-medium text-neutral-300 truncate">{session.user.name}</p>
+            <p className="text-[10px] text-neutral-600 truncate">{session.user.email}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden md:flex md:fixed md:inset-y-0 md:left-0 md:w-64 md:z-40">
+      <aside className="hidden md:flex md:fixed md:inset-y-0 md:left-0 md:w-60 md:z-40">
         {sidebar}
       </aside>
 
@@ -95,7 +115,7 @@ export function AdminSidebar() {
       <button
         type="button"
         onClick={() => setMobileOpen(true)}
-        className="fixed top-4 left-4 z-50 md:hidden rounded-lg bg-neutral-900 border border-neutral-800 p-2 text-neutral-300 shadow-none cursor-pointer"
+        className="fixed top-4 left-4 z-50 md:hidden bg-neutral-950 border border-neutral-800 p-2 text-neutral-300 shadow-none cursor-pointer"
         aria-label="Open admin menu"
       >
         <Menu className="h-5 w-5" />
@@ -108,7 +128,7 @@ export function AdminSidebar() {
             className="absolute inset-0 bg-black/60"
             onClick={() => setMobileOpen(false)}
           />
-          <aside className="relative w-64 h-full">
+          <aside className="relative w-60 h-full">
             {sidebar}
             <button
               type="button"

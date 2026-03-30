@@ -51,8 +51,9 @@ async function main() {
   const passwordHash = await hash("password123", 12);
 
   // Users
+  const adminHash = await hash("admin123", 12);
   const admin = await prisma.user.create({
-    data: { name: "Admin User", email: "admin@rememberx.in", passwordHash, role: Role.ADMIN, tier: SellerTier.GOLD, city: "Mumbai", state: "Maharashtra" },
+    data: { name: "Admin User", email: "admin@test.com", passwordHash: adminHash, role: Role.ADMIN, tier: SellerTier.GOLD, city: "Mumbai", state: "Maharashtra" },
   });
 
   const sellers = await Promise.all([

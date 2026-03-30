@@ -34,13 +34,9 @@ export default async function AdminSettingsPage() {
 
   return (
     <div>
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-neutral-100">
-          Platform Settings
-        </h1>
-        <p className="text-neutral-500 mt-1">
-          Configure commission rates, fees, and seller tier settings.
-        </p>
+      <div className="border-b border-neutral-800/60 pb-6 mb-6">
+        <p className="text-[10px] font-medium uppercase tracking-[0.25em] text-neutral-600 mb-1">Admin</p>
+        <h1 className="font-serif text-2xl font-bold text-white">Settings</h1>
       </div>
 
       <AdminSettingsClient config={config} tiers={tiers} />

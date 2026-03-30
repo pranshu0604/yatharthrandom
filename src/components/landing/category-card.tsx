@@ -61,17 +61,17 @@ export default function CategoryCard({
       transition={{ duration: 0.4, delay: index * 0.05, ease }}
     >
       <Link href={`/marketplace?category=${slug}`} className="group block">
-        <div className="relative border-l-2 border-neutral-800 bg-neutral-900/40 px-5 py-5 sm:px-6 sm:py-6 transition-all duration-300 group-hover:border-accent group-hover:bg-neutral-900/80">
+        <div className="relative border-l-2 border-neutral-300 bg-neutral-50 px-5 py-5 sm:px-6 sm:py-6 transition-all duration-300 group-hover:border-accent group-hover:bg-white group-hover:shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
           {/* Icon + Name row */}
           <div className="flex items-center gap-3">
-            <Icon className="h-5 w-5 text-neutral-600 transition-colors duration-300 group-hover:text-accent shrink-0" />
-            <h3 className="font-medium text-[15px] text-neutral-300 transition-colors duration-300 group-hover:text-white">
+            <Icon className="h-5 w-5 text-neutral-400 transition-colors duration-300 group-hover:text-accent shrink-0" />
+            <h3 className="font-medium text-[15px] text-neutral-700 transition-colors duration-300 group-hover:text-neutral-900">
               {name}
             </h3>
           </div>
 
           {/* Count */}
-          <p className="mt-2 text-xs text-neutral-600 pl-8">
+          <p className="mt-2 text-xs text-neutral-400 pl-8">
             {listingCount} {listingCount === 1 ? "listing" : "listings"}
           </p>
         </div>

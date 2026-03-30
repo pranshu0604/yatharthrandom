@@ -54,21 +54,21 @@ export default async function FeaturedListings() {
   });
 
   return (
-    <section className="py-24 sm:py-32 bg-neutral-950">
+    <section className="py-24 sm:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         {/* Left-aligned heading — not centered SectionHeading */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
           <div>
-            <p className="text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500 mb-3">
+            <p className="text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-400 mb-3">
               Featured
             </p>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-neutral-900 tracking-tight">
               Hand-picked memberships
             </h2>
           </div>
           <Link
             href="/marketplace"
-            className="inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors group shrink-0"
+            className="inline-flex items-center gap-2 text-sm text-neutral-500 hover:text-neutral-900 transition-colors group shrink-0"
           >
             View all
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
@@ -78,8 +78,8 @@ export default async function FeaturedListings() {
         {listingsData.length > 0 ? (
           <FeaturedMarquee listings={listingsData} />
         ) : (
-          <div className="text-center py-16 border border-neutral-800/40">
-            <p className="text-neutral-500">
+          <div className="text-center py-16 border border-neutral-200">
+            <p className="text-neutral-400">
               Featured memberships are on the way. Check back soon.
             </p>
           </div>

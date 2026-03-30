@@ -24,13 +24,13 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-neutral-950">
       {/* Sidebar */}
       <AdminSidebar />
 
       {/* Main content */}
-      <main className="flex-1 ml-0 md:ml-64 bg-neutral-950 min-h-screen">
-        <div className="p-6 lg:p-8">{children}</div>
+      <main className="flex-1 ml-0 md:ml-60 min-h-screen">
+        <div className="p-6 lg:p-8 max-w-350">{children}</div>
       </main>
     </div>
   );
