@@ -116,18 +116,18 @@ export default function FeatureCards() {
           </h2>
         </motion.div>
 
-        {/* Asymmetric grid — not 4 identical boxes */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-8 lg:gap-x-16 border-t border-neutral-800/60">
-          <div className="lg:col-span-5">
+        {/* Two even columns — left edges align, right edges align */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 lg:gap-x-16 border-t border-neutral-800/60">
+          <div>
             <FeatureItem feature={features[0]} index={0} />
           </div>
-          <div className="lg:col-span-7">
+          <div>
             <FeatureItem feature={features[1]} index={1} />
           </div>
-          <div className="lg:col-span-7 border-t border-neutral-800/60">
+          <div className="sm:border-t border-neutral-800/60">
             <FeatureItem feature={features[2]} index={2} />
           </div>
-          <div className="lg:col-span-5 border-t border-neutral-800/60">
+          <div className="sm:border-t border-neutral-800/60">
             <FeatureItem feature={features[3]} index={3} />
           </div>
         </div>

@@ -20,7 +20,7 @@ export default function Testimonial() {
           transition={{ duration: 0.8, ease }}
         >
           <p className="font-serif text-2xl sm:text-3xl lg:text-4xl font-medium text-neutral-900 leading-snug tracking-tight">
-            &ldquo;We saved over ₹3.5 lakhs on our family&apos;s club membership
+            &ldquo;We saved over ₹3.5 lakhs on our family&apos;s Gym Membership
             through ReMemberX. The whole process was transparent, verified, and
             incredibly smooth. It&apos;s like the marketplace premium memberships
             always needed.&rdquo;

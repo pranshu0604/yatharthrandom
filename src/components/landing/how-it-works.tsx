@@ -23,7 +23,7 @@ const steps = [
     number: "02",
     title: "Connect & Negotiate",
     description:
-      "Find the perfect deal. Connect with verified sellers or buyers and agree on terms that work for both.",
+      "Find the perfect deal. Connect with verified sellers and agree on terms that work for both.",
     color: "bg-purple-500/10",
     iconColor: "text-purple-600",
   },
@@ -32,7 +32,7 @@ const steps = [
     number: "03",
     title: "Transfer Securely",
     description:
-      "Complete the membership transfer through our secure platform. Save up to 70% on premium memberships.",
+      "Verify the authenticity of the membership by calling the service provider if the membership exists and it is transferable. Make the payment to the seller directly and get the membership transferred.",
     color: "bg-amber-500/10",
     iconColor: "text-amber-600",
   },

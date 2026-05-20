@@ -17,12 +17,7 @@ const faqs: FaqItem[] = [
   {
     question: "What is ReMemberX and how does it work?",
     answer:
-      "ReMemberX is India's trusted marketplace for buying and selling transferable premium memberships — clubs, gyms, resorts, co-working spaces, and holiday packages. Sellers list their unused or transferable memberships, buyers browse and connect with verified sellers, and the membership transfer happens securely through our platform.",
-  },
-  {
-    question: "Is it legal to transfer a membership?",
-    answer:
-      "Yes. Many premium memberships in India are transferable by their terms and conditions. ReMemberX only lists memberships that are eligible for transfer. We verify each listing to ensure the membership can be legally and officially transferred to a new owner.",
+      "ReMemberX is India's trusted marketplace for buying and selling transferable premium memberships — clubs, gyms, resorts, co-working spaces, holiday packages, and concert tickets. Transfer the membership or tickets after making sure the authenticity of the membership or the tickets. Sellers list their unused or transferable memberships, buyers browse and connect with verified sellers, and the membership transfer happens securely through our platform.",
   },
   {
     question: "How much can I save as a buyer?",
@@ -30,14 +25,9 @@ const faqs: FaqItem[] = [
       "Buyers typically save 30–70% off the original membership price. The exact savings depend on the membership type, remaining duration, and seller pricing. Every listing shows the original price and discount percentage upfront.",
   },
   {
-    question: "How do you verify sellers?",
-    answer:
-      "Every seller goes through our KYC verification process before they can list. We verify their identity, confirm membership ownership, and check that the membership is genuinely transferable. Sellers are rated by tier (Bronze, Silver, Gold) based on their activity and reviews.",
-  },
-  {
     question: "What does it cost to list a membership?",
     answer:
-      "Creating an account and listing your membership is free. ReMemberX charges a small commission only when a successful transfer is completed. There are no upfront fees, no listing fees, and no hidden charges.",
+      "Creating an account and listing your membership is free. ReMemberX does not charge any listing fees or commissions as of now.",
   },
   {
     question: "What types of memberships can I find?",

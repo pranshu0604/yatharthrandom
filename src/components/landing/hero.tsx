@@ -168,7 +168,7 @@ export default function Hero() {
           </motion.h1>
         </div>
 
-        <div className="mt-24 lg:mt-32 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end border-t border-white/10 pt-8">
+        <div className="mt-24 lg:mt-32 pb-12 lg:pb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end border-t border-white/10 pt-8">
           <div className="lg:col-span-4">
             <p className="text-neutral-400 text-lg leading-relaxed max-w-sm">
               The exclusive marketplace for buying and selling transferable
